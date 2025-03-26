@@ -12,8 +12,10 @@
     <h3>Melville-Style Generated Verse:</h3>
     <blockquote>{{ generated_verse }}</blockquote>
 
-    <h3>Best Match from Moby Dick:</h3>
-    <blockquote>{{ matched_verse }}</blockquote>
+    <h3>Top 3 Matches from Moby Dick:</h3>
+    {% for verse in matched_verses %}
+        <blockquote>{{ verse }}</blockquote>
+    {% endfor %}
 
     <br>
     <a href="/">Try another query</a>

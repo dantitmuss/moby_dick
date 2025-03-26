@@ -82,15 +82,19 @@ def search():
 
 
     # Step 3: Search FAISS for the closest match
-    D, I = index.search(query_embedding, k=1)
-    match_id = id_data[I[0][0]]
-    matched_verse = find_verse_by_id(match_id, moby_dick_data)
+    D, I = index.search(query_embedding, k=3)
+
+    matches = []
+    for idx in I[0]:
+        match_id = id_data[idx]  # Get the corresponding ID from the FAISS index
+        verse = find_verse_by_id(match_id, moby_dick_data)  # Get the verse text
+        matches.append(verse)  # Store it
 
     # Step 4: Return results
     return render_template('results.html',
                            query=query,
                            generated_verse=generated_verse,
-                           matched_verse=matched_verse)
+                           matched_verses=matches)
 
 if __name__ == '__main__':
     app.run(debug=True)
