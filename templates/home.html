@@ -53,6 +53,12 @@
     <script>
         let tagsData = {};
         let awesompleteInstance = null;
+
+        // Helper function for getting random list of tags
+        function getRandomSubset(array, n) {
+            const shuffled = array.slice().sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, n);
+            }
     
         fetch('/tags.json')
             .then(response => response.json())
@@ -88,11 +94,13 @@
                         }
                     });
                 }
-    
-                //  Show full list on focus
                 tagInput.addEventListener("focus", function () {
-                    awesompleteInstance.evaluate();
-                });
+                    if (tagsData[selectedCategory]) {
+                        awesompleteInstance.list = getRandomSubset(tagsData[selectedCategory], 10); // or use handpicked list
+                        awesompleteInstance.evaluate();
+                        }
+                    });
+    
             }
         }
     
