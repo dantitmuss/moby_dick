@@ -40,27 +40,29 @@
     </form>
 
     <script>
-        // TODO: Replace with dynamic loading from tags.json when you're ready
-        const tagsByCategory = {
-            "entities": ["Ahab", "Moby Dick", "Pequod", "Ishmael", "Queequeg", "Starbuck", "Stubb", "Flask"],
-            "themes": ["Revenge", "Obsession", "Fate", "Madness", "God", "The Sea"],
-            "symbolism": ["White Whale", "Doubloon", "Ocean", "Storm", "Pequod"],
-            "feeling": ["Melancholy", "Dread", "Awe", "Restlessness"],
-            "vibe": ["Philosophical", "Dark", "Epic", "Claustrophobic"],
-            "literary_motifs": ["Man vs. Nature", "The Hunt", "Isolation", "Wanderer"]
-        };
-
+        let tagsData = {};
+    
+        // Load the JSON file once on page load
+        fetch('/tags.json')
+            .then(response => response.json())
+            .then(data => {
+                tagsData = data;
+            })
+            .catch(error => {
+                console.error("Failed to load tags.json:", error);
+            });
+    
         function updateTags() {
             const categorySelect = document.getElementById("category");
             const tagSelect = document.getElementById("tag");
             const selectedCategory = categorySelect.value;
-
+    
             // Clear existing options
             tagSelect.innerHTML = '<option value="">--Select Tag--</option>';
-
-            // Add new options
-            if (tagsByCategory[selectedCategory]) {
-                tagsByCategory[selectedCategory].forEach(tag => {
+    
+            // Add new options dynamically from loaded JSON
+            if (tagsData[selectedCategory]) {
+                tagsData[selectedCategory].forEach(tag => {
                     const option = document.createElement("option");
                     option.value = tag;
                     option.textContent = tag;
