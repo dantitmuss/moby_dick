@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verse Match Results</title>
+</head>
+<body>
+    <h1>Tag Verse Match</h1>
+
+    <h3>Your Tag:</h3>
+    <p>Tag Category: <em>{{ category }}</em></p>
+    <p>Tag Name: <em>{{ tag }}</em></p>
+
+    <h3>Matching Verses from Moby Dick:</h3>
+    {% for verse in found_texts %}
+    <blockquote>
+        Chapter {{ verse.chapter_number }}, {{ verse.chapter_title }}<br>
+        Verse {{ verse.verse_number }}:<br>
+        {{ verse.text }}
+    </blockquote>
+    {% endfor %}
+
+    <br>
+    <a href="/">Try another query</a>
+</body>
+</html>

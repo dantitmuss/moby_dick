@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify, send_from_directory
 from dotenv import load_dotenv
 import os
 import json
@@ -10,7 +10,7 @@ from openai import OpenAI
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static")
 
 
 client = OpenAI(api_key=openai_api_key)
@@ -69,6 +69,11 @@ def find_verse_by_id(verse_id, data):
 def home():
     return render_template('home.html')
 
+# Get the tag information
+@app.route('/tags.json')
+def get_tags_json():
+    return send_from_directory('static', 'tags.json')
+
 # Flask main logic
 @app.route('/search', methods=['POST'])
 def search():
@@ -95,6 +100,27 @@ def search():
                            query=query,
                            generated_verse=generated_verse,
                            matched_verses=matches)
+
+@app.route('/tag_search', methods=['POST'])
+def find_tag():
+    category = request.form.get('category')
+    tag = request.form.get('tag')
+    
+    found_texts = []
+    for chapter in moby_dick_data:
+        for verse in chapter["verses"]:
+            if tag.lower() in [t.lower() for t in verse["open_ai_tags"].get(category, [])]:
+                found_texts.append({
+                    "chapter_number": chapter["chapter_number"],
+                    "chapter_title": chapter["title"],
+                    "verse_number": verse["verse_number"],
+                    "text": verse["text"]
+                })
+    return render_template('tag-results.html',
+                           category=category,
+                           tag=tag,
+                           found_texts=found_texts)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
