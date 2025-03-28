@@ -4,6 +4,8 @@
     <!-- Add to <head> of your home.html -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}?v=2">
+
 
     <!-- Style for Awesomeplete -->
     <style>
@@ -16,6 +18,9 @@
     <title>Moby Dick Verse Finder</title>
 </head>
 <body>
+    <div class="bg-red-400 text-blue p-4 rounded text-2xl">
+        🔥 If you can see THIS red box, Tailwind is working!
+      </div>
     <h1>Moby Dick Semantic Verse Search</h1>
 
     <form action="/search" method="post">
