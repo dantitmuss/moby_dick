@@ -61,7 +61,12 @@ def find_verse_by_id(verse_id, data):
     for chapter in data:
         for verse in chapter["verses"]:
             if verse["id"] == verse_id:
-                return verse["text"]
+                return ({
+                    "chapter_number": chapter["chapter_number"],
+                    "chapter_title": chapter["title"],
+                    "verse_number": verse["verse_number"],
+                    "text": verse["text"]
+                })
     return "Verse not found."
 
 # Flask Homepage

@@ -14,7 +14,11 @@
 
     <h3>Top 3 Matches from Moby Dick:</h3>
     {% for verse in matched_verses %}
-        <blockquote>{{ verse }}</blockquote>
+    <blockquote>
+        Chapter {{ verse.chapter_number }}, {{ verse.chapter_title }}<br>
+        Verse {{ verse.verse_number }}:<br>
+        {{ verse.text }}
+    </blockquote>
     {% endfor %}
 
     <br>
