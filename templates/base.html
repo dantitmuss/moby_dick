@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  {% block head %}
+    <!-- Awesomplete CSS & JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
+    
+    <!-- Tailwind Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}?v=2">
+    
+    <!-- Inline style for Awesomplete -->
+    <style>
+      .awesomplete > ul {
+          max-height: 200px;
+          overflow-y: auto;
+      }
+    </style>
+  {% endblock %}
+  <title>{% block title %}Moby Dick Verse Finder{% endblock %}</title>
+</head>
+<body class="bg-gray-100 text-gray-900 font-serif">
+  <!-- Common Header -->
+  <header class="bg-blue-600 text-white p-4">
+    <h1 class="text-3xl font-bold text-center">Moby Dick Semantic Verse Search</h1>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-3xl mx-auto p-6">
+    {% block content %}
+    <!-- Page-specific content will be inserted here -->
+    {% endblock %}
+  </main>
+
+  <!-- Common Footer -->
+  <footer class="bg-blue-600 text-white p-4 text-center">
+    &copy; 2025 Moby Dick Verse Finder
+  </footer>
+</body>
+</html>

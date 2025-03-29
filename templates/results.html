@@ -1,28 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}?v=2">
-    <title>Verse Match Results</title>
-</head>
-<body>
-    <h1>Semantic Verse Match</h1>
+{% extends "base.html" %}
 
-    <h3>Your Query:</h3>
-    <p><em>{{ query }}</em></p>
+{% block title %}Semantic Verse Match | Moby Dick Verse Finder{% endblock %}
 
-    <h3>Melville-Style Generated Verse:</h3>
-    <blockquote>{{ generated_verse }}</blockquote>
+{% block content %}
+  <h2 class="text-2xl font-bold mb-4">Semantic Verse Match</h2>
 
-    <h3>Top 3 Matches from Moby Dick:</h3>
-    {% for verse in matched_verses %}
-    <blockquote>
-        Chapter {{ verse.chapter_number }}, {{ verse.chapter_title }}<br>
-        Verse {{ verse.verse_number }}:<br>
-        {{ verse.text }}
+  <div class="mb-6">
+    <h3 class="text-xl font-semibold">Your Query:</h3>
+    <p class="italic">{{ query }}</p>
+  </div>
+
+  <div class="mb-6">
+    <h3 class="text-xl font-semibold">Melville-Style Generated Verse:</h3>
+    <blockquote class="bg-gray-200 border-l-4 border-gray-400 p-4 italic">
+      {{ generated_verse }}
     </blockquote>
-    {% endfor %}
+  </div>
 
-    <br>
-    <a href="/">Try another query</a>
-</body>
-</html>
+  <div>
+    <h3 class="text-xl font-semibold mb-4">Top 3 Matches from Moby Dick:</h3>
+    {% for verse in matched_verses %}
+      <blockquote class="bg-gray-100 border-l-4 border-gray-300 p-4 my-4">
+        <span class="font-semibold">Chapter {{ verse.chapter_number }}, {{ verse.chapter_title }}</span><br>
+        <span class="font-semibold">Verse {{ verse.verse_number }}:</span><br>
+        {{ verse.text }}
+      </blockquote>
+    {% endfor %}
+  </div>
+
+  <div class="mt-6">
+    <a href="/" class="text-blue-700 hover:underline">Try another query</a>
+  </div>
+{% endblock %}
