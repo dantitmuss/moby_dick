@@ -68,13 +68,13 @@
 
     // ✅ 2. Fetch tags.json
     fetch('/tags.json')
-        .then(response => response.json())
-        .then(data => {
-            tagsData = data;
-        })
-        .catch(error => {
-            console.error("Failed to load tags.json:", error);
-        });
+      .then(response => response.json())
+      .then(data => {
+        tagsData = data;
+      })
+      .catch(error => {
+        console.error("Failed to load tags.json:", error);
+      });
 
     // ✅ 3. Main function that runs on category change
     function updateTags() {
@@ -85,37 +85,37 @@
     tagInput.value = "";
 
     if (tagsData[selectedCategory]) {
-        if (awesompleteInstance) {
-            // Clear the list for new category
-            awesompleteInstance.list = [];
-        }
-        else {
-            awesompleteInstance = new Awesomplete(tagInput, {
-                list: [],
-                minChars: 1,
-                autoFirst: true,
-                maxItems: 100,
-                filter: function(text, input) {
-                    const words = text.toLowerCase().split(/\s+/);
-                    const loweredInput = input.toLowerCase();
-                    return words.some(word => word.startsWith(loweredInput));
-                }
-            });
-            // When the field is focused, show a random subset
-            tagInput.addEventListener("focus", function () {
-                if (tagsData[selectedCategory]) {
-                    awesompleteInstance.list = getRandomSubset(tagsData[selectedCategory], 10);
-                    awesompleteInstance.evaluate();
-                }
-            });
-            // NEW: When the user types, use the full list for filtering
-            tagInput.addEventListener("input", function() {
-                if (tagInput.value.length > 0 && tagsData[selectedCategory]) {
-                    awesompleteInstance.list = tagsData[selectedCategory].sort((a, b) =>
-                        a.toLowerCase().localeCompare(b.toLowerCase())
-                    );
-                    awesompleteInstance.evaluate();
-                }
+      if (awesompleteInstance) {
+        // Clear the list for new category
+        awesompleteInstance.list = [];
+      }
+      else {
+        awesompleteInstance = new Awesomplete(tagInput, {
+          list: [],
+          minChars: 1,
+          autoFirst: true,
+          maxItems: 100,
+          filter: function(text, input) {
+            const words = text.toLowerCase().split(/\s+/);
+            const loweredInput = input.toLowerCase();
+            return words.some(word => word.startsWith(loweredInput));
+            }
+          });
+        // When the field is focused, show a random subset
+        tagInput.addEventListener("focus", function () {
+          if (tagsData[selectedCategory]) {
+            awesompleteInstance.list = getRandomSubset(tagsData[selectedCategory], 10);
+            awesompleteInstance.evaluate();
+            }
+          });
+          // NEW: When the user types, use the full list for filtering
+          tagInput.addEventListener("input", function() {
+            if (tagInput.value.length > 0 && tagsData[selectedCategory]) {
+              awesompleteInstance.list = tagsData[selectedCategory].sort((a, b) =>
+              a.toLowerCase().localeCompare(b.toLowerCase())
+                );
+              awesompleteInstance.evaluate();
+              }
             });
           }
         }
