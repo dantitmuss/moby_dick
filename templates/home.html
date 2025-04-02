@@ -3,13 +3,27 @@
 {% block title %}Home | Moby Dick Verse Finder{% endblock %}
 
 {% block content %}
-  <!-- Test block to verify Tailwind is active -->
-  <div class="bg-red-400 text-blue-900 p-4 rounded text-2xl mb-6">
-    🔥 If you can see THIS red box, Tailwind is working!
-  </div>
 
   <!-- Main Heading -->
-  <h2 class="text-2xl font-bold mb-4">Moby Dick Semantic Verse Search</h2>
+  <h1 class="text-2xl font-bold mb-4">Moby Dick Semantic Verse Search</h2>
+
+  <!-- Information -->
+  <div class="bg-white p-6 rounded shadow-md mb-6">
+   <h2 class="text-xl font-bold mb-4">A New Way of Reading The Whale</h2>
+    <p>
+      Moby Dick; or, The Whale, is the entire world. Between the cover of the novel, you can find any reason, explanation, and humor on anything. Which is why I created the Moby Dick Bible. It’s a new way of consuming Herman Melville’s book that treats it like a sacred text, to find meaning and guidance.
+    </p>
+    <br>
+    <p>
+      It works by first creating a brand new verse in the style of Melville’s beautiful, majestic, weird prose, then by finding appropriate verses within the book. If you are a technical dork, you can find out more or get the code from GitHub.
+    </p>
+    <br>
+    <p>
+      Enter anything here, and the Moby Dick Bible will give you an appropriate verse from the good book. So type something in! Revenge, the mystery of the open ocean, the movie Pulp Fiction… anything.
+    </p>
+  </div>
+
+
 
   <!-- Search Form -->
   <div class="bg-white p-6 rounded shadow-md mb-6">
@@ -17,7 +31,7 @@
       <label for="query" class="block mb-2 font-semibold">
         Enter a theme, emotion, or idea:
       </label>
-      <input type="text" name="query" id="query" placeholder="e.g., dread, revenge, the sea" 
+      <input type="text" name="query" id="query" placeholder="e.g., dread, adventure, The Bachelor franchise..." 
              class="w-full p-3 border rounded mb-4" required>
       <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition">
         Submit

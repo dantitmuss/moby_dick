@@ -69,6 +69,16 @@ def find_verse_by_id(verse_id, data):
                 })
     return "Verse not found."
 
+display_names = {
+    "entitites": "Entities",
+    "themes": "Themes",
+    "symbolism": "Symbolism",
+    "feeling": "Feeling",
+    "vibe": "Vibe",
+    "literary_motifs": "Literary Motifs"
+}
+
+
 # Flask Homepage
 @app.route('/')
 def home():
@@ -110,7 +120,7 @@ def search():
 def find_tag():
     category = request.form.get('category')
     tag = request.form.get('tag')
-    
+    pretty_category = display_names.get(category, category.replace("_", " ").title())
     found_texts = []
     for chapter in moby_dick_data:
         for verse in chapter["verses"]:
@@ -122,7 +132,7 @@ def find_tag():
                     "text": verse["text"]
                 })
     return render_template('tag-results.html',
-                           category=category,
+                           category=pretty_category,
                            tag=tag,
                            found_texts=found_texts)
 
