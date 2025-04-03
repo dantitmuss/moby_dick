@@ -6,7 +6,13 @@ module.exports = {
     "./templates/**/*.html"
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        imfell: ['"IM Fell English"', 'serif'],
+        // Make it the default serif font
+        serif: ['"IM Fell English"', 'serif'],
+      },
+    },
   },
   plugins: [],
 }

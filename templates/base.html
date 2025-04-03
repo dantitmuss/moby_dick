@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% block head %}
     <!-- Awesomplete CSS & JS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     
     <!-- Tailwind Stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}?v=2">
@@ -20,15 +22,16 @@
   {% endblock %}
   <title>{% block title %}Moby Dick Verse Finder{% endblock %}</title>
 </head>
-<body class="bg-gray-100 text-gray-900 font-serif">
-  <!-- Common Header -->
-  <header class="bg-blue-600 text-white p-4">
-    <h1 class="text-3xl font-bold text-center">The Moby Dick Bible</h1>
+<body class="bg-gray-100 text-gray-900 font-imfell text-[17px] leading-relaxed">
+  <!-- Common Header:  -->
+  <header class="bg-blue-600 text-white p-4 flex justify-center">
+    <a href="/" class="text-3xl font-bold">Moby Dick Verse Finder</a>
   </header>
 
 
   <!-- Main Content Container -->
-  <main class="max-w-3xl mx-auto p-6">
+  <main class="w-full max-w-3xl mx-auto p-4 sm:p-6">
+
     {% block content %}
     <!-- Page-specific content will be inserted here -->
     {% endblock %}
