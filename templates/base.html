@@ -15,17 +15,41 @@
     <!-- Inline style for Awesomplete -->
     <style>
       .awesomplete > ul {
-          max-height: 200px;
-          overflow-y: auto;
+        max-height: 200px;
+        overflow-y: auto;
+        background: rgba(255, 255, 255, 0.95);
+        color: #1a1a1a;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        padding: 0.5rem 0;
+        font-family: 'IM Fell English', serif;
+      }
+    
+      .awesomplete li {
+        padding: 0.5rem 1rem;
+      }
+    
+      .awesomplete li:hover,
+      .awesomplete li[aria-selected="true"] {
+        background-color: #e0e7ff;
+        color: #1e1b4b;
+        cursor: pointer;
+      }
+    
+      .awesomplete mark {
+        background: none;
+        color: #1e1b4b;
+        font-weight: bold;
       }
     </style>
+    
   {% endblock %}
-  <title>{% block title %}Moby Dick Verse Finder{% endblock %}</title>
+  <title>{% block title %}The Moby Dick Bible{% endblock %}</title>
 </head>
-<body class="bg-gray-100 text-gray-900 font-imfell text-[17px] leading-relaxed">
+<body class="bg-gradient-to-b from-slate-900 to-blue-900 text-gray-100 font-imfell text-[17px] leading-relaxed">
   <!-- Common Header:  -->
-  <header class="bg-blue-600 text-white p-4 flex justify-center">
-    <a href="/" class="text-3xl font-bold">Moby Dick Verse Finder</a>
+  <header class="bg-blue-900 text-white p-4 flex justify-center">
+    <a href="/" class="text-3xl font-bold">The Moby Dick Bible</a>
   </header>
 
 
@@ -38,7 +62,7 @@
   </main>
 
   <!-- Common Footer -->
-  <footer class="bg-blue-600 text-white p-4 text-center">
+  <footer class="bg-blue-900 text-white p-4 text-center">
     &copy; 2025 Moby Dick Verse Finder
   </footer>
 </body>

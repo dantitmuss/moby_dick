@@ -14,7 +14,7 @@
   <div>
     <h3 class="text-xl font-semibold mb-4">Matching Verses from Moby Dick:</h3>
     {% for verse in found_texts %}
-      <blockquote class="bg-gray-100 border-l-4 border-gray-300 p-4 my-4">
+      <blockquote class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl p-6 mb-6">
         <span class="font-semibold">Chapter {{ verse.chapter_number }}, {{ verse.chapter_title }}</span><br>
         <span class="font-semibold">Verse {{ verse.verse_number }}:</span><br>
         {{ verse.text }}
@@ -23,6 +23,6 @@
   </div>
 
   <div class="mt-6">
-    <a href="/" class="text-blue-700 hover:underline">Try another query</a>
+    <a href="/" class="hover:underline">Try another query</a>
   </div>
 {% endblock %}
