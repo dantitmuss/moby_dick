@@ -84,6 +84,11 @@ display_names = {
 def home():
     return render_template('home.html')
 
+# Flask About Page
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 # Get the tag information
 @app.route('/tags.json')
 def get_tags_json():

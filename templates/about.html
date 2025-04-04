@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Tag Verse Match | Moby Dick Verse Finder{% endblock %}
+
+{% block content %}
+  <h1 class="text-2xl font-bold mb-4">About This Project</h1>
+  <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl p-6">
+    <p class="mb-4">
+      The Moby Dick Bible is a semantic search engine for Melville’s *Moby-Dick*. It allows users to explore the text by theme, emotion, or idea.
+    </p>
+    <p>
+      It was built with Flask, Tailwind, FAISS, and a custom AI-generated verse model. You can learn more or contribute via the <a href="https://github.com/dantitmuss/moby_dick" class="underline text-blue-300 hover:text-white">GitHub repo</a>.
+    </p>
+  </div>
+{% endblock %}

@@ -48,8 +48,39 @@
 </head>
 <body class="bg-gradient-to-b from-slate-900 to-blue-900 text-gray-100 font-imfell text-[17px] leading-relaxed">
   <!-- Common Header:  -->
-  <header class="bg-blue-900 text-white p-4 flex justify-center">
-    <a href="/" class="text-3xl font-bold">The Moby Dick Bible</a>
+  <header class="bg-blue-900 text-white px-4 py-3 shadow-md">
+    <div class="max-w-6xl mx-auto flex justify-center items-center relative">
+      <!-- Site Title -->
+      <a href="/" class="bg-blue-900 text-white p-4 flex justify-center">
+        <span class="text-2xl font-extrabold">The Moby-Dick Bible</span>
+      </a>
+  
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" class="sm:hidden text-3xl focus:outline-none">
+        ☰
+      </button>
+  
+      <!-- Nav Links -->
+      <nav id="menu" class="hidden sm:flex gap-6 text-lg absolute right-0 top-1/2 -translate-y-1/2 pr-2">
+        <a href="/" class="hover:underline">Home</a>
+        <a href="/about" class="hover:underline">About</a>
+      </nav>
+    </div>
+  
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="sm:hidden hidden mt-2 px-4">
+      <a href="/" class="block py-1">Home</a>
+      <a href="/about" class="block py-1">About</a>
+    </div>
+  
+    <script>
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+  
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    </script>
   </header>
 
 
@@ -62,7 +93,7 @@
   </main>
 
   <!-- Common Footer -->
-  <footer class="bg-blue-900 text-white p-4 text-center">
+  <footer class="bg-slate-900 text-white p-4 text-center">
     &copy; 2025 Moby Dick Verse Finder
   </footer>
 </body>
