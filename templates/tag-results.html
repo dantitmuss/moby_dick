@@ -1,20 +1,21 @@
 {% extends "base.html" %}
 
-{% block title %}Tag Verse Match | Moby Dick Verse Finder{% endblock %}
+{% block title %}Tag Verse Match | Moby-Dick Verse Finder{% endblock %}
 
 {% block content %}
-  <h2 class="text-2xl font-bold mb-4">Tag Verse Match</h2>
+<div class="space-y-10">
+  <h1 class="text-2xl font-bold mb-4">Tag Verse Match</h2>
 
   <div class="mb-6">
-    <h3 class="text-xl font-semibold">Your Tag:</h3>
+    <h2 class="text-xl font-semibold">Your Tag:</h3>
     <p><span class="font-semibold">Category:</span> <em>{{ category }}</em></p>
     <p><span class="font-semibold">Tag:</span> <em>{{ tag }}</em></p>
   </div>
 
   <div>
-    <h3 class="text-xl font-semibold mb-4">Matching Verses from Moby Dick:</h3>
+    <h2 class="text-xl font-semibold mb-4">Matching Verses from Moby-Dick:</h3>
     {% for verse in found_texts %}
-      <blockquote class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl p-6 mb-6">
+      <blockquote class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl p-6 mb-6 animate-fade opacity-0" style="animation-delay: 0.5s; animation-fill-mode: forwards;">
         <span class="font-semibold">Chapter {{ verse.chapter_number }}, {{ verse.chapter_title }}</span><br>
         <span class="font-semibold">Verse {{ verse.verse_number }}:</span><br>
         {{ verse.text }}
@@ -22,7 +23,8 @@
     {% endfor %}
   </div>
 
-  <div class="mt-6">
+  <div class="mt-8 text-center">
     <a href="/" class="hover:underline">Try another query</a>
   </div>
+</div>
 {% endblock %}

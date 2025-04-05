@@ -4,26 +4,27 @@
 
 {% block content %}
 
-  <!-- Main Heading -->
-  <h1 class="text-2xl font-bold mb-4">Moby Dick Semantic Verse Search</h2>
+  <!-- Quote Intro -->
+  <div class="text-center text-gray-300 italic text-lg sm:text-xl max-w-xl mx-auto mt-8 mb-10 leading-snug">
+    “It is not down on any map; true places never are.”
+    <br>
+    <span class="text-sm text-gray-400 not-italic">— <em>Moby-Dick</em>, Chapter 12</span>
+  </div>
 
   <!-- Information -->
-  <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl p-6 mb-6">
-   <h2 class="text-xl font-bold mb-4">A Scripture of Salt and Ink</h2>
+  <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl p-6 space-y-4">
+   <h1 class="text-xl font-bold">The Moby-Dick Bible: A Scripture of Salt and Ink</h2>
     <p>
       Moby-Dick is vast. Within its pages, there are storms and sermons, laughter, silence, and the long ache of meaning. It’s a book that holds everything: the sacred and the profane, the celestial and the sea-soaked.
     </p>
-    <br>
     <p>
-      The Moby Dick Bible begins with a newly written verse in Melville’s voice—strange, solemn, searching. Then it finds a passage from the book that speaks to what you’ve asked. What are you looking for?
+      The Moby-Dick Bible begins with a newly written verse in Melville’s voice—strange, solemn, searching. Then it finds a passage from the book that speaks to what you’ve asked. What are you looking for?
     </p>
-    <br>
     <p>
       The feeling of Tuesday afternoons?
       The nature of regret?
       Whether cats know they’re being annoying?
     </p>
-    <br>
     <p class="font-extrabold">
       Ask the Whale. It may answer.
     </p>
@@ -32,7 +33,7 @@
 
 
   <!-- Search Form -->
-  <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl p-6 mb-6">
+  <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl p-6">
     <form action="/search" method="post">
       <label for="query" class="block mb-2 font-semibold">
         Enter a theme, emotion, or idea:
@@ -49,13 +50,13 @@
 
   <!-- Tag Search Form -->
   <h2 class="text-xl font-bold mb-4">Or search by tag</h2>
-  <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl p-6 mb-6">
+  <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl p-6">
     <form action="/tag_search" method="post">
       <label for="category" class="block mb-2 font-semibold">
         Choose a tag category:
       </label>
       <select name="category" id="category" onchange="updateTags()" required
-      class="w-full p-3 border border-gray-300 rounded bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+      class="w-full p-3 border border-gray-300 rounded bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         <option value="">--Select Category--</option>
         <option value="entities">Entities</option>
@@ -66,7 +67,7 @@
         <option value="literary_motifs">Literary Motifs</option>
       </select>
 
-      <label for="tag" class="block mb-2 font-semibold">
+      <label for="tag" class="block font-semibold">
         Choose a tag:
       </label>
       <input
@@ -74,13 +75,15 @@
         name="tag"
         placeholder="Start typing..."
         required
-        class="awesomplete w-full p-3 border border-gray-300 rounded bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+        class="awesomplete w-full p-3 border border-gray-300 rounded bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
       <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition">
         Search by Tag
       </button>
     </form>
   </div>
+
+  <br>
 
   <!-- Awesomplete Script (can be kept here if it's page-specific) -->
   <script>

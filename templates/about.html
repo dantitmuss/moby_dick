@@ -1,15 +1,35 @@
 {% extends "base.html" %}
 
-{% block title %}Tag Verse Match | Moby Dick Verse Finder{% endblock %}
+{% block title %}Tag Verse Match | Moby-Dick Verse Finder{% endblock %}
 
 {% block content %}
-  <h1 class="text-2xl font-bold mb-4">About This Project</h1>
+<div class="space-y-10 animate-fade">
+  <h1 class="text-3xl text-center font-bold mb-6">About This Project</h1>
+
   <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl p-6">
     <p class="mb-4">
-      The Moby Dick Bible is a semantic search engine for Melville’s *Moby-Dick*. It allows users to explore the text by theme, emotion, or idea.
+      <strong>The Moby-Dick Bible</strong> is an experiment in reverent absurdity — a way of treating Herman Melville’s epic like a sacred text, full of strange truths and slippery meanings.
     </p>
-    <p>
-      It was built with Flask, Tailwind, FAISS, and a custom AI-generated verse model. You can learn more or contribute via the <a href="https://github.com/dantitmuss/moby_dick" class="underline text-blue-300 hover:text-white">GitHub repo</a>.
+    <p class="mb-4">
+      It begins by writing a new verse in Melville’s voice, using your idea or emotion as inspiration. Then, it searches the book to find real passages that resonate semantically.
+    </p>
+    <p class="mb-4">
+      The result is part scripture, part hallucination, and part literary concordance.
     </p>
   </div>
+
+  <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl p-6">
+    <h2 class="text-xl font-semibold mb-2">How it Works</h2>
+    <p class="mb-4">The Moby-Dick Bible uses a new way of searching which first imagines what a user is searching for, then gives them the best matches according to that imagined verse. It does this by first generating the verse with AI, then matching it to an embedding using FAISS.</p>
+    <ul class="list-disc list-inside space-y-2">
+      <li>Your input is used to generate a new verse in Melville’s style using an AI model.</li>
+      <li>That verse is embedded and compared to all verses in <em>Moby-Dick</em>.</li>
+      <li>The closest matches are returned — semantically, not literally.</li>
+    </ul>
+  </div>
+
+  <div class="text-center text-sm text-gray-400">
+    Built using Python, Flask, Tailwind, OpenAI, and a stubborn love for strange books. See for yourself on <a href="https://github.com/dantitmuss/moby_dick" class="hover:underline">Github</a>.
+  </div>
+</div>
 {% endblock %}
