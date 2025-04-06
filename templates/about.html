@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 {% block title %}Tag Verse Match | Moby-Dick Verse Finder{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="Learn more about the Moby-Dick Bible, a project that uses AI to read through Moby-Dick and give you a meaningful verse. Created by Dan Titmuss.">
+{% endblock %}
 
 {% block content %}
 <div class="space-y-10 animate-fade">
@@ -11,25 +14,70 @@
       <strong>The Moby-Dick Bible</strong> is an experiment in reverent absurdity — a way of treating Herman Melville’s epic like a sacred text, full of strange truths and slippery meanings.
     </p>
     <p class="mb-4">
-      It begins by writing a new verse in Melville’s voice, using your idea or emotion as inspiration. Then, it searches the book to find real passages that resonate semantically.
+      A few years ago, I read <em>Moby-Dick</em> for the first time. It hit me harder than any classic ever had. Inside the novel was… everything.
     </p>
     <p class="mb-4">
-      The result is part scripture, part hallucination, and part literary concordance.
+      As someone who doesn’t believe in anything supernatural or divine, I’ve always been searching for a book that could serve as a kind of “guide.” Nathaniel Philbrick — a fellow <em>Moby-Dick</em> nerd who’s much smarter than I am, and author of <em>Why Read Moby-Dick</em> — once said:
+    </p>
+    <blockquote class="italic text-sm text-gray-300 pl-4 border-l-4 border-gray-500 mb-4">
+      “For me <em>Moby-Dick</em> is really the American Bible. Embedded within it is the DNA of America’s culture.”
+    </blockquote>
+    <p class="mb-4">
+      I took that literally. I broke it up into verses and started treating it like a sacred text.
+    </p>
+    <p class="mb-4">
+      The <em>Pequod</em> is a microcosm of the world itself, and now feels like the perfect time to look for meaning in its pages. Obsession, the search for meaning in an uncaring universe, a maniacal captain with a cult-like following that dooms the ship… it's wild that this was published in 1851. (Then again, once you read it, it becomes clear — because a lot of it is <em>really</em> old-timey.)
     </p>
   </div>
 
   <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl p-6">
     <h2 class="text-xl font-semibold mb-2">How it Works</h2>
-    <p class="mb-4">The Moby-Dick Bible uses a new way of searching which first imagines what a user is searching for, then gives them the best matches according to that imagined verse. It does this by first generating the verse with AI, then matching it to an embedding using FAISS.</p>
+    <p class="mb-4">
+      First, I split the entire novel into bite-sized “verses." That was a huge task. I wanted each verse to stand on its own, feel meaningful, and flow from one to the next — not too long, not too short. I used SpaCy, a Python library for natural language processing, to segment the text, and then manually fine-tuned each one.
+    </p>
+    <p class="mb-4">
+      Each verse is tagged with themes, vibes, and literary motifs. But the real magic happens in the semantic search. You can type anything — a question, a feeling, a phrase — and the site will generate a <em>Moby-Dick</em>-style verse from scratch using OpenAI’s GPT. That new verse is then compared to the real ones using FAISS, a vector similarity engine, which finds the most semantically similar passages.
+    </p>
     <ul class="list-disc list-inside space-y-2">
       <li>Your input is used to generate a new verse in Melville’s style using an AI model.</li>
       <li>That verse is embedded and compared to all verses in <em>Moby-Dick</em>.</li>
       <li>The closest matches are returned — semantically, not literally.</li>
     </ul>
+    <p class="mt-4">
+      Each verse in the Bible is embedded with 1538 dimensions for this comparison. The result is part scripture, part hallucination, and part literary concordance.
+    </p>
+    <p class="mt-4">
+      This thing is far from perfect. But I hope it gives you something — a bit of guidance, reflection, or even just a weirdly specific quote for your moment.
+    </p>
   </div>
 
-  <div class="text-center text-sm text-gray-400">
-    Built using Python, Flask, Tailwind, OpenAI, and a stubborn love for strange books. See for yourself on <a href="https://github.com/dantitmuss/moby_dick" class="hover:underline">Github</a>.
+  <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl p-6">
+    <h2 class="text-xl font-semibold mb-2">Moby-Dick or Moby Dick?</h2>
+    <p class="mb-4">
+      <em>Moby-Dick</em> (with the hyphen) is the book.<br>
+      Moby Dick (no hyphen) is the whale. Usually.
+    </p>
   </div>
+
+  <blockquote class="text-center text-sm sm:text-base text-gray-400 max-w-2xl mx-auto mt-12 leading-relaxed italic border-t border-gray-700 pt-6">
+    This project was created by <span class="text-gray-300 not-italic">Dan Titmuss</span> as a modern way to explore the language and meaning of <em>Moby-Dick</em> by Herman Melville (public domain). The text is drawn from Project Gutenberg.
+  
+    <br><br>
+  
+    The site uses:
+    <br>
+    — <span class="text-gray-300 not-italic">Flask</span> for backend structure<br>
+    — <span class="text-gray-300 not-italic">Tailwind CSS</span> for design<br>
+    — <span class="text-gray-300 not-italic">Awesomplete</span> for tag autocomplete<br>
+    — <span class="text-gray-300 not-italic">OpenAI</span> for verse generation<br>
+    — <span class="text-gray-300 not-italic">IM Fell English</span> typeface via <a href="https://fonts.google.com/specimen/IM+Fell+English" class="underline hover:text-white" target="_blank">Google Fonts</a><br>
+    — A <span class="text-gray-300 not-italic">public domain ship illustration</span> as subtle background
+  
+    <br><br>
+  
+    Typography, mood, and motion aim to echo the strangeness and solemnity of Melville’s world.
+  </blockquote>
+  
 </div>
+
 {% endblock %}

@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}" type="image/png">
+
   {% block head %}
     <!-- Awesomplete CSS & JS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.css" />
@@ -45,13 +47,23 @@
     
   {% endblock %}
   <title>{% block title %}The Moby-Dick Bible{% endblock %}</title>
+  {% block meta_description %}
+  <meta name="description" content="A scripture of salt, blood, and ink. Reading Herman Melville's novel as a sacred text. Type in anything and get a meaningful quote from Moby Dick.">
+  {% endblock %}
+
 </head>
 <body class="bg-gradient-to-b from-slate-900 to-blue-900 text-gray-100 font-imfell text-[17px] leading-relaxed">
+  <div class="fixed top-0 right-0 w-full sm:w-1/2 h-full z-0 pointer-events-none">
+    <img src="{{ url_for('static', filename='images/ship-left.png') }}" 
+         alt="Decorative whale image" 
+         class="-scale-x-100 h-[120%] w-auto opacity-10 object-contain translate-x-10" />
+  </div>
+  <div class="relative z-10">
   <!-- Common Header:  -->
-  <header class="bg-blue-900 text-white px-4 py-3 shadow-md">
+  <header class="bg-gradient-to-b from-blue-900/80 to-transparent text-white px-4 py-3">
     <div class="max-w-6xl mx-auto flex justify-center items-center relative">
       <!-- Site Title -->
-      <a href="/" class="bg-blue-900 text-white p-4 flex justify-center">
+      <a href="/" class="text-white p-4 flex justify-center">
         <span class="text-3xl font-extrabold">The Moby-Dick Bible</span>
       </a>
   
@@ -106,9 +118,19 @@
     </svg>
   </div>
 
+
   <!-- Common Footer -->
-  <footer class="bg-slate-900 text-white p-4 text-center">
-    &copy; 2025 Moby-Dick Verse Finder
+  <footer class="bg-slate-900 text-white p-6 text-center text-sm space-y-2">
+    <p>© 2025 The Moby-Dick Bible</p>
+    <p>
+      Created by Dan Titmuss · 
+      <a href="mailto:dantitmusscomedy@gmail.com" class="underline hover:text-blue-300">Contact</a> · 
+      <a href="https://github.com/dantitmuss/moby_dick" class="underline hover:text-blue-300">GitHub</a>
+    </p>
+    <p class="italic text-gray-300">“There is wisdom that is woe; but there is a woe that is madness.”</p>
+    <p class="text-gray-400">Crafted with Python, Flask, Awesomplete, Tailwind, FAISS, and a few drops of whale oil.</p>
+    <br>
   </footer>
+</div>
 </body>
 </html>
