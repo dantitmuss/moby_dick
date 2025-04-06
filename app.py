@@ -141,6 +141,10 @@ def find_tag():
                            tag=tag,
                            found_texts=found_texts)
 
+# 404 page handler
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
