@@ -85,18 +85,16 @@
 
   <br>
 
-  <!-- Awesomplete Script (can be kept here if it's page-specific) -->
+  <!-- Awesomplete Script -->
   <script>
     let tagsData = {};
     let awesompleteInstance = null;
-
-    // ✅ 1. Define the helper function (can go here)
+    const tagInput = document.getElementById("tag");
+  
     function getRandomSubset(array, n) {
-        const shuffled = array.slice().sort(() => 0.5 - Math.random());
-        return shuffled.slice(0, n);
+      return array.slice().sort(() => 0.5 - Math.random()).slice(0, n);
     }
-
-    // ✅ 2. Fetch tags.json
+  
     fetch('/tags.json')
       .then(response => response.json())
       .then(data => {
@@ -105,56 +103,60 @@
       .catch(error => {
         console.error("Failed to load tags.json:", error);
       });
-
-    // ✅ 3. Main function that runs on category change
+  
     function updateTags() {
-    const categorySelect = document.getElementById("category");
-    const tagInput = document.getElementById("tag");
-    const selectedCategory = categorySelect.value;
-
-    tagInput.value = "";
-
-    if (tagsData[selectedCategory]) {
+      const categorySelect = document.getElementById("category");
+      const selectedCategory = categorySelect.value;
+  
+      tagInput.value = "";
+  
+      if (!selectedCategory || !tagsData[selectedCategory]) return;
+  
+      const newList = tagsData[selectedCategory].sort((a, b) =>
+        a.toLowerCase().localeCompare(b.toLowerCase())
+      );
+  
+      // If already exists, just update list
       if (awesompleteInstance) {
-        // Clear the list for new category
-        awesompleteInstance.list = [];
-      }
-      else {
+        awesompleteInstance.list = newList;
+      } else {
         awesompleteInstance = new Awesomplete(tagInput, {
-          list: [],
+          list: newList,
           minChars: 1,
           autoFirst: true,
           maxItems: 100,
-          filter: function(text, input) {
+          filter: function (text, input) {
             const words = text.toLowerCase().split(/\s+/);
             const loweredInput = input.toLowerCase();
             return words.some(word => word.startsWith(loweredInput));
-            }
-          });
-        // When the field is focused, show a random subset
-        tagInput.addEventListener("focus", function () {
-          if (tagsData[selectedCategory]) {
-            awesompleteInstance.list = getRandomSubset(tagsData[selectedCategory], 10);
-            awesompleteInstance.evaluate();
-            }
-          });
-          // NEW: When the user types, use the full list for filtering
-          tagInput.addEventListener("input", function() {
-            if (tagInput.value.length > 0 && tagsData[selectedCategory]) {
-              awesompleteInstance.list = tagsData[selectedCategory].sort((a, b) =>
-              a.toLowerCase().localeCompare(b.toLowerCase())
-                );
-              awesompleteInstance.evaluate();
-              }
-            });
           }
-        }
+        });
       }
-
-      // Optional: Auto-submit when tag selected
-      document.getElementById("tag").addEventListener("awesomplete-selectcomplete", function () {
-         this.form.submit();
-      });
+  
+      // ✅ Remove old listeners to prevent overlap
+      tagInput.onfocus = null;
+      tagInput.oninput = null;
+  
+      // ✅ Add updated focus and input listeners
+      tagInput.onfocus = function () {
+        awesompleteInstance.list = getRandomSubset(newList, 10);
+        awesompleteInstance.evaluate();
+      };
+  
+      tagInput.oninput = function () {
+        if (tagInput.value.length > 0) {
+          awesompleteInstance.list = newList;
+          awesompleteInstance.evaluate();
+        }
+      };
+    }
+  
+    // Optional: Auto-submit when tag is selected
+    tagInput.addEventListener("awesomplete-selectcomplete", function () {
+      this.form.submit();
+    });
   </script>
+  
+  
 
 {% endblock %}
