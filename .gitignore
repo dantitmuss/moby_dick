@@ -11,3 +11,6 @@ flask_venv/
 
 # Ignore macOS system files
 .DS_Store
+
+#Ignore Node Modules
+/node_modules

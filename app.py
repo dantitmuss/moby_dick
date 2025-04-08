@@ -5,6 +5,8 @@ import json
 import numpy as np
 import faiss
 from openai import OpenAI
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 # Load environment variables (OpenAI API key)
 load_dotenv()
@@ -12,6 +14,11 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 
 app = Flask(__name__, static_folder="static")
 
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=[]
+)
 
 client = OpenAI(api_key=openai_api_key)
 
@@ -96,6 +103,7 @@ def get_tags_json():
 
 # Flask main logic
 @app.route('/search', methods=['POST'])
+@limiter.limit("10 per minute")
 def search():
     query = request.form['query']
 
@@ -147,5 +155,7 @@ def page_not_found(e):
     return render_template("404.html"), 404
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
+
+
 
