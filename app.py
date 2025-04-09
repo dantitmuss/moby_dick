@@ -96,6 +96,11 @@ def home():
 def about():
     return render_template('about.html')
 
+# Flask Privacy Policy
+@app.route('/privacy')
+def privacy():
+    return render_template('privacy.html')
+
 # Get the tag information
 @app.route('/tags.json')
 def get_tags_json():

@@ -1,6 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+  <!-- TEST for cookie banner (noscript) -->
+
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+<script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      palette: {
+        popup: { background: "#000" },
+        button: { background: "#f1d600" }
+      },
+      type: "opt-in",
+      content: {
+        message: "This site uses cookies for analytics.",
+        dismiss: "Accept",
+        deny: "Decline",
+        link: "Learn more",
+        href: "/privacy"
+      },
+      onInitialise: function (status) {
+        if (status == 'allow') loadAnalytics();
+      },
+      onStatusChange: function(status) {
+        if (status == 'allow') loadAnalytics();
+      }
+    });
+  });
+
+  function loadAnalytics() {
+  // Inject GTM script dynamically after consent
+    const gtmId = 'GTM-K9NCVFLL'; // Replace with your GTM ID
+    const script = document.createElement('script');
+    script.innerHTML = `
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','${gtmId}');
+    `;
+    document.head.appendChild(script);
+    }
+
+  </script>
+
+  <!-- END TEST for cookie banner (noscript) -->
+
   <!-- Google Tag Manager -->
 
   <!-- End Google Tag Manager -->
@@ -54,6 +101,8 @@
   {% block meta_description %}
   <meta name="description" content="A scripture of salt, blood, and ink. Reading Herman Melville's novel as a sacred text. Type in anything and get a meaningful quote from Moby Dick.">
   {% endblock %}
+
+  
 
 </head>
 <body class="bg-gradient-to-b from-slate-900 to-blue-900 text-gray-100 font-imfell text-[17px] leading-relaxed">
