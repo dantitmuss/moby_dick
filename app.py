@@ -108,6 +108,15 @@ def get_embedding(text):
     )
     return np.array([response.data[0].embedding], dtype=np.float32)
 
+class EmbeddingError(Exception):
+    pass
+
+def get_embedding_safe(text):
+    try:
+        return get_embedding(text)
+    except Exception as e:
+        raise EmbeddingError(str(e))
+
 # Finds the verse text based on an ID
 def find_verse_by_id(verse_id, data):
     for chapter in data:
@@ -161,8 +170,10 @@ def search():
     generated_verse = prompt_verse_generator(query)
 
     # Step 2: Embed the generated verse
-    query_embedding = get_embedding(generated_verse)
-
+    try:
+        query_embedding = get_embedding_safe(generated_verse)
+    except EmbeddingError:
+        return render_template('home.html', error="The search service is temporarily unavailable. Please try again later."), 503
 
     # Step 3: Search FAISS for the closest match
     D, I = index.search(query_embedding, k=3)
