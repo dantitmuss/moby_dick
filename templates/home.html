@@ -2,7 +2,47 @@
 
 {% block title %}The Moby Dick Bible: Find Quotes & Meaning in The Whale{% endblock %}
 
+{% block head %}
+{{ super() }}
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+  #loading-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    overflow: hidden;
+    background: rgba(10, 20, 40, 0.55);
+  }
+  #loading-overlay.active {
+    display: block;
+  }
+  .loading-quote {
+    position: absolute;
+    font-family: 'Pinyon Script', cursive;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 20px rgba(100, 160, 255, 0.6), 0 2px 8px rgba(0,0,0,0.8);
+    text-align: center;
+    max-width: 50%;
+    line-height: 1.4;
+    pointer-events: none;
+    opacity: 0;
+    animation: floatQuote var(--duration) ease-in-out forwards;
+  }
+  @keyframes floatQuote {
+    0%   { opacity: 0; transform: translateY(0px); }
+    15%  { opacity: 1; }
+    75%  { opacity: 1; }
+    100% { opacity: 0; transform: translateY(var(--drift)); }
+  }
+</style>
+{% endblock %}
+
 {% block content %}
+
+<!-- Loading Overlay -->
+<div id="loading-overlay"></div>
 
   <!-- Quote Intro -->
   <div class="text-center text-gray-300 italic text-lg sm:text-xl max-w-xl mx-auto mt-8 mb-10 leading-snug animate-fadeSlow opacity-0" style="animation-delay: 0.5s; animation-fill-mode: forwards;">
@@ -159,7 +199,82 @@
       this.form.submit();
     });
   </script>
-  
-  
+
+  <script>
+  const QUOTES = [
+    "It is not down on any map; true places never are.",
+    "Ignorance is the parent of fear.",
+    "I know not all that may be coming, but be it what it will, I'll go to it laughing.",
+    "Better to sleep with a sober cannibal than a drunken Christian.",
+    "Talk not to me of blasphemy, man; I'd strike the sun if it insulted me.",
+    "Think not, is my eleventh commandment; and sleep when you can, is my twelfth.",
+    "As for me, I am tormented with an everlasting itch for things remote.",
+    "All my means are sane, my motive and my object mad.",
+    "It was the whiteness of the whale that above all things appalled me.",
+    "Real strength never impairs beauty or harmony, but it often bestows it.",
+    "An utterly fearless man is a far more dangerous comrade than a coward.",
+    "For we are all killers, on land and on sea; Bonapartes and Sharks included.",
+    "There is a wisdom that is woe; but there is a woe that is madness.",
+    "See how elastic our prejudices grow when once love comes to bend them.",
+    "Human madness is often times a cunning and most feline thing.",
+    "Consider the subtleness of the sea; how its most dreaded creatures glide under water, unapparent for the most part.",
+    "Because no man can ever feel his own identity aright except his eyes be closed.",
+    "For as this appalling ocean surrounds the verdant land, so in the soul of man there lies one insular Tahiti, full of peace and joy, but encompassed by all the horrors of the half-known life.",
+  ];
+
+  let quoteIndex = Math.floor(Math.random() * QUOTES.length);
+  let timers = [];
+  let interval = 2200; // ms between spawns — decreases over time
+
+  function spawnQuote() {
+    const overlay = document.getElementById('loading-overlay');
+    const quote = QUOTES[quoteIndex % QUOTES.length];
+    quoteIndex++;
+
+    const el = document.createElement('div');
+    el.className = 'loading-quote';
+    el.textContent = '\u201C' + quote + '\u201D';
+
+    // Random position all over the viewport
+    const topPct  = 5  + Math.random() * 80;
+    const leftPct = 5  + Math.random() * 60;
+    const fontSize = 1.3 + Math.random() * 1.1;
+    const duration = 3.5 + Math.random() * 2;
+    const drift = (Math.random() - 0.5) > 0
+      ? `-${20 + Math.random() * 30}px`
+      : `${20 + Math.random() * 30}px`;
+
+    el.style.top      = topPct + 'vh';
+    el.style.left     = leftPct + 'vw';
+    el.style.fontSize = fontSize + 'rem';
+    el.style.setProperty('--duration', duration + 's');
+    el.style.setProperty('--drift', drift);
+
+    overlay.appendChild(el);
+    timers.push(setTimeout(() => el.remove(), (duration + 0.3) * 1000));
+  }
+
+  function scheduleNext() {
+    spawnQuote();
+    // Accelerate: every wave, shrink the interval (min ~600ms)
+    interval = Math.max(600, interval * 0.82);
+    timers.push(setTimeout(scheduleNext, interval));
+  }
+
+  document.getElementById('search-form').addEventListener('submit', function() {
+    document.getElementById('loading-overlay').classList.add('active');
+    scheduleNext();
+    // Spawn a second quote slightly offset so it doesn't feel too orderly
+    timers.push(setTimeout(spawnQuote, 900));
+  });
+
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted) {
+      const overlay = document.getElementById('loading-overlay');
+      overlay.classList.remove('active');
+      clearTimeout(quoteTimer);
+    }
+  });
+  </script>
 
 {% endblock %}
