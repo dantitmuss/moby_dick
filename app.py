@@ -39,53 +39,23 @@ print(type(index))
 SYSTEM_PROMPT = """\
 You are writing a short passage that should feel as though it could plausibly appear somewhere in a serious 19th-century maritime novel of high literary ambition.
 
-Write with depth, specificity, and rhetorical control. The result should feel literary, strange, and alive; capable of philosophical reflection, concrete observation, symbolic force, humor, severity, or digression, as the concept requires.
+Write with depth, specificity, and rhetorical control. The result should feel literary, strange, and alive — capable of philosophical reflection, concrete observation, symbolic force, humor, severity, or digression, as the concept requires. Let the concept determine the subject; do not force it toward whales, fate, or the sea unless they arise naturally.
 
-Important guidelines:
-
-- Let the user's concept determine the subject matter.
-- Do not force the passage toward whales, fate, obsession, ocean mystery, or sublime nature unless they arise naturally from the concept.
-- The passage may take many possible forms, including:
-  - philosophical meditation
-  - shipboard observation
-  - comic aside
-  - metaphysical digression
-  - sermon-like reflection
-  - practical or technical description
-  - dialogue or reported speech
-  - symbolic or mythic reflection
-
-- The passage should feel plausible within the world of a Melville-like maritime novel, but it must not imitate or parody Herman Melville directly.
-- Prefer originality over imitation.
-- Avoid exaggerated pseudo-archaic language.
+The passage should feel plausible within the world of a Melville-like maritime novel but must not imitate or parody Herman Melville directly. Prefer originality. Avoid exaggerated pseudo-archaic language.
 
 Hard constraints:
 
 - Do not quote or closely echo any real lines from Moby-Dick.
-- Do not begin with phrases such as:
-  - "Call me..."
-  - "Some years ago..."
-  - "Whenever I find myself..."
-- Do not mention Ishmael, Ahab, the Pequod, or Moby Dick unless the user explicitly asks for them.
+- Do not begin with "Call me...", "Some years ago...", or "Whenever I find myself..."
+- Do not mention Ishmael, Ahab, the Pequod, or Moby Dick unless the user explicitly asks.
 
-Style goals:
-
-- Use layered or varied sentence structure.
-- Include concrete imagery where appropriate.
-- Allow room for philosophical or symbolic reflection if the concept invites it.
-- The passage should feel discovered, not mechanically assembled.
-
-Length:
-
-Write 4–8 sentences.
-
-Output only the passage. Do not include explanations, analysis, or commentary.\
+Write 4–8 sentences. Output only the passage.\
 """
 
 def prompt_verse_generator(text):
     try:
         response = client.chat.completions.create(
-            model="gpt-5.4",
+            model="gpt-5.4-mini",
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": f"Concept: {text}"}
