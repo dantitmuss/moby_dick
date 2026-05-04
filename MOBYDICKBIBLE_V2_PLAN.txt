@@ -1,0 +1,480 @@
+================================================================================
+MOBYDICKBIBLE.COM — VERSION 2.0 DEVELOPMENT PLAN
+================================================================================
+Compiled from ChatGPT project conversations (January 2025 – April 2025)
+Site: mobydickbible.com
+================================================================================
+
+
+OVERVIEW
+--------
+This document covers all planned features and improvements for Version 2.0 of
+the Moby Dick Bible. Every item in this plan was discussed explicitly in the
+ChatGPT project conversations. Where relevant, direct quotes from those chats
+are included as evidence and context.
+
+The site currently (as of April 2025) includes:
+  - Semantic search using FAISS + OpenAI GPT-generated Melville-style verse
+  - Tag-based search across 6 categories
+  - Flask backend with Tailwind CSS frontend
+  - Rate limiting (10 searches per minute)
+  - Live hosting at mobydickbible.com (previously moby-dick-bible.onrender.com)
+
+The v2.0 feature list was explicitly agreed upon in the conversation titled
+"Improving Verse Variety" (2025-04-07), where the following summary was
+produced:
+
+  "Here's your current list of ideas and upgrades planned for Version 2.0 of
+   the Moby Dick Bible project."
+
+The six items below are exactly as catalogued in that conversation, plus
+supplementary technical detail drawn from earlier planning discussions.
+
+
+================================================================================
+FEATURE 1: IMPROVE VARIETY IN GENERATED VERSES                    [COMPLETE]
+================================================================================
+
+SOURCE CONVERSATION: "Improving Verse Variety" (2025-04-07)
+IMPLEMENTED: May 2025
+
+WHAT WAS DONE
+-------------
+- Model switched from gpt-4o-mini to gpt-5.4-mini
+- Temperature raised from 0.5 to 0.7 (approach 2 from agreed solutions)
+- System prompt fully rewritten (approach 1): instructs the model to write
+  as a serious 19th-century maritime novel, not as Melville pastiche; hard
+  constraints ban "Call me...", "Some years ago...", "Whenever I find
+  myself...", and direct references to Ishmael, Ahab, the Pequod, or Moby
+  Dick unless explicitly asked
+- frequency_penalty=0.2 and presence_penalty=0.1 added to further
+  discourage repetition
+- Persona mixer and phrase-filtering (approach 3) not implemented — not
+  needed given the prompt rewrite results
+
+THE PROBLEM
+-----------
+At launch, a pattern was identified where too many GPT-generated verses began
+with the same opening phrases. The user noted:
+
+  "A lot of the verses that the ChatGPT API are creating are very similar.
+   This is resulting in the same few verses being chosen. I think if I up the
+   creativity a little, I may be able to improve the variation. A lot of them
+   start with 'Call me…', which feels a little on the nose."
+
+The root cause is that the prompt instructs the model to write in the style of
+Moby Dick, and the model defaults to the novel's most iconic opening phrase as
+a stylistic shortcut. This also means the FAISS similarity search tends to
+return the same verses repeatedly, because the generated verse is always
+semantically similar to the same cluster of passages.
+
+AGREED SOLUTIONS
+----------------
+Three approaches were discussed and noted for v2.0:
+
+1. ADJUST THE PROMPT FOR MORE VARIETY
+   Change the system/user prompt to explicitly discourage fallback phrases.
+   Example prompt variants suggested:
+
+     "Write a poetic verse in the style of Melville, but avoid direct
+      references to 'Call me Ishmael' or the narrator's identity."
+
+     "Compose a verse inspired by the sea, the soul, or obsession — without
+      repeating phrasing from the original novel."
+
+     "Generate a verse in the voice of an anonymous whaler, not Ishmael."
+
+   A "Persona Mixer" was also proposed — randomly assigning the model a
+   different voice or mood per search to force more diversity:
+
+     "A whaler, a deckhand, a ghost of the sea, a storm itself, a captain
+      writing a final log."
+
+   Example prompt using the persona mixer:
+     "Write a verse in the voice of a storm remembering the Pequod."
+
+2. RAISE THE TEMPERATURE
+   The current app.py uses temperature=0.5 in the prompt_verse_generator()
+   function. It was recommended to raise this to approximately 0.7 or 0.8:
+
+     "If you're using the OpenAI API with temperature=0.3 or lower (which
+      encourages consistency), try raising it to around 0.7 or even 0.8 for
+      more inventive results. This can help break patterns like 'Call me…'
+      while still keeping coherence."
+
+   The relevant function in the current codebase is prompt_verse_generator(),
+   which calls client.chat.completions.create() with model="gpt-4o-mini".
+   The temperature parameter is the change to make.
+
+3. FILTER OR PENALIZE OVERUSED PHRASES
+   After generation, add a post-processing check for repeated starters. If
+   a generated verse begins with a flagged phrase, either discard it and
+   regenerate, or penalize its similarity score in the FAISS matching step.
+
+   Phrases to flag include:
+     - "Call me…"
+     - "It is a truth…"
+     - "The whale…"
+
+RECOMMENDED IMPLEMENTATION ORDER
+----------------------------------
+Start with (2) — raising the temperature is a single-line change and can be
+tested immediately. Then combine with (1) by updating the prompt string. Add
+(3) as a safety net if repetition persists.
+
+
+================================================================================
+FEATURE 2: FIX QUOTATION MARK FORMATTING                          [COMPLETE]
+================================================================================
+
+SOURCE CONVERSATION: "Improving Verse Variety" (2025-04-07)
+IMPLEMENTED: May 2025
+
+WHAT WAS DONE
+-------------
+The fix was applied to the source data (moby_dick_2025-03-22.json) rather
+than at render time, converting all 2,856 straight ASCII double quotes across
+the text and key_quote_text fields of every verse.
+
+A custom single-pass Python function was written instead of using the
+smartypants library (which was tried and rejected — it also converts
+apostrophes, causing mismatched quote styles). The custom function:
+  - Only converts double quotes (") — apostrophes/single quotes untouched
+  - Determines direction by context: OPEN if preceded by whitespace/start
+    AND followed by a non-whitespace character; CLOSE otherwise
+  - Correctly handles the original problem case: trailing space before a
+    closing quote (e.g. "go on. ") — next char is newline/end → CLOSE
+  - Fixed 4 pre-existing data issues in Ch18 (v2, v7, v10, v15) where a
+    stray closing quote had leaked from the previous verse's text
+
+Analysis confirmed 0 wrong-direction assignments. The 238 verses with
+unbalanced open/close counts are pre-existing data split artefacts (verse
+boundary mid-dialogue) or intentional 19th-century typographic convention
+(open each paragraph of a long quotation, close only the last).
+
+THE PROBLEM
+-----------
+The user observed formatting issues with quotation marks in the source verse
+data, where closing quotes after a space (e.g. "go on. ") were rendering as
+openers.
+
+  "I also noticed that sometimes the quotation marks are the 'wrong way
+   round' or something, especially when the quote contains speech."
+
+THE ORIGINAL PLAN (superseded)
+-------------------------------
+The plan called for a post-processing step on the output of
+prompt_verse_generator(). Instead, the fix was applied directly to the
+source JSON data, which is more efficient (transformation runs once, not on
+every request) and covers all verses, not just generated ones.
+
+
+================================================================================
+FEATURE 3: ADD CONTEXT SUMMARIES
+================================================================================
+
+SOURCE CONVERSATION: "Improving Verse Variety" (2025-04-07)
+TECHNICAL DETAIL: "Moby Dick App Plan" (2025-03-25)
+
+THE IDEA
+--------
+The user proposed adding context buttons next to each verse result so that
+readers can understand what is happening in the novel at that point:
+
+  "I wonder if I can add summaries of 'what is happening in the chapter' and
+   'what is happening in the verse' buttons to the quotes, to add some more
+   context."
+
+This addresses a real usability problem: verses surfaced by the search may be
+compelling but opaque to a reader who does not know the novel. A brief summary
+gives them the narrative anchor they need without breaking the literary
+experience.
+
+APPROACH: PRE-GENERATION (RECOMMENDED)
+---------------------------------------
+Rather than calling the API on each page load (which would add latency and
+cost), summaries should be pre-generated using the existing OpenAI tagging
+pipeline and stored in the JSON data file alongside each verse.
+
+The recommended JSON structure (from the conversation) is:
+
+  {
+    "chapter_number": 1,
+    "title": "Loomings",
+    "chapter_summary": "Ishmael introduces himself and explains why he goes
+                         to sea.",
+    "verses": [
+      {
+        "verse_number": 1,
+        "text": "Call me Ishmael...",
+        "verse_summary": "The narrator introduces himself and hints at his
+                          reasons for going to sea.",
+        ...other existing fields...
+      }
+    ]
+  }
+
+A script should be written to iterate over the existing JSON (moby_dick_2025-
+03-22.json or equivalent), and for each chapter and verse, call the OpenAI
+API to generate a short summary, then write the result back into the structure.
+
+  - Chapter summary: 1-2 sentences covering what happens in the chapter
+  - Verse summary: 1 sentence describing what this specific passage covers
+
+FRONT-END DISPLAY
+-----------------
+The context summary should be displayed as a collapsible section or small
+expandable tooltip next to each verse on the results page. A suggested UI
+pattern from the conversation:
+
+  "A small '?' icon or 'Context' link could expand to show:
+     'In this chapter: …'
+     'In this verse: …'
+   It keeps the verse mysterious, but gives users a way in if they're curious."
+
+This keeps the default presentation clean (verse first, context on demand),
+which matches the current aesthetic of the site.
+
+
+================================================================================
+FEATURE 4: STANDARDIZE TAG CASING
+================================================================================
+
+SOURCE CONVERSATION: "Improving Verse Variety" (2025-04-07)
+
+THE PROBLEM
+-----------
+The user observed inconsistency in how tags are displayed:
+
+  "I need to clean up the tags somewhat. Some are upper case, some are
+   lowercase, and it looks a little messy."
+
+This is a data quality issue introduced during the tagging phase of the
+project. The tagging scripts — which used SpaCy NER, WordNet, and OpenAI API
+calls — produced tags in varying formats. For example, a themes tag might
+appear as "Obsession" in one verse and "obsession" in another, and entities
+might appear as "AHAB" or "Ahab" depending on which script generated them.
+
+THE FIX
+-------
+Write a one-time cleanup script that:
+  1. Loads the full JSON data file
+  2. Iterates over every chapter > verse > tag field
+  3. Normalizes each tag to a consistent format
+  4. Writes the cleaned data back to the JSON file
+
+The choice of case format should be decided before running the script:
+  - All lowercase: "obsession", "the pequod", "revenge"
+  - Title case: "Obsession", "The Pequod", "Revenge"
+
+Title case is likely the better choice for display purposes, as tags appear
+in the UI facing the user.
+
+This script should be run once as a data migration step and does not need to
+be part of the live app. After running it, the tags.json file (which is served
+via the /tags.json route) should also be regenerated from the cleaned data to
+ensure consistency in the tag-based search feature.
+
+The tag_search route in app.py already does a case-insensitive comparison:
+
+  if tag.lower() in [t.lower() for t in verse["open_ai_tags"].get(category, [])]
+
+This means the search will continue to work during the transition, but
+standardizing the data is still important for display consistency on the
+tag-results page.
+
+
+================================================================================
+FEATURE 5: FULL NOVEL VIEW WITH VERSE ANCHOR LINKS
+================================================================================
+
+SOURCE CONVERSATION: "Improving Verse Variety" (2025-04-07)
+
+THE IDEA
+--------
+The user proposed a page that presents the entire text of Moby Dick as a
+continuous, readable document — not just as a search results interface — with
+each verse marked by a superscript number that acts as a navigable anchor:
+
+  "I would love a place to interact with the novel as a whole, with the verse
+   numbers inserted into a page that has the whole novel on. Each verse would
+   have a number in superscript (I think that is the name), and a user could
+   click to these different verses using anchor URLs (I think that is the name)."
+
+This is conceptually analogous to how the Bible is typeset: a reader can see
+the full flowing text, but every verse is individually addressable.
+
+WHAT THIS ENABLES
+-----------------
+  - Users can read the novel in full, in context
+  - Every verse is linkable and shareable via URL (e.g. /read#verse-231)
+  - Search results can link directly to the verse in context on this page
+  - Verses can be visually highlighted when navigated to via anchor
+
+HTML STRUCTURE
+--------------
+The technical implementation was described in the conversation:
+
+  "I can help you build that HTML page using your existing JSON structure,
+   with each verse wrapped in a tag like:
+
+     <a id="verse-231">...</a><sup><a href="#verse-231">231</a></sup>
+
+   for easy linking and styling."
+
+The full novel page would be rendered from the existing JSON data, iterating
+over chapters and verses in order. Each verse text is output normally as a
+paragraph, but with the verse number appearing as a superscript link immediately
+before or after it.
+
+Chapter headings should appear as section dividers. The page will be long, so
+a floating table of contents or chapter jump links at the top would aid
+navigation.
+
+LINKING FROM SEARCH RESULTS
+-----------------------------
+Once this page exists, the results pages (results.html and tag-results.html)
+can link each matched verse's number directly to its position in the full novel
+view, giving users a "read in context" option alongside the verse result.
+
+
+================================================================================
+FEATURE 6: SUGGEST TAG EDITS (USER INTERACTIVITY)
+================================================================================
+
+SOURCE CONVERSATION: "Improving Verse Variety" (2025-04-07)
+
+THE IDEA
+--------
+The user proposed adding light interactivity to the site by allowing readers
+to suggest corrections or additions to a verse's tags:
+
+  "We should start some interactivity — perhaps a box to suggest tag edits
+   on a verse?"
+
+This is the first step toward making the project collaborative. The tags were
+generated programmatically and not all of them will be correct or complete —
+human readers of the novel may spot tags that are missing or wrongly assigned.
+
+IMPLEMENTATION OPTIONS
+----------------------
+Three options for how submissions are stored were discussed:
+
+  1. Submitted to a Google Sheet (simplest, no backend changes needed)
+  2. Stored in a backend database (SQLite)
+  3. Emailed directly to the site owner for now, as a lightweight starting point
+
+The email approach is the lowest-friction MVP option: a simple HTML form on
+the verse result page submits a POST request with the verse ID and the
+suggested tag, which the backend sends as an email notification.
+
+FORM DESIGN
+-----------
+The suggestion box should sit below the verse result on both the results page
+and the tag-results page. It should include:
+  - The verse ID (hidden field, pre-populated)
+  - A text input for the suggested tag
+  - A dropdown or radio button for the tag category (entities, themes, etc.)
+  - A submit button
+
+The goal at this stage is not a full review/moderation system, but simply a
+channel for useful feedback. As the project grows, this can be upgraded to a
+proper backend queue.
+
+
+================================================================================
+ADDITIONAL IDEAS (NOT IN v2.0 CORE LIST, NOTED FOR LATER)
+================================================================================
+
+These items came up in earlier planning conversations but were not included in
+the formal v2.0 list. They are recorded here for completeness.
+
+TAROT FUNCTIONALITY
+-------------------
+SOURCE: "Moby Dick Project Plan" (2025-02-22), "Next Steps Flask App" (2025-03-08)
+
+First mentioned in the February planning session and again when thinking about
+bonus features during the Flask app planning:
+
+  "Tarot Functionality: Create Tarot cards and meanings for Moby Dick.
+   Add Tarot matching functionality to the site."
+
+The concept is to assign each of the novel's major themes, characters, or
+symbols to a Tarot archetype, and allow users to receive a "Moby Dick Tarot
+reading" based on their search input. This was flagged as an exploratory
+idea rather than a committed feature.
+
+PREFACE QUOTE TOOL
+------------------
+SOURCE: "Moby Dick Project Plan" (2025-02-22), "Next Steps Flask App" (2025-03-08)
+
+  "Preface Quote Tool: Create a tool that provides appropriate quotes from
+   Moby Dick based on user input."
+
+Distinct from the main semantic search, this would be a simpler mode that
+surfaces a single high-quality, standalone quote based on the user's input,
+suitable for use as a preface, epigraph, or social media caption. The
+distinction from the current search is that it would prioritize brevity and
+quotability rather than semantic depth.
+
+
+================================================================================
+CURRENT TECHNICAL ARCHITECTURE (FOR REFERENCE)
+================================================================================
+
+The following is a summary of how the live app works, drawn from the code
+walkthrough in "Moby Dick Project Overview" (2025-06-15):
+
+DATA FILES
+  - moby_dick_2025-03-22.json  — Full novel data: chapters > verses > tags
+  - faiss_ids.json             — Maps FAISS index positions to verse IDs
+  - faiss_single.index         — The FAISS vector index for all verses
+  - static/tags.json           — All tags by category, served to the frontend
+
+SEARCH PIPELINE (/search route)
+  Step 1: User query is passed to prompt_verse_generator()
+          Model: gpt-4o-mini, temperature: 0.5
+          Prompt instructs the model to write 3 sentences as Melville
+  Step 2: The generated verse is embedded via get_embedding()
+          Model: text-embedding-3-small
+          Returns a 1536-dimensional float32 vector
+  Step 3: FAISS index is searched for the 3 closest verse vectors (k=3)
+          Results are resolved via faiss_ids.json to verse IDs
+          find_verse_by_id() looks up the full verse data from the JSON
+  Step 4: results.html is rendered with the query, generated verse,
+          and the 3 matched verses
+
+TAG SEARCH PIPELINE (/tag_search route)
+  User selects a category and tag
+  The JSON is iterated: all chapters > verses where the tag is present
+  tag-results.html is rendered with matching verses
+
+RATE LIMITING
+  The /search route is limited to 10 requests per minute per IP
+  Implemented via flask-limiter
+
+
+================================================================================
+DEVELOPMENT PRIORITY ORDER (RECOMMENDATION)
+================================================================================
+
+Based on effort vs. impact across all six v2.0 features:
+
+  QUICK WINS (low effort, visible improvement):
+    1. Tag casing normalization (Feature 4) — one-off script, no app changes
+    2. Quotation mark fix (Feature 2) — one-line post-processing in app.py
+    3. Verse variety — temperature raise (Feature 1, part A) — one-line change
+
+  MEDIUM EFFORT (meaningful new functionality):
+    4. Verse variety — prompt rewrite + persona mixer (Feature 1, parts B/C)
+    5. Suggest tag edits form (Feature 6)
+
+  LARGER BUILDS (new content + new pages):
+    6. Context summaries — requires batch API script + JSON update + frontend
+       (Feature 3)
+    7. Full novel view with anchors — new route, new template, long page
+       (Feature 5)
+
+================================================================================
+END OF DOCUMENT
+================================================================================
