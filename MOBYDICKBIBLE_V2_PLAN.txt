@@ -237,10 +237,20 @@ which matches the current aesthetic of the site.
 
 
 ================================================================================
-FEATURE 4: STANDARDIZE TAG CASING
+FEATURE 4: STANDARDIZE TAG CASING                                 [COMPLETE]
 ================================================================================
 
 SOURCE CONVERSATION: "Improving Verse Variety" (2025-04-07)
+IMPLEMENTED: May 2025
+
+WHAT WAS DONE
+-------------
+Applied a smart_title() function to all open_ai_tags fields across the verse
+data and regenerated static/tags.json. Used a custom function rather than
+Python's built-in str.title() to handle two edge cases correctly:
+  - Apostrophes: "Ahab'S Leg" → "Ahab's Leg"
+  - Post-digit letters: "4Th Nantucket Sailor" → "4th Nantucket Sailor"
+6,972 tag values updated across all 6 categories.
 
 THE PROBLEM
 -----------
