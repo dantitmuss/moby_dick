@@ -14,3 +14,6 @@ flask_venv/
 
 #Ignore Node Modules
 /node_modules
+
+# Internal dev/review files
+/dev
