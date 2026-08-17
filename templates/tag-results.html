@@ -1,30 +1,46 @@
 {% extends "base.html" %}
 
-{% block title %}Tag Verse Match | Moby-Dick Verse Finder{% endblock %}
-<meta name="robots" content="noindex">
+{% block title %}{{ tag }} | The Moby-Dick Bible{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+
 {% block content %}
-<div class="space-y-10">
-  <h1 class="text-2xl font-bold mb-4">Tag Verse Match</h2>
 
-  <div class="mb-6">
-    <h2 class="text-xl font-semibold">Your Tag:</h3>
-    <p><span class="font-semibold">Category:</span> <em>{{ category }}</em></p>
-    <p><span class="font-semibold">Tag:</span> <em>{{ tag }}</em></p>
-  </div>
+<div style="display:flex;align-items:center;justify-content:space-between;">
+  <a href="/" class="mdb-linkback">&lsaquo; NEW QUESTION</a>
+</div>
 
-  <div>
-    <h2 class="text-xl font-semibold mb-4">Matching Verses from Moby-Dick:</h3>
-    {% for verse in found_texts %}
-      <blockquote class="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl p-6 mb-6 animate-fade opacity-0" style="animation-delay: 0.5s; animation-fill-mode: forwards;">
-        <span class="font-semibold">Chapter {{ verse.chapter_number }}, {{ verse.chapter_title }}</span><br>
-        <span class="font-semibold">Verse {{ verse.verse_number }}:</span><br>
-        {{ verse.text }}
-      </blockquote>
-    {% endfor %}
-  </div>
-
-  <div class="mt-8 text-center">
-    <a href="/" class="hover:underline">Try another query</a>
+<div style="display:flex;justify-content:center;">
+  <div class="mdb-badge">
+    <span>{{ category | upper }}</span>
+    <i></i>
+    <span>{{ tag | upper }}</span>
   </div>
 </div>
+
+<div class="mdb-center">
+  <h1 class="mdb-display mdb-display--sm">{{ tag }}</h1>
+  <div class="mdb-ornament">
+    <svg class="mdb-compass" width="15" height="15" style="opacity:.85" aria-hidden="true"><use href="#mdb-compass-rose"/></svg>
+  </div>
+</div>
+
+<div class="mdb-divider">
+  <span>{{ found_texts | length }} PASSAGE{{ '' if found_texts | length == 1 else 'S' }}</span>
+</div>
+
+{% for verse in found_texts %}
+  <div class="mdb-passage">
+    <div class="mdb-passage-text">&ldquo;{{ verse.text }}&rdquo;</div>
+    <div class="mdb-citation">
+      Chapter {{ verse.chapter_number }} &middot; {{ verse.chapter_title }} &middot; Verse {{ verse.verse_number }}
+    </div>
+  </div>
+{% else %}
+  <div class="mdb-card">
+    <p>Nothing is written under this tag. The whale keeps his own counsel.</p>
+  </div>
+{% endfor %}
+
+<a href="/" class="mdb-btn" style="margin-top:8px;">ASK THE WHALE</a>
+
 {% endblock %}

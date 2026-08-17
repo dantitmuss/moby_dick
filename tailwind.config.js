@@ -8,9 +8,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        imfell: ['"IM Fell English"', 'serif'],
-        // Make it the default serif font
-        serif: ['"IM Fell English"', 'serif'],
+        // Oracle redesign type stack (see static/oracle.css for the full system)
+        serif: ['Spectral', 'Georgia', 'serif'],
+        sans: ['Manrope', 'system-ui', 'sans-serif'],
       },
       animation: {
         fade: "fadeIn 1s ease-in-out",

@@ -1,0 +1,749 @@
+/* ==========================================================================
+   The Moby-Dick Bible — Oracle design system
+   Hand-authored to the "Oracle Redesign" handoff. Tokens are OKLCH.
+   Loaded after styles.css (Tailwind) so it wins on shared elements.
+   ========================================================================== */
+
+:root {
+  /* Surfaces */
+  --mdb-ink: oklch(0.16 0.03 255);
+  --mdb-ink-2: oklch(0.14 0.03 255);
+  --mdb-ink-outer: oklch(0.1 0.015 255);
+  --mdb-ink-card: oklch(0.2 0.03 255);
+  --mdb-paper: oklch(0.95 0.02 85);
+  --mdb-paper-line: oklch(0.75 0.02 85);
+
+  /* Text */
+  --mdb-ink-text: oklch(0.22 0.02 255);
+  --mdb-cream: oklch(0.95 0.015 85);
+  --mdb-cream-soft: oklch(0.9 0.012 85);
+  --mdb-body-text: oklch(0.78 0.015 85);
+  --mdb-muted: oklch(0.7 0.03 255);
+  --mdb-muted-2: oklch(0.55 0.02 255);
+  --mdb-muted-3: oklch(0.5 0.02 255);
+  --mdb-line: oklch(0.4 0.02 255);
+
+  /* Accent — one site-wide. Default direction: teal. */
+  --mdb-accent: oklch(0.55 0.06 195);
+  --mdb-accent-bright: oklch(0.66 0.07 195);
+  --mdb-brass: oklch(0.75 0.11 85);
+
+  --mdb-radius: 2px;
+  --mdb-serif: "Spectral", Georgia, serif;
+  --mdb-sans: "Manrope", system-ui, sans-serif;
+}
+
+@keyframes mdb-ring {
+  0%   { transform: scale(0.6); opacity: 0.55; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+@keyframes mdb-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes mdb-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+   Shell
+   -------------------------------------------------------------------------- */
+
+/* The ink gradient and chart grid are full-bleed on the body, not on the
+   column. A background that stops at the column's edge reads as a phone
+   mock-up floating in a void on desktop; this way the column is just a
+   reading measure and has no visible edge at any width. */
+body.mdb-body {
+  margin: 0;
+  color: var(--mdb-body-text);
+  font-family: var(--mdb-sans);
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--mdb-ink-2);
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, oklch(0.75 0.11 85 / 0.035) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, oklch(0.75 0.11 85 / 0.035) 40px),
+    linear-gradient(var(--mdb-ink), var(--mdb-ink-2));
+  background-attachment: fixed;
+}
+
+.mdb-shell {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.mdb-column {
+  width: 100%;
+  max-width: 520px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.mdb-column--wide { max-width: 760px; }
+
+/* Desktop: open the measure up and step the type scale so the page reads as
+   a full site rather than a phone layout stranded in the middle. */
+@media (min-width: 900px) {
+  .mdb-column { max-width: 620px; }
+  .mdb-header { padding: 56px 0 0; }
+  .mdb-main { padding: 40px 0 64px; gap: 30px; }
+  .mdb-footer { padding: 44px 0 56px; }
+  .mdb-display { font-size: 46px; }
+  .mdb-display--sm { font-size: 32px; }
+  .mdb-lede { font-size: 16.5px; }
+  .mdb-verse { font-size: 18.5px; }
+  .mdb-passage-text { font-size: 16.5px; }
+  .mdb-paper { padding: 40px 36px 34px; }
+  .mdb-passage { padding: 30px 30px; }
+  .mdb-card { padding: 28px 30px; }
+}
+
+.mdb-main {
+  flex: 1;
+  padding: 30px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  animation: mdb-fade 0.5s ease both;
+}
+
+@media (max-width: 400px) {
+  .mdb-main { padding: 26px 18px 40px; }
+  .mdb-display { font-size: 33px; }
+}
+
+::selection { background: oklch(0.75 0.11 85 / 0.35); }
+
+/* --------------------------------------------------------------------------
+   Type primitives
+   -------------------------------------------------------------------------- */
+
+/* Tracked caps — the recurring label motif. */
+.mdb-eyebrow {
+  font-family: var(--mdb-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--mdb-muted);
+  margin: 0;
+}
+
+.mdb-coords {
+  font-family: var(--mdb-sans);
+  font-size: 9.5px;
+  letter-spacing: 2px;
+  color: var(--mdb-muted-3);
+  text-align: center;
+  margin: 0;
+}
+
+.mdb-display {
+  margin: 0;
+  font-family: var(--mdb-serif);
+  font-weight: 600;
+  font-size: 38px;
+  line-height: 1.08;
+  color: var(--mdb-cream);
+}
+
+.mdb-display--sm { font-size: 27px; line-height: 1.15; }
+
+.mdb-lede {
+  margin: 0;
+  font-family: var(--mdb-serif);
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--mdb-body-text);
+  text-wrap: pretty;
+}
+
+.mdb-epigraph {
+  font-family: var(--mdb-serif);
+  font-style: italic;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: oklch(0.72 0.02 255);
+}
+
+.mdb-epigraph-cite {
+  font-family: var(--mdb-sans);
+  font-size: 10.5px;
+  letter-spacing: 1.4px;
+  color: var(--mdb-muted-2);
+}
+
+.mdb-fineprint {
+  font-family: var(--mdb-serif);
+  font-style: italic;
+  font-size: 12.5px;
+  color: var(--mdb-muted-3);
+}
+
+.mdb-center { text-align: center; }
+.mdb-stack { display: flex; flex-direction: column; gap: 6px; }
+
+/* --------------------------------------------------------------------------
+   Ornaments
+   -------------------------------------------------------------------------- */
+
+.mdb-compass { color: var(--mdb-accent); }
+
+.mdb-wordmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.mdb-wordmark:hover .mdb-eyebrow { color: var(--mdb-cream-soft); }
+
+/* rule — compass — rule */
+.mdb-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+.mdb-ornament::before,
+.mdb-ornament::after {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: var(--mdb-accent);
+  opacity: 0.6;
+}
+
+/* rule — small-caps label — rule */
+.mdb-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mdb-divider::before,
+.mdb-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: oklch(0.4 0.02 255 / 0.5);
+}
+/* h2 is allowed here so a section divider can carry a real heading rather
+   than a decorative span — the tracked-caps look is identical either way. */
+.mdb-divider span,
+.mdb-divider h2 {
+  margin: 0;
+  font-family: var(--mdb-sans);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--mdb-muted-2);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Controls
+   -------------------------------------------------------------------------- */
+
+.mdb-field {
+  resize: none;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 16px;
+  border-radius: var(--mdb-radius);
+  border: 1px solid var(--mdb-line);
+  background: oklch(0.95 0.015 85);
+  color: oklch(0.2 0.02 255);
+  font-family: var(--mdb-serif);
+  font-style: italic;
+  font-size: 16.5px;
+  line-height: 1.4;
+  outline: none;
+}
+.mdb-field::placeholder { color: oklch(0.55 0.02 85); }
+.mdb-field:focus { border-color: var(--mdb-accent); box-shadow: 0 0 0 1px var(--mdb-accent); }
+
+/* Select gets the same ledger-line treatment, minus the italic. */
+select.mdb-field {
+  font-style: normal;
+  font-family: var(--mdb-sans);
+  font-size: 13.5px;
+  padding: 13px 16px;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, oklch(0.4 0.02 255) 50%),
+                    linear-gradient(135deg, oklch(0.4 0.02 255) 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(50% + 2px), calc(100% - 14px) calc(50% + 2px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+input.mdb-field { font-size: 15px; padding: 13px 16px; }
+
+.mdb-label {
+  display: block;
+  font-family: var(--mdb-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--mdb-muted-2);
+  margin-bottom: 9px;
+}
+
+.mdb-btn {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid var(--mdb-accent);
+  padding: 15px 18px;
+  border-radius: var(--mdb-radius);
+  background: var(--mdb-accent);
+  color: oklch(0.14 0.02 255);
+  font-family: var(--mdb-sans);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.mdb-btn:hover { background: var(--mdb-accent-bright); border-color: var(--mdb-accent-bright); }
+
+.mdb-btn-ghost {
+  flex: 1;
+  cursor: pointer;
+  padding: 12px 6px;
+  border-radius: var(--mdb-radius);
+  border: 1px solid var(--mdb-line);
+  background: transparent;
+  color: oklch(0.85 0.015 85);
+  font-family: var(--mdb-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-align: center;
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.mdb-btn-ghost:hover { border-color: var(--mdb-accent); color: var(--mdb-cream); }
+.mdb-btn-ghost[data-active="true"] { border-color: var(--mdb-accent); color: var(--mdb-accent); }
+
+.mdb-actions { display: flex; gap: 8px; }
+
+.mdb-linkback {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--mdb-muted);
+  font-family: var(--mdb-sans);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 6px 0;
+  text-decoration: none;
+}
+.mdb-linkback:hover { color: var(--mdb-cream-soft); }
+
+.mdb-iconbtn {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 6px;
+  line-height: 0;
+  color: var(--mdb-accent);
+}
+
+/* --------------------------------------------------------------------------
+   Cards
+   -------------------------------------------------------------------------- */
+
+/* Cream "printed page" — carries the verse. */
+.mdb-paper {
+  position: relative;
+  background: var(--mdb-paper);
+  border-radius: var(--mdb-radius);
+  padding: 32px 26px 28px;
+  box-shadow: 0 12px 30px oklch(0 0 0 / 0.35);
+}
+
+/* Chart-style corner brackets */
+.mdb-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  opacity: 0.7;
+}
+.mdb-corner--tl { top: 8px; left: 8px; border-top: 1px solid var(--mdb-accent); border-left: 1px solid var(--mdb-accent); }
+.mdb-corner--tr { top: 8px; right: 8px; border-top: 1px solid var(--mdb-accent); border-right: 1px solid var(--mdb-accent); }
+.mdb-corner--bl { bottom: 8px; left: 8px; border-bottom: 1px solid var(--mdb-accent); border-left: 1px solid var(--mdb-accent); }
+.mdb-corner--br { bottom: 8px; right: 8px; border-bottom: 1px solid var(--mdb-accent); border-right: 1px solid var(--mdb-accent); }
+
+.mdb-paper-title {
+  font-family: var(--mdb-serif);
+  font-size: 11px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: oklch(0.45 0.02 255);
+  text-align: center;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--mdb-paper-line);
+}
+
+.mdb-verse {
+  font-family: var(--mdb-serif);
+  font-size: 17.5px;
+  line-height: 1.72;
+  color: var(--mdb-ink-text);
+}
+.mdb-verse p { margin: 0 0 0.9em; font-style: italic; }
+.mdb-verse p:last-child { margin-bottom: 0; }
+
+.mdb-dropcap {
+  float: left;
+  font-size: 42px;
+  line-height: 34px;
+  padding: 3px 7px 0 0;
+  font-weight: 500;
+  font-style: normal;
+  color: var(--mdb-accent);
+}
+
+/* Ink card — carries the real passage. */
+.mdb-passage {
+  background: var(--mdb-ink-card);
+  border-left: 1px solid var(--mdb-accent);
+  padding: 26px 24px;
+}
+.mdb-passage-text {
+  font-family: var(--mdb-serif);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--mdb-cream-soft);
+}
+.mdb-citation {
+  margin-top: 16px;
+  font-family: var(--mdb-serif);
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--mdb-accent);
+}
+
+/* Secondary matches, same card, quieter. */
+.mdb-secondary {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid oklch(0.4 0.02 255 / 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.mdb-secondary-label {
+  font-family: var(--mdb-sans);
+  font-size: 9.5px;
+  letter-spacing: 1.8px;
+  color: var(--mdb-muted-3);
+}
+.mdb-secondary-text {
+  font-family: var(--mdb-serif);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.6;
+  color: oklch(0.72 0.012 85);
+}
+.mdb-secondary-cite {
+  margin-top: 7px;
+  font-family: var(--mdb-serif);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mdb-muted-2);
+}
+
+/* Generic ink card for prose pages (about, privacy, tag results). */
+.mdb-card {
+  background: var(--mdb-ink-card);
+  border-left: 1px solid var(--mdb-accent);
+  padding: 24px 22px;
+  font-family: var(--mdb-serif);
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--mdb-body-text);
+}
+.mdb-card p { margin: 0 0 1em; }
+.mdb-card p:last-child { margin-bottom: 0; }
+.mdb-card h2 {
+  font-family: var(--mdb-sans);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--mdb-accent);
+  margin: 0 0 14px;
+}
+.mdb-card ul { margin: 0 0 1em; padding-left: 1.1em; }
+.mdb-card li { margin-bottom: 0.4em; }
+.mdb-card a { color: var(--mdb-accent-bright); }
+.mdb-card .mdb-name { color: var(--mdb-cream-soft); font-style: normal; }
+.mdb-card .mdb-colophon { line-height: 2; }
+
+/* Error banner, in the same paper language as everything else. */
+.mdb-alert {
+  background: var(--mdb-paper);
+  border-left: 2px solid oklch(0.55 0.11 25);
+  border-radius: var(--mdb-radius);
+  padding: 14px 16px;
+  font-family: var(--mdb-serif);
+  font-style: italic;
+  font-size: 14.5px;
+  color: var(--mdb-ink-text);
+}
+
+/* --------------------------------------------------------------------------
+   Badge
+   -------------------------------------------------------------------------- */
+
+.mdb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--mdb-accent);
+}
+.mdb-badge span {
+  font-family: var(--mdb-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  color: var(--mdb-accent);
+}
+.mdb-badge i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--mdb-accent);
+}
+
+/* --------------------------------------------------------------------------
+   Header / footer
+   -------------------------------------------------------------------------- */
+
+.mdb-header {
+  padding: 40px 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mdb-nav {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 4px;
+}
+.mdb-nav a {
+  font-family: var(--mdb-sans);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--mdb-muted-3);
+  text-decoration: none;
+}
+.mdb-nav a:hover { color: var(--mdb-accent); }
+
+.mdb-footer {
+  padding: 34px 24px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+  border-top: 1px solid oklch(0.4 0.02 255 / 0.35);
+}
+.mdb-footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.mdb-footer-links a,
+.mdb-footer-meta {
+  font-family: var(--mdb-sans);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--mdb-muted-3);
+  text-decoration: none;
+}
+.mdb-footer-links a:hover { color: var(--mdb-accent); }
+
+/* --------------------------------------------------------------------------
+   Loading state
+   -------------------------------------------------------------------------- */
+
+#mdb-loading {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  overflow: hidden;
+  background-color: var(--mdb-ink-2);
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, oklch(0.75 0.11 85 / 0.035) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, oklch(0.75 0.11 85 / 0.035) 40px),
+    linear-gradient(var(--mdb-ink), var(--mdb-ink-2));
+}
+#mdb-loading.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 0 32px;
+}
+
+/* --- Drifting quotes: the old stream-of-consciousness, dialled down to a
+   background wash so it surrounds the centre instead of competing with it. --- */
+
+.mdb-drift-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mdb-drift {
+  position: absolute;
+  max-width: 15em;
+  font-family: var(--mdb-serif);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--mdb-cream-soft);
+  text-align: center;
+  text-wrap: pretty;
+  opacity: 0;
+  animation: mdb-drift var(--dur, 7s) ease-in-out forwards;
+}
+
+@keyframes mdb-drift {
+  0%   { opacity: 0; transform: translateY(0); }
+  22%  { opacity: var(--peak, 0.15); }
+  68%  { opacity: var(--peak, 0.15); }
+  100% { opacity: 0; transform: translateY(var(--drift, -24px)); }
+}
+
+/* Vignette keeps the middle legible. Absolutely positioned, so it is not a
+   flex item of the overlay and does not disturb the centred stack. */
+#mdb-loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 58% 30% at 50% 50%,
+              oklch(0.15 0.03 255 / 0.94) 0%,
+              oklch(0.15 0.03 255 / 0.55) 45%,
+              oklch(0.15 0.03 255 / 0) 72%);
+}
+
+#mdb-loading .mdb-spinner,
+#mdb-loading .mdb-loading-title,
+#mdb-loading .mdb-loading-sub,
+#mdb-loading .mdb-loading-line {
+  position: relative;
+  z-index: 2;
+}
+
+.mdb-spinner {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mdb-spinner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--mdb-accent);
+  animation: mdb-ring 2.4s ease-out infinite;
+}
+.mdb-spinner svg { animation: mdb-spin 5s linear infinite; }
+
+.mdb-loading-title {
+  font-family: var(--mdb-serif);
+  font-style: italic;
+  font-size: 21px;
+  color: oklch(0.92 0.015 85);
+  text-align: center;
+}
+.mdb-loading-sub {
+  font-family: var(--mdb-sans);
+  font-size: 11px;
+  color: var(--mdb-muted-3);
+  text-align: center;
+}
+.mdb-loading-line {
+  font-family: var(--mdb-sans);
+  font-size: 11.5px;
+  letter-spacing: 0.6px;
+  color: var(--mdb-muted-2);
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mdb-spinner::before,
+  .mdb-spinner svg,
+  .mdb-main { animation: none; }
+  .mdb-drift { animation: none; opacity: var(--peak, 0.15); }
+}
+
+/* --------------------------------------------------------------------------
+   Awesomplete, restyled to the paper card
+   -------------------------------------------------------------------------- */
+
+/* Awesomplete wraps the input in an inline-block div, which collapses a
+   width:100% input down to its default size. Make the wrapper full width. */
+.awesomplete {
+  display: block;
+  width: 100%;
+}
+
+.awesomplete > ul {
+  max-height: 220px;
+  overflow-y: auto;
+  background: var(--mdb-paper);
+  color: var(--mdb-ink-text);
+  border: 1px solid var(--mdb-line);
+  border-radius: var(--mdb-radius);
+  padding: 4px 0;
+  font-family: var(--mdb-serif);
+  font-size: 14.5px;
+  box-shadow: 0 12px 30px oklch(0 0 0 / 0.35);
+}
+.awesomplete > ul::before { display: none; }
+.awesomplete li { padding: 8px 14px; }
+.awesomplete li:hover,
+.awesomplete li[aria-selected="true"] {
+  background: oklch(0.88 0.03 85);
+  color: var(--mdb-ink-text);
+  cursor: pointer;
+}
+.awesomplete mark,
+.awesomplete li[aria-selected="true"] mark {
+  background: none;
+  color: var(--mdb-accent);
+  font-weight: 600;
+}

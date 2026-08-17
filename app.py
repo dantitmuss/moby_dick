@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, render_template, request, jsonify, send_from_directory, Response
 from dotenv import load_dotenv
 import os
 import json
@@ -108,6 +108,53 @@ display_names = {
     "vibe": "Vibe",
     "literary_motifs": "Literary Motifs"
 }
+
+
+# Canonical origin for canonical/og/sitemap URLs. Override per-environment
+# with SITE_URL (e.g. a staging domain) if needed.
+SITE_URL = os.getenv("SITE_URL", "https://mobydickbible.com").rstrip("/")
+
+# Pages worth indexing. /search and /tag_search are POST-only result pages and
+# are deliberately excluded (they also carry a noindex tag).
+INDEXABLE_PATHS = ['/', '/about', '/privacy']
+
+
+@app.context_processor
+def inject_seo():
+    return {
+        "site_url": SITE_URL,
+        "canonical_url": SITE_URL + request.path,
+    }
+
+
+@app.route('/robots.txt')
+def robots_txt():
+    body = "\n".join([
+        "User-agent: *",
+        "Allow: /",
+        "Disallow: /search",
+        "Disallow: /tag_search",
+        "",
+        f"Sitemap: {SITE_URL}/sitemap.xml",
+        "",
+    ])
+    return Response(body, mimetype="text/plain")
+
+
+@app.route('/sitemap.xml')
+def sitemap_xml():
+    urls = "".join(
+        f"<url><loc>{SITE_URL}{path}</loc>"
+        f"<changefreq>{'weekly' if path == '/' else 'yearly'}</changefreq>"
+        f"<priority>{'1.0' if path == '/' else '0.5'}</priority></url>"
+        for path in INDEXABLE_PATHS
+    )
+    body = (
+        '<?xml version="1.0" encoding="UTF-8"?>'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+        f'{urls}</urlset>'
+    )
+    return Response(body, mimetype="application/xml")
 
 
 # Flask Homepage
