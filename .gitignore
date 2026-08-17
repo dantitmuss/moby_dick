@@ -17,3 +17,5 @@ flask_venv/
 
 # Internal dev/review files
 /dev
+# Design handoff archives
+*.zip
