@@ -1,20 +1,26 @@
 {% extends "base.html" %}
 
 {% block title %}Page Not Found | The Moby-Dick Bible{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
 
 {% block content %}
 
-<div class="mdb-center" style="padding-top:40px;">
-  <h1 class="mdb-display mdb-display--sm">404 &mdash; Lost at Sea</h1>
-  <div class="mdb-ornament">
-    <svg class="mdb-compass" width="15" height="15" style="opacity:.85" aria-hidden="true"><use href="#mdb-compass-rose"/></svg>
-  </div>
+<div class="mdb-intro">
+  <p class="mdb-cite">404 <span>&middot; position unknown</span></p>
+  <h1 class="mdb-h1">Lost at sea.</h1>
+  <p class="mdb-lede">This page isn&rsquo;t here. It may never have been. Ishmael would say that&rsquo;s a mark in its favour:</p>
 </div>
 
-<p class="mdb-lede mdb-center" style="font-style:italic;">
-  You seem to have drifted from the course. The page you are looking for does not exist.
-</p>
+<blockquote class="mdb-pull">
+  <p>&ldquo;It is not down in any map; true places never are.&rdquo;</p>
+  <p class="mdb-cite">Chapter 12, Biographical <span>&middot; verse 1</span></p>
+</blockquote>
 
-<a href="/" class="mdb-btn">RETURN TO PORT</a>
+<p class="mdb-crew" style="margin:0;"><b>Starbuck</b> suggests going back the way you came.</p>
+
+<div class="mdb-actions">
+  <a href="/" class="mdb-btn">Return to port</a>
+  <a href="/#chart" class="mdb-btn mdb-btn--quiet">Wander the concordance</a>
+</div>
 
 {% endblock %}

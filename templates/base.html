@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <title>{% block title %}The Moby-Dick Bible{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a1324">
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}" type="image/png">
 
-  <!-- Cookie consent (opt-in, gates GTM) -->
-  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+  <!-- Cookie consent (opt-in, gates GTM). Styled in pixel.css, not the library's stylesheet. -->
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js"></script>
   <script>
-  window.addEventListener("load", function(){
+  window.addEventListener("load", function () {
+    if (!window.cookieconsent) return;
     window.cookieconsent.initialise({
-      palette: {
-        popup: { background: "#141c29", text: "#e9e3d6" },
-        button: { background: "#4E7C74", text: "#141c29" }
-      },
       type: "opt-in",
+      revokable: false,
       content: {
-        message: "This site uses cookies for analytics.",
+        message: "This site uses cookies for analytics, and only if you say yes.",
+        allow: "Accept",
         dismiss: "Accept",
         deny: "Decline",
-        link: "Learn more",
+        link: "Privacy",
         href: "/privacy"
       },
-      onInitialise: function (status) {
-        if (status == 'allow') loadAnalytics();
-      },
-      onStatusChange: function(status) {
-        if (status == 'allow') loadAnalytics();
-      }
+      onInitialise: function (status) { if (status == 'allow') loadAnalytics(); },
+      onStatusChange: function (status) { if (status == 'allow') loadAnalytics(); }
     });
   });
 
   function loadAnalytics() {
-  // Inject GTM script dynamically after consent
+    if (window.MDB_PREVIEW || window.__mdbGtm) return;
+    window.__mdbGtm = true;
+    // Inject GTM only after consent
     const gtmId = 'GTM-K9NCVFLL';
     const script = document.createElement('script');
     script.innerHTML = `
@@ -41,39 +42,19 @@
       })(window,document,'script','dataLayer','${gtmId}');
     `;
     document.head.appendChild(script);
-    }
+  }
   </script>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#141c29">
-  <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}" type="image/png">
-
-  {% block head %}
-    <!-- Awesomplete CSS & JS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Tailwind (legacy utilities still used by prose pages) -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}?v=2">
-    <!-- Oracle design system -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='oracle.css') }}?v=1">
-  {% endblock %}
-
-  <title>{% block title %}The Moby-Dick Bible{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Pixelify+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='pixel.css') }}?v=1">
 
   {% block robots %}{% endblock %}
   <meta name="description" content="{% block description %}A scripture of salt, blood, and ink. Reading Herman Melville's novel as a sacred text. Type in anything and get a meaningful quote from Moby Dick.{% endblock %}">
 
   {# Social + canonical, driven off the same title/description blocks so they
-     can never drift apart. Pages that set a noindex robots block skip the
-     canonical, since there is nothing to consolidate. #}
-  {# striptags first: the block renders as Markup, and |e is a no-op on Markup,
-     which would leave a bare "&" sitting in these attributes. #}
+     can never drift apart. Pages with a noindex robots block skip the canonical. #}
   {% set page_title = self.title()|striptags|e %}
   {% set page_description = self.description()|striptags|e %}
   {% if not self.robots()|trim %}
@@ -100,80 +81,80 @@
     "@type": "WebSite",
     "name": "The Moby-Dick Bible",
     "url": "{{ site_url }}/",
-    "description": "A live concordance to Herman Melville's Moby-Dick. Ask anything and receive a newly written verse plus the passage from the novel that answers it.",
+    "description": "A live concordance to Herman Melville's Moby-Dick. Ask anything and receive a newly written verse plus the passages from the novel that answer it.",
     "inLanguage": "en",
     "author": { "@type": "Person", "name": "Dan Titmuss" }
   }
   </script>
 
+  {% block head %}{% endblock %}
 </head>
-<body class="mdb-body">
+<body>
 
-  <!-- Compass motifs, used throughout -->
+  <!-- A small whaler, used as the wordmark and on each passage hailed from a passing ship -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <symbol id="mdb-compass-mark" viewBox="0 0 18 18">
-      <circle cx="9" cy="9" r="7.5" fill="none" stroke="currentColor" stroke-width="1"/>
-      <line x1="9" y1="1" x2="9" y2="3.4" stroke="currentColor" stroke-width="1"/>
-      <line x1="9" y1="14.6" x2="9" y2="17" stroke="currentColor" stroke-width="1"/>
-      <line x1="1" y1="9" x2="3.4" y2="9" stroke="currentColor" stroke-width="1"/>
-      <line x1="14.6" y1="9" x2="17" y2="9" stroke="currentColor" stroke-width="1"/>
-      <path d="M9 9L11.6 6.4 9 3.8 6.4 6.4Z" fill="currentColor"/>
-    </symbol>
-    <symbol id="mdb-compass-rose" viewBox="0 0 15 15">
-      <circle cx="7.5" cy="7.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1"/>
-      <circle cx="7.5" cy="7.5" r="1.4" fill="currentColor"/>
-      <line x1="7.5" y1="1" x2="7.5" y2="4" stroke="currentColor" stroke-width="1"/>
-      <line x1="7.5" y1="11" x2="7.5" y2="14" stroke="currentColor" stroke-width="1"/>
-      <line x1="1" y1="7.5" x2="4" y2="7.5" stroke="currentColor" stroke-width="1"/>
-      <line x1="11" y1="7.5" x2="14" y2="7.5" stroke="currentColor" stroke-width="1"/>
-      <line x1="3" y1="3" x2="5" y2="5" stroke="currentColor" stroke-width="0.8"/>
-      <line x1="10" y1="10" x2="12" y2="12" stroke="currentColor" stroke-width="0.8"/>
-      <line x1="12" y1="3" x2="10" y2="5" stroke="currentColor" stroke-width="0.8"/>
-      <line x1="5" y1="10" x2="3" y2="12" stroke="currentColor" stroke-width="0.8"/>
-    </symbol>
-    <symbol id="mdb-compass-needle" viewBox="0 0 15 15">
-      <circle cx="7.5" cy="7.5" r="6.5" fill="none" stroke="currentColor" stroke-width="0.8"/>
-      <path d="M7.5 7.5L9.6 5.4 7.5 2 5.4 5.4Z" fill="currentColor"/>
-      <path d="M7.5 7.5L9.6 9.6 7.5 13 5.4 9.6Z" fill="none" stroke="currentColor" stroke-width="0.6"/>
+    <symbol id="mdb-ship" viewBox="0 0 12 9" shape-rendering="crispEdges">
+      <rect x="3" y="0" width="1" height="7" fill="#8a6646"/>
+      <rect x="7" y="0" width="1" height="7" fill="#8a6646"/>
+      <rect x="2" y="1" width="3" height="2" fill="#ece3cb"/>
+      <rect x="6" y="1" width="3" height="2" fill="#ece3cb"/>
+      <rect x="1" y="4" width="5" height="2" fill="#ece3cb"/>
+      <rect x="5" y="4" width="5" height="2" fill="#d8cfb6"/>
+      <rect x="10" y="5" width="2" height="1" fill="#8a6646"/>
+      <rect x="0" y="7" width="12" height="1" fill="#6a4a31"/>
+      <rect x="1" y="8" width="10" height="1" fill="#6a4a31"/>
+      <rect x="0" y="6" width="1" height="1" fill="#f3c45f"/>
     </symbol>
   </svg>
 
-  <div class="mdb-shell">
-    <div class="mdb-column {% block column_class %}{% endblock %}">
-
-      <header class="mdb-header">
-        <a href="/" class="mdb-wordmark">
-          <svg class="mdb-compass" width="18" height="18" style="opacity:.8" aria-hidden="true"><use href="#mdb-compass-mark"/></svg>
-          <span class="mdb-eyebrow">The Moby-Dick Bible</span>
-        </a>
-        <p class="mdb-coords">41&deg;38'N &middot; 70&deg;56'W &mdash; New Bedford</p>
-        <nav class="mdb-nav">
-          <a href="/">Home</a>
-          <a href="/about">About</a>
-        </nav>
-      </header>
-
-      <main class="mdb-main">
-        {% block content %}{% endblock %}
-      </main>
-
-      <footer class="mdb-footer">
-        <p class="mdb-fineprint" style="margin:0;">&ldquo;There is a wisdom that is woe; but there is a woe that is madness.&rdquo;</p>
-        <div class="mdb-footer-links">
-          <a href="/about">About</a>
-          <a href="/privacy">Privacy</a>
-          <a href="mailto:dantitmusscomedy@gmail.com">Contact</a>
-          <a href="https://github.com/dantitmuss/moby_dick">GitHub</a>
-        </div>
-        <p class="mdb-footer-meta" style="margin:0;">&copy; 2025 Dan Titmuss</p>
-      </footer>
-
+  <header class="mdb-top">
+    <div class="mdb-top-inner">
+      <a href="/" class="mdb-wordmark">
+        <svg aria-hidden="true"><use href="#mdb-ship"/></svg>
+        <span>The Moby-Dick Bible</span>
+      </a>
+      <nav class="mdb-nav" aria-label="Main">
+        <a href="/" {% if request.path == '/' %}aria-current="page"{% endif %}>Ask</a>
+        <a href="/#chart">Concordance</a>
+        <a href="/#log">Log</a>
+        <a href="/about" {% if request.path == '/about' %}aria-current="page"{% endif %}>About</a>
+        <button type="button" class="mdb-sound" id="mdb-sound" aria-pressed="false">Sound: off</button>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  {# Overlays live outside .mdb-shell: .mdb-main carries a transform (its fade
-     animation), which would otherwise become the containing block for any
-     position:fixed child and anchor it to the column instead of the viewport. #}
+  {% block scene %}
+  <div class="mdb-scene mdb-scene--compact">
+    <canvas data-scene data-compact data-report="mdb-report" aria-hidden="true"></canvas>
+  </div>
+  <p class="mdb-report" id="mdb-report" aria-hidden="true"></p>
+  {% endblock %}
+
+  <main class="mdb-main">
+    <div class="mdb-col">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <footer class="mdb-foot">
+    <div class="mdb-foot-inner">
+      <p class="mdb-foot-quote">&ldquo;There is a wisdom that is woe; but there is a woe that is madness.&rdquo;<cite>Chapter 96, The Try-Works</cite></p>
+      <nav class="mdb-foot-links" aria-label="Footer">
+        <a href="/about">About</a>
+        <a href="/privacy">Privacy</a>
+        <a href="mailto:dantitmusscomedy@gmail.com">Contact</a>
+        <a href="https://github.com/dantitmuss/moby_dick">GitHub</a>
+      </nav>
+      <p class="mdb-foot-meta">&copy; 2025 Dan Titmuss. Text of the novel from Project Gutenberg, in the public domain.</p>
+    </div>
+  </footer>
+
+  {# Overlays sit outside the column so position:fixed anchors to the viewport. #}
   {% block overlay %}{% endblock %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
+  <script src="{{ url_for('static', filename='scene.js') }}?v=1"></script>
+  <script src="{{ url_for('static', filename='site.js') }}?v=1"></script>
+  {% block scripts %}{% endblock %}
 </body>
 </html>

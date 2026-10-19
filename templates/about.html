@@ -5,108 +5,94 @@
 
 {% block content %}
 
-<div class="mdb-center">
-  <h1 class="mdb-display mdb-display--sm">About This Project</h1>
-  <div class="mdb-ornament">
-    <svg class="mdb-compass" width="15" height="15" style="opacity:.85" aria-hidden="true"><use href="#mdb-compass-rose"/></svg>
-  </div>
-</div>
-
-<div class="mdb-card">
-  <p>
-    <strong>The Moby-Dick Bible</strong> is an experiment in reverent absurdity &mdash; a way of
-    treating Herman Melville&rsquo;s epic like a sacred text, full of strange truths and slippery meanings.
-  </p>
-  <p>
-    A few years ago, I read <em>Moby-Dick</em> for the first time. It hit me harder than any
-    classic ever had. Inside the novel was&hellip; everything.
-  </p>
-  <p>
-    As someone who doesn&rsquo;t believe in anything supernatural or divine, I&rsquo;ve always been
-    searching for a book that could serve as a kind of &ldquo;guide.&rdquo; Nathaniel Philbrick &mdash; a fellow
-    <em>Moby-Dick</em> nerd who&rsquo;s much smarter than I am, and author of <em>Why Read Moby-Dick</em>
-    &mdash; once said:
+<div class="mdb-intro">
+  <h1 class="mdb-h1">About this project</h1>
+  <p class="mdb-lede">
+    <strong>The Moby-Dick Bible</strong> is an experiment in reverent absurdity: a way of treating Herman
+    Melville&rsquo;s epic like a sacred text, full of strange truths and slippery meanings.
   </p>
 </div>
 
-<div class="mdb-passage">
-  <div class="mdb-passage-text">
-    &ldquo;For me <em>Moby-Dick</em> is really the American Bible. Embedded within it is the DNA
-    of America&rsquo;s culture.&rdquo;
-  </div>
-  <div class="mdb-citation">Nathaniel Philbrick</div>
+<div class="mdb-prose">
+  <p>
+    A few years ago, I read <em>Moby-Dick</em> for the first time. It hit me harder than any classic ever
+    had. Inside the novel was&hellip; everything.
+  </p>
+  <p>
+    As someone who doesn&rsquo;t believe in anything supernatural or divine, I&rsquo;ve always been searching
+    for a book that could serve as a kind of &ldquo;guide.&rdquo; Nathaniel Philbrick, a fellow
+    <em>Moby-Dick</em> nerd who&rsquo;s much smarter than I am, and author of <em>Why Read Moby-Dick</em>,
+    once said:
+  </p>
 </div>
 
-<div class="mdb-card">
+<blockquote class="mdb-pull">
+  <p>&ldquo;For me <em>Moby-Dick</em> is really the American Bible. Embedded within it is the DNA of America&rsquo;s culture.&rdquo;</p>
+  <p class="mdb-cite">Nathaniel Philbrick</p>
+</blockquote>
+
+<div class="mdb-prose">
   <p>I took that literally. I broke it up into verses and started treating it like a sacred text.</p>
   <p>
-    The <em>Pequod</em> is a microcosm of the world itself, and now feels like the perfect time to
-    look for meaning in its pages. Obsession, the search for meaning in an uncaring universe, a
-    maniacal captain with a cult-like following that dooms the ship&hellip; it&rsquo;s wild that this
-    was published in 1851. (Then again, once you read it, it becomes clear &mdash; because a lot of
-    it is <em>really</em> old-timey.)
+    The <em>Pequod</em> is a microcosm of the world itself, and now feels like the perfect time to look for
+    meaning in its pages. Obsession, the search for meaning in an uncaring universe, a maniacal captain with
+    a cult-like following that dooms the ship&hellip; it&rsquo;s wild that this was published in 1851. (Then
+    again, once you read it, it becomes clear, because a lot of it is <em>really</em> old-timey.)
   </p>
 </div>
 
-<div class="mdb-divider"><h2>How it Works</h2></div>
-
-<div class="mdb-card">
+<section class="mdb-frame mdb-prose" aria-labelledby="how-title">
+  <h2 class="mdb-h2" id="how-title">How it works</h2>
   <p>
-    First, I split the entire novel into bite-sized &ldquo;verses.&rdquo; That was a huge task. I wanted
-    each verse to stand on its own, feel meaningful, and flow from one to the next &mdash; not too long,
-    not too short. I used SpaCy, a Python library for natural language processing, to segment the text,
-    and then manually fine-tuned each one.
+    First, I split the entire novel into bite-sized &ldquo;verses.&rdquo; That was a huge task. I wanted each
+    verse to stand on its own, feel meaningful, and flow from one to the next: not too long, not too short. I
+    used SpaCy, a Python library for natural language processing, to segment the text, and then manually
+    fine-tuned each one. There are 2,298 of them across 136 chapters.
   </p>
   <p>
-    Each verse is tagged with themes, vibes, and literary motifs. But the real magic happens in the
-    semantic search. You can type anything &mdash; a question, a feeling, a phrase &mdash; and the site
-    will generate a <em>Moby-Dick</em>-style verse from scratch using OpenAI&rsquo;s GPT. That new verse
-    is then compared to the real ones using FAISS, a vector similarity engine, which finds the most
-    semantically similar passages.
+    Each verse is tagged with themes, vibes, and literary motifs. But the real magic happens in the semantic
+    search. You can type anything (a question, a feeling, a phrase) and the site will generate a
+    <em>Moby-Dick</em>-style verse from scratch using OpenAI&rsquo;s GPT. That new verse is then compared to
+    the real ones using FAISS, a vector similarity engine, which finds the most semantically similar passages.
   </p>
   <ul>
-    <li>Your input is used to generate a new verse in Melville&rsquo;s style using an AI model.</li>
+    <li>Your input is used to generate a new verse in Melville&rsquo;s style using an AI model. This is the <strong>apocrypha</strong>.</li>
     <li>That verse is embedded and compared to all verses in <em>Moby-Dick</em>.</li>
-    <li>The closest matches are returned &mdash; semantically, not literally.</li>
+    <li>The closest matches are returned, semantically, not literally. These are the <strong>canon</strong>, word for word from the book.</li>
   </ul>
   <p>
-    Each verse in the Bible is embedded with 1538 dimensions for this comparison. The result is part
+    Each verse in the Bible is embedded with 1,536 dimensions for this comparison. The result is part
     scripture, part hallucination, and part literary concordance.
   </p>
   <p>
-    This thing is far from perfect. But I hope it gives you something &mdash; a bit of guidance,
-    reflection, or even just a weirdly specific quote for your moment.
+    This thing is far from perfect. But I hope it gives you something: a bit of guidance, reflection, or even
+    just a weirdly specific quote for your moment.
   </p>
-</div>
+</section>
 
-<div class="mdb-card">
-  <h2>Moby-Dick or Moby Dick?</h2>
+<section class="mdb-prose" aria-labelledby="hyphen-title">
+  <h2 class="mdb-h3" id="hyphen-title">Moby-Dick or Moby Dick?</h2>
+  <p><em>Moby-Dick</em> (with the hyphen) is the book.<br>Moby Dick (no hyphen) is the whale. Usually.</p>
+  <p class="mdb-quiet">You won&rsquo;t see him on this site. Keep an eye on the horizon anyway.</p>
+</section>
+
+<section class="mdb-prose" aria-labelledby="colophon-title">
+  <h2 class="mdb-h3" id="colophon-title">Colophon</h2>
   <p>
-    <em>Moby-Dick</em> (with the hyphen) is the book.<br>
-    Moby Dick (no hyphen) is the whale. Usually.
-  </p>
-</div>
-
-<div class="mdb-divider"><h2>Colophon</h2></div>
-
-<div class="mdb-card">
-  <p>
-    This project was created by <span class="mdb-name">Dan Titmuss</span> as a modern way to explore
-    the language and meaning of <em>Moby-Dick</em> by Herman Melville (public domain). The text is
-    drawn from Project Gutenberg.
+    This project was created by Dan Titmuss as a modern way to explore the language and meaning of
+    <em>Moby-Dick</em> by Herman Melville (public domain). The text is drawn from Project Gutenberg.
   </p>
   <p>The site uses:</p>
-  <p class="mdb-colophon">
-    &mdash; <span class="mdb-name">Flask</span> for backend structure<br>
-    &mdash; <span class="mdb-name">FAISS</span> for semantic search<br>
-    &mdash; <span class="mdb-name">Awesomplete</span> for tag autocomplete<br>
-    &mdash; <span class="mdb-name">OpenAI</span> for verse generation<br>
-    &mdash; <span class="mdb-name">Spectral</span> and <span class="mdb-name">Manrope</span> typefaces via
-    <a href="https://fonts.google.com/specimen/Spectral" target="_blank" rel="noopener">Google Fonts</a>
-  </p>
-  <p>Typography, mood, and motion aim to echo the strangeness and solemnity of Melville&rsquo;s world.</p>
-</div>
+  <ul class="mdb-colophon">
+    <li><strong>Flask</strong> for backend structure</li>
+    <li><strong>FAISS</strong> for semantic search</li>
+    <li><strong>Awesomplete</strong> for tag autocomplete</li>
+    <li><strong>OpenAI</strong> for verse generation</li>
+    <li><strong>Pixelify Sans</strong> and <strong>Alegreya</strong> typefaces via <a href="https://fonts.google.com/specimen/Alegreya" target="_blank" rel="noopener">Google Fonts</a></li>
+  </ul>
+  <p>The sea, the ship and the gulls are drawn a pixel at a time, by hand, in code. Nothing white is ever drawn whole.</p>
+</section>
 
-<a href="/" class="mdb-btn" style="margin-top:8px;">ASK THE WHALE</a>
+<a href="/" class="mdb-btn" style="align-self:flex-start;">Ask the book</a>
 
 {% endblock %}

@@ -1,46 +1,36 @@
 {% extends "base.html" %}
+{% from "_passage.html" import gam %}
 
 {% block title %}{{ tag }} | The Moby-Dick Bible{% endblock %}
 {% block robots %}<meta name="robots" content="noindex">{% endblock %}
 
 {% block content %}
 
-<div style="display:flex;align-items:center;justify-content:space-between;">
-  <a href="/" class="mdb-linkback">&lsaquo; NEW QUESTION</a>
+<a href="/#chart" class="mdb-back">&larr; Back to the concordance</a>
+
+<div class="mdb-intro">
+  <p class="mdb-cite" id="mdb-tag-path">{{ category }} <span>&rsaquo;</span> {{ tag }}</p>
+  <h1 class="mdb-h1" id="mdb-tag-title">{{ tag }}</h1>
+  <p class="mdb-quiet" style="margin:0;" id="mdb-tag-count">
+    {% set n = found_texts | length %}
+    {% if n %}{{ n }} passage{{ '' if n == 1 else 's' }} in the novel carry this mark, in the order they appear.{% endif %}
+  </p>
 </div>
 
-<div style="display:flex;justify-content:center;">
-  <div class="mdb-badge">
-    <span>{{ category | upper }}</span>
-    <i></i>
-    <span>{{ tag | upper }}</span>
-  </div>
-</div>
-
-<div class="mdb-center">
-  <h1 class="mdb-display mdb-display--sm">{{ tag }}</h1>
-  <div class="mdb-ornament">
-    <svg class="mdb-compass" width="15" height="15" style="opacity:.85" aria-hidden="true"><use href="#mdb-compass-rose"/></svg>
-  </div>
-</div>
-
-<div class="mdb-divider">
-  <span>{{ found_texts | length }} PASSAGE{{ '' if found_texts | length == 1 else 'S' }}</span>
-</div>
-
-{% for verse in found_texts %}
-  <div class="mdb-passage">
-    <div class="mdb-passage-text">&ldquo;{{ verse.text }}&rdquo;</div>
-    <div class="mdb-citation">
-      Chapter {{ verse.chapter_number }} &middot; {{ verse.chapter_title }} &middot; Verse {{ verse.verse_number }}
+<div class="mdb-canon-list" id="mdb-tag-list">
+  {% for verse in found_texts %}
+    {{ gam(verse) }}
+  {% else %}
+    <div class="mdb-frame mdb-prose">
+      <p><strong>Nothing is written under this mark.</strong> Check the spelling, or pick one from the list as you type.</p>
+      <p class="mdb-crew"><b>Stubb</b> has looked twice and found only water.</p>
     </div>
-  </div>
-{% else %}
-  <div class="mdb-card">
-    <p>Nothing is written under this tag. The whale keeps his own counsel.</p>
-  </div>
-{% endfor %}
+  {% endfor %}
+</div>
 
-<a href="/" class="mdb-btn" style="margin-top:8px;">ASK THE WHALE</a>
+<div class="mdb-actions">
+  <a href="/#chart" class="mdb-btn mdb-btn--quiet">Try another mark</a>
+  <a href="/" class="mdb-btn">Ask the book</a>
+</div>
 
 {% endblock %}
