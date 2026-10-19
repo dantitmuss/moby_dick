@@ -1,0 +1,15 @@
+{# A real passage from the novel, hailed from a passing ship. `n` is its
+   position in the list; pass none for a plain list (tag results). #}
+{% macro gam(match, n=none) -%}
+{% set title = match.chapter_title[:-1] if match.chapter_title.endswith('.') else match.chapter_title %}
+<article class="mdb-gam mdb-frame" data-canon>
+  {% if n is not none %}
+  <div class="mdb-gam-head">
+    <svg aria-hidden="true"><use href="#mdb-ship"/></svg>
+    <span><strong>{{ ['First', 'Second', 'Third'][n] if n < 3 else 'Another' }} ship hailed us</strong> with a passage from the novel</span>
+  </div>
+  {% endif %}
+  <p class="mdb-passage">&ldquo;{{ match.text }}&rdquo;</p>
+  <p class="mdb-cite">Chapter {{ match.chapter_number }}, {{ title }} <span>&middot; verse {{ match.verse_number }}</span></p>
+</article>
+{%- endmacro %}

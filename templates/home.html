@@ -2,280 +2,100 @@
 
 {% block title %}The Moby Dick Bible: Find Quotes & Meaning in The Whale{% endblock %}
 
+{% block scene %}
+<div class="mdb-scene">
+  <canvas data-scene data-sprites="{{ url_for('static', filename='images/sprites/') }}" data-report="mdb-report" aria-hidden="true"></canvas>
+</div>
+<p class="mdb-report" id="mdb-report" aria-hidden="true"></p>
+{% endblock %}
+
 {% block content %}
 
-  <!-- Epigraph -->
-  <div class="mdb-center mdb-stack">
-    <div class="mdb-epigraph">&ldquo;It is not down in any map; true places never are.&rdquo;</div>
-    <div class="mdb-epigraph-cite">MOBY-DICK &middot; CH. 12</div>
+  <div class="mdb-intro">
+    <figure class="mdb-epigraph" style="margin:0;">
+      <p>&ldquo;It is not down in any map; true places never are.&rdquo;</p>
+      <figcaption class="mdb-cite">Chapter 12, Biographical</figcaption>
+    </figure>
+    <h1 class="mdb-h1">Throw your question to the sea.</h1>
+    <p class="mdb-lede">
+      Confess a feeling. Name a fear. Ask why your cat looks at you like that. The book writes you a
+      brand-new verse in Melville&rsquo;s overwrought manner, then hauls up three real passages from
+      <em>Moby-Dick</em> that answer it.
+    </p>
   </div>
 
-  <!-- Headline -->
-  <div class="mdb-center">
-    <h1 class="mdb-display">Ask the Whale.</h1>
-    <div class="mdb-ornament">
-      <svg class="mdb-compass" width="15" height="15" style="opacity:.85" aria-hidden="true"><use href="#mdb-compass-rose"/></svg>
-    </div>
-  </div>
-
-  <p class="mdb-lede mdb-center">
-    Confess a feeling. Name a fear. Ask why your cat looks at you like that. The whale
-    will draft you a brand-new verse in Melville&rsquo;s own overwrought hand, then dredge
-    up the passage from the actual novel that backs it up.
-  </p>
-
-  <!-- Oracle -->
   {% if error %}
-    <div class="mdb-alert">{{ error }}</div>
+    <div class="mdb-alert" role="alert"><b>No answer from the deep.</b> {{ error }}</div>
   {% endif %}
 
-  <form id="search-form" action="/search" method="post" style="display:flex;flex-direction:column;gap:10px;">
-    <label for="query" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">
-      Enter a theme, emotion, or idea
-    </label>
-    <textarea id="query" name="query" rows="2" maxlength="500" required
-              class="mdb-field"
-              placeholder="the weight of Sunday nights..."></textarea>
-    <button type="submit" class="mdb-btn">CONSULT THE WHALE</button>
-  </form>
+  <!-- The mast-head: asking is the main event -->
+  <section class="mdb-frame mdb-frame--brass" aria-labelledby="ask-label">
+    <form id="search-form" class="mdb-ask" action="/search" method="post">
+      <div>
+        <label for="query" class="mdb-label" id="ask-label">Send it up the mast-head</label>
+        <p class="mdb-hint">A question, a feeling or a phrase. Up to 500 characters.</p>
+      </div>
+      <textarea id="query" name="query" rows="3" maxlength="500" required
+                class="mdb-field" placeholder="the weight of Sunday nights&hellip;"></textarea>
+      <div class="mdb-ask-row">
+        <span class="mdb-count" id="query-count" aria-live="off">0 / 500</span>
+        <button type="submit" class="mdb-btn">Ask the book</button>
+      </div>
+    </form>
+  </section>
 
-  <p class="mdb-fineprint mdb-center" style="margin:0;">
-    A live concordance to Moby-Dick. Ye of little faith, it works.
-  </p>
+  <p class="mdb-crew mdb-small" style="margin:0;"><b>Stubb</b> says it works. Ye of little faith.</p>
 
-  <!-- Tag browse -->
-  <div class="mdb-divider" style="margin-top:14px;"><h2>Or browse the concordance</h2></div>
-
-  <form action="/tag_search" method="post" style="display:flex;flex-direction:column;gap:16px;">
-    <div>
-      <label for="category" class="mdb-label">Tag category</label>
-      <select name="category" id="category" onchange="updateTags()" required class="mdb-field">
-        <option value="">Select a category&hellip;</option>
-        <option value="entities">Entities</option>
-        <option value="themes">Themes</option>
-        <option value="symbolism">Symbolism</option>
-        <option value="feeling">Feeling</option>
-        <option value="vibe">Vibe</option>
-        <option value="literary_motifs">Literary Motifs</option>
-      </select>
+  <!-- The chart: the quieter way to wander -->
+  <section class="mdb-chart" id="chart" aria-labelledby="chart-title">
+    <div class="mdb-section-head">
+      <h2 class="mdb-h2" id="chart-title">Or wander the concordance</h2>
+      <p class="mdb-quiet" style="margin:0;">Every verse of the novel is tagged. Pick a kind of mark, then a mark, and read every passage that carries it.</p>
     </div>
 
-    <div>
-      <label for="tag" class="mdb-label">Tag</label>
-      <input id="tag" name="tag" placeholder="Start typing&hellip;" required class="awesomplete mdb-field" style="width:100%;" />
+    <form id="tag-form" class="mdb-frame mdb-chart" action="/tag_search" method="post" data-tags="/tags.json">
+      <fieldset class="mdb-chips">
+        <legend class="mdb-label">Kind of mark</legend>
+        <label class="mdb-chip"><input type="radio" name="category" value="themes" required><span>Themes</span></label>
+        <label class="mdb-chip"><input type="radio" name="category" value="feeling"><span>Feeling</span></label>
+        <label class="mdb-chip"><input type="radio" name="category" value="vibe"><span>Vibe</span></label>
+        <label class="mdb-chip"><input type="radio" name="category" value="symbolism"><span>Symbolism</span></label>
+        <label class="mdb-chip"><input type="radio" name="category" value="literary_motifs"><span>Literary motifs</span></label>
+        <label class="mdb-chip"><input type="radio" name="category" value="entities"><span>People, places &amp; things</span></label>
+      </fieldset>
+      <div class="mdb-chart-row">
+        <div>
+          <label for="tag" class="mdb-label">Mark</label>
+          <input id="tag" name="tag" class="mdb-field" autocomplete="off" required disabled
+                 placeholder="Choose a category first">
+        </div>
+        <button type="submit" class="mdb-btn mdb-btn--quiet">Show passages</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- The ship's log: only shown once something is kept -->
+  <section class="mdb-log" id="log" aria-labelledby="log-title" hidden>
+    <div class="mdb-section-head">
+      <h2 class="mdb-h2" id="log-title">The ship's log</h2>
+      <p class="mdb-quiet" style="margin:0;">Verses you kept, entered by the ship&rsquo;s clerk. They are stored in this browser only. The clerk does not travel.</p>
     </div>
+    <ol class="mdb-log-list" id="mdb-log-list"></ol>
+  </section>
 
-    <button type="submit" class="mdb-btn-ghost" style="padding:14px 6px;letter-spacing:1.6px;">SEARCH BY TAG</button>
-  </form>
-
-  <!-- The longer telling of it -->
-  <div class="mdb-divider" style="margin-top:14px;"><span>WHAT THIS IS</span></div>
-
-  <div class="mdb-card">
-    <h2>A Scripture of Salt and Ink</h2>
+  <section class="mdb-prose" aria-labelledby="what-title">
+    <h2 class="mdb-h3" id="what-title">A scripture of salt and ink</h2>
     <p>
-      Moby-Dick is vast. Within its pages, there are storms and sermons, laughter, silence,
-      and the long ache of meaning. It&rsquo;s a book that holds everything: the sacred and the
-      profane, the celestial and the sea-soaked.
+      <em>Moby-Dick</em> is vast. Within its pages there are storms and sermons, laughter, silence and the
+      long ache of meaning. It holds everything: the sacred and the profane, the celestial and the sea-soaked.
     </p>
     <p>
-      The Moby-Dick Bible begins with a newly written verse in Melville&rsquo;s voice&mdash;strange,
-      solemn, searching. Then it finds a passage from the book that speaks to what you&rsquo;ve
-      asked. What are you looking for? The feeling of Tuesday afternoons? The nature of regret?
-      Whether cats know they&rsquo;re being annoying?
+      Each answer comes in two parts, and they are never mixed up. First, the <strong>apocrypha</strong>: a
+      verse written just now, for you, which is not in the book. Then the <strong>canon</strong>: real
+      passages from Melville&rsquo;s novel, with chapter and verse. <a href="/about">How it works</a>
     </p>
-  </div>
-
-  <script>
-    /* ---- Rotating placeholder ---- */
-    const PLACEHOLDERS = [
-      'the weight of Sunday nights...',
-      'why ambition never feels finished...',
-      'whether the cat is judging you...',
-      'a promise you didn’t keep...',
-      'the loneliness of long meetings...',
-      'what to do with an ordinary Tuesday...',
-    ];
-    const queryEl = document.getElementById('query');
-    let phIdx = 0;
-    setInterval(() => {
-      phIdx = (phIdx + 1) % PLACEHOLDERS.length;
-      queryEl.placeholder = PLACEHOLDERS[phIdx];
-    }, 2600);
-
-  </script>
-
-  <!-- Awesomplete Script -->
-  <script>
-    let tagsData = {};
-    let awesompleteInstance = null;
-    const tagInput = document.getElementById("tag");
-
-    function getRandomSubset(array, n) {
-      return array.slice().sort(() => 0.5 - Math.random()).slice(0, n);
-    }
-
-    fetch('/tags.json')
-      .then(response => response.json())
-      .then(data => {
-        tagsData = data;
-      })
-      .catch(error => {
-        console.error("Failed to load tags.json:", error);
-      });
-
-    function updateTags() {
-      const categorySelect = document.getElementById("category");
-      const selectedCategory = categorySelect.value;
-
-      tagInput.value = "";
-
-      if (!selectedCategory || !tagsData[selectedCategory]) return;
-
-      const newList = tagsData[selectedCategory].sort((a, b) =>
-        a.toLowerCase().localeCompare(b.toLowerCase())
-      );
-
-      // If already exists, just update list
-      if (awesompleteInstance) {
-        awesompleteInstance.list = newList;
-      } else {
-        awesompleteInstance = new Awesomplete(tagInput, {
-          list: newList,
-          minChars: 1,
-          autoFirst: true,
-          maxItems: 100,
-          filter: function (text, input) {
-            const words = text.toLowerCase().split(/\s+/);
-            const loweredInput = input.toLowerCase();
-            return words.some(word => word.startsWith(loweredInput));
-          }
-        });
-      }
-
-      // Remove old listeners to prevent overlap
-      tagInput.onfocus = null;
-      tagInput.oninput = null;
-
-      tagInput.onfocus = function () {
-        awesompleteInstance.list = getRandomSubset(newList, 10);
-        awesompleteInstance.evaluate();
-      };
-
-      tagInput.oninput = function () {
-        if (tagInput.value.length > 0) {
-          awesompleteInstance.list = newList;
-          awesompleteInstance.evaluate();
-        }
-      };
-    }
-
-    // Auto-submit when tag is selected
-    tagInput.addEventListener("awesomplete-selectcomplete", function () {
-      this.form.submit();
-    });
-  </script>
+  </section>
 
 {% endblock %}
 
-{% block overlay %}
-  <div id="mdb-loading" aria-live="polite">
-    <div class="mdb-drift-layer" id="mdb-drift" aria-hidden="true"></div>
-    <div class="mdb-spinner">
-      <svg class="mdb-compass" width="30" height="30" aria-hidden="true"><use href="#mdb-compass-needle"/></svg>
-    </div>
-    <div class="mdb-loading-title">Consulting the whale&hellip;</div>
-    <div class="mdb-loading-sub">(he is very old and speaks in riddles)</div>
-    <div class="mdb-loading-line" id="mdb-loading-line">Sounding Chapter 41&hellip;</div>
-  </div>
-
-  <script>
-    /* The form still does a real POST to /search; this only changes what the
-       wait looks like. Lives here so the overlay exists before we bind. */
-    (function () {
-      const LOADING_LINES = [
-        'Sounding Chapter 41…',
-        'Squinting at the try-works…',
-        'Casting the line (again)…',
-        'Bribing the harpooner…',
-        'Waking Ishmael up…',
-      ];
-      const QUOTES = [
-        "It is not down on any map; true places never are.",
-        "Ignorance is the parent of fear.",
-        "I know not all that may be coming, but be it what it will, I'll go to it laughing.",
-        "Better to sleep with a sober cannibal than a drunken Christian.",
-        "Talk not to me of blasphemy, man; I'd strike the sun if it insulted me.",
-        "Think not, is my eleventh commandment; and sleep when you can, is my twelfth.",
-        "As for me, I am tormented with an everlasting itch for things remote.",
-        "All my means are sane, my motive and my object mad.",
-        "It was the whiteness of the whale that above all things appalled me.",
-        "Real strength never impairs beauty or harmony, but it often bestows it.",
-        "An utterly fearless man is a far more dangerous comrade than a coward.",
-        "For we are all killers, on land and on sea; Bonapartes and Sharks included.",
-        "There is a wisdom that is woe; but there is a woe that is madness.",
-        "See how elastic our prejudices grow when once love comes to bend them.",
-        "Human madness is often times a cunning and most feline thing.",
-        "Consider the subtleness of the sea; how its most dreaded creatures glide under water, unapparent for the most part.",
-        "Because no man can ever feel his own identity aright except his eyes be closed.",
-        "For as this appalling ocean surrounds the verdant land, so in the soul of man there lies one insular Tahiti.",
-      ];
-
-      const overlay = document.getElementById('mdb-loading');
-      const driftLayer = document.getElementById('mdb-drift');
-      const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      let quoteIndex = Math.floor(Math.random() * QUOTES.length);
-      let interval = 1600;   // shortens as the wait goes on, as it used to
-      let timers = [];
-
-      function spawnQuote() {
-        const el = document.createElement('div');
-        el.className = 'mdb-drift';
-        el.textContent = '“' + QUOTES[quoteIndex++ % QUOTES.length] + '”';
-
-        const dur = 6 + Math.random() * 3;
-        el.style.top = (3 + Math.random() * 84) + '%';
-        el.style.left = (2 + Math.random() * 74) + '%';
-        el.style.fontSize = (13 + Math.random() * 7) + 'px';
-        el.style.setProperty('--dur', dur + 's');
-        el.style.setProperty('--peak', (0.10 + Math.random() * 0.11).toFixed(2));
-        el.style.setProperty('--drift',
-          (Math.random() < 0.5 ? '-' : '') + (18 + Math.random() * 26) + 'px');
-
-        driftLayer.appendChild(el);
-        timers.push(setTimeout(function () { el.remove(); }, (dur + 0.4) * 1000));
-      }
-
-      function scheduleNext() {
-        spawnQuote();
-        interval = Math.max(700, interval * 0.86);
-        timers.push(setTimeout(scheduleNext, interval));
-      }
-
-      function stopDrift() {
-        timers.forEach(clearTimeout);
-        timers = [];
-        driftLayer.textContent = '';
-      }
-
-      document.getElementById('search-form').addEventListener('submit', function () {
-        document.getElementById('mdb-loading-line').textContent =
-          LOADING_LINES[Math.floor(Math.random() * LOADING_LINES.length)];
-        overlay.classList.add('active');
-        if (!calm) {
-          scheduleNext();
-          timers.push(setTimeout(spawnQuote, 800));  // offset so it doesn't feel metronomic
-        }
-      });
-
-      // Coming back via bfcache must not leave the overlay stuck on.
-      window.addEventListener('pageshow', function (e) {
-        if (e.persisted) {
-          overlay.classList.remove('active');
-          stopDrift();
-        }
-      });
-    })();
-  </script>
-{% endblock %}
+{% block overlay %}{% include "_loading.html" %}{% endblock %}
