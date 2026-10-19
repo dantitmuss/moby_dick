@@ -47,8 +47,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Pixelify+Sans:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='pixel.css') }}?v=1">
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='pixel.css') }}?v=2">
+  <script>try { if (localStorage.getItem('mdb-easy') === '1') document.documentElement.classList.add('easy-read'); } catch (e) {}</script>
 
   {% block robots %}{% endblock %}
   <meta name="description" content="{% block description %}A scripture of salt, blood, and ink. Reading Herman Melville's novel as a sacred text. Type in anything and get a meaningful quote from Moby Dick.{% endblock %}">
@@ -118,6 +119,7 @@
         <a href="/#chart">Concordance</a>
         <a href="/#log">Log</a>
         <a href="/about" {% if request.path == '/about' %}aria-current="page"{% endif %}>About</a>
+        <button type="button" class="mdb-sound" id="mdb-easy" aria-pressed="false" title="Show passages and verses in a book typeface">Easier reading</button>
         <button type="button" class="mdb-sound" id="mdb-sound" aria-pressed="false">Sound: off</button>
       </nav>
     </div>
@@ -125,7 +127,7 @@
 
   {% block scene %}
   <div class="mdb-scene mdb-scene--compact">
-    <canvas data-scene data-compact data-report="mdb-report" aria-hidden="true"></canvas>
+    <canvas data-scene data-compact data-sprites="{{ url_for('static', filename='images/sprites/') }}" data-report="mdb-report" aria-hidden="true"></canvas>
   </div>
   <p class="mdb-report" id="mdb-report" aria-hidden="true"></p>
   {% endblock %}
@@ -153,8 +155,8 @@
   {% block overlay %}{% endblock %}
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
-  <script src="{{ url_for('static', filename='scene.js') }}?v=1"></script>
-  <script src="{{ url_for('static', filename='site.js') }}?v=1"></script>
+  <script src="{{ url_for('static', filename='scene.js') }}?v=2"></script>
+  <script src="{{ url_for('static', filename='site.js') }}?v=2"></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

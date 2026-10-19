@@ -54,10 +54,26 @@
     bubble:  'Mast-head report: <b>a white bubble, off the lee bow.</b> Probably nothing.',
     wake:    'Mast-head report: <b>a wake, and nothing making it.</b> Nobody on deck will say more.',
     harpoon: 'Mast-head report: <b>an old harpoon drifted past,</b> bent and rusted. Not ours.',
+    'debris-oar': 'Mast-head report: <b>a broken oar, drifting.</b> Some boat came off worse.',
+    'debris-plank': 'Mast-head report: <b>a stove plank, drifting.</b> Nobody asks whose.',
     gulls:   'Mast-head report: <b>gulls circling empty water.</b> They know something.',
     pip:     '<b>Pip, from the rigging:</b> \u201cI look, you look, he looks; we look, ye look, they look.\u201d',
-    line:    'Mast-head report: <b>the line is out.</b> Stand clear of the tub.'
+    line:    'Mast-head report: <b>the line is out.</b> Stand clear of the tub.',
+    ship:    '<b>The Pequod, of Nantucket.</b> Three years\u2019 provisions, one captain\u2019s purpose.'
   };
+
+  /* Sprites from the first pixel prototype, drawn at 1x and scaled with the
+     canvas. If any fail to load, the hand-coded fallbacks below are used. */
+  var IMG = {};
+  function loadSprites(base, done) {
+    var names = ['ship', 'moon', 'gull', 'bubble', 'debris-harpoon', 'debris-oar', 'debris-plank'], left = names.length;
+    names.forEach(function (n) {
+      var im = new Image();
+      im.onload = function () { IMG[n] = im; if (--left === 0) done(); };
+      im.onerror = function () { if (--left === 0) done(); };
+      im.src = base + n + '.png';
+    });
+  }
 
   var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -94,7 +110,7 @@
     this.H = Math.max(30, Math.ceil(r.height / px));
     this.cv.width = this.W;
     this.cv.height = this.H;
-    this.horizon = Math.floor(this.H * (this.compact ? 0.55 : 0.58));
+    this.horizon = Math.floor(this.H * (this.compact ? 0.55 : 0.62));
     var rand = rng(1851);
     this.stars = [];
     var n = Math.floor(this.W * this.horizon / 70);
@@ -103,6 +119,7 @@
     }
     this.moon = { x: Math.floor(this.W * 0.78), y: Math.max(7, Math.floor(this.horizon * 0.3)), r: this.compact ? 4 : 6 };
     this.ship = { x: Math.max(4, Math.floor(this.W * 0.16)), y: this.horizon + (this.compact ? 3 : 6) - SHIP.length + 3 };
+    this.big = { x: Math.max(2, Math.floor(this.W * (this.W < 140 ? 0.03 : 0.1))), y: this.horizon + 12 - 54 };
     this.gulls = { x: Math.floor(this.W * 0.9), y: this.horizon - (this.compact ? 8 : 14), r: this.compact ? 5 : 8 };
   };
 
@@ -133,6 +150,7 @@
 
   Scene.prototype.drawMoon = function () {
     var m = this.moon, r = m.r;
+    if (!this.compact && IMG.moon) { this.ctx.drawImage(IMG.moon, m.x - 20, Math.max(0, m.y - 14)); return; }
     for (var y = -r - 1; y <= r + 1; y++) {
       for (var x = -r - 1; x <= r + 1; x++) {
         var d = x * x + y * y;
@@ -183,6 +201,15 @@
   Scene.prototype.drawShip = function () {
     var s = this.ship, t = this.t;
     var bob = calm ? 0 : (Math.floor(t / 14) % 2);
+    if (!this.compact && IMG.ship) {
+      var b = this.big;
+      this.ctx.drawImage(IMG.ship, b.x, b.y + bob);
+      // lantern flicker over the sprite's stern light
+      if (Math.floor(t / 10) % 7 === 0) this.p(b.x + 1, b.y + 39 + bob, C.band, 2, 2);
+      var wl = b.y + 53 + bob;
+      for (var f2 = 6; f2 < 70; f2 += 4) if (((f2 + Math.floor(t / 4)) % 6) < 2) this.p(b.x + f2, wl, C.crestHi);
+      return;
+    }
     var scale = this.compact ? 1 : 1;
     for (var y = 0; y < SHIP.length; y++) {
       var row = SHIP[y];
@@ -207,6 +234,7 @@
       var a = (calm ? 0 : t * 0.035) + i * (Math.PI * 2 / 3);
       var x = g.x + Math.round(Math.cos(a) * g.r * 1.6);
       var y = g.y + Math.round(Math.sin(a) * g.r * 0.6);
+      if (IMG.gull) { this.ctx.drawImage(IMG.gull, ((Math.floor(t / 5) + i) % 2) * 10, 0, 10, 7, x - 5, y - 3, 10, 7); continue; }
       var fr = GULL[(Math.floor(t / 5) + i) % 2];
       for (var yy = 0; yy < fr.length; yy++)
         for (var xx = 0; xx < fr[yy].length; xx++)
@@ -221,7 +249,9 @@
     var ev = { kind: kind, age: 0 };
     if (kind === 'bubble') { ev.x = Math.floor(W * (0.5 + Math.random() * 0.35)); ev.y = h0 + 2; ev.life = 70; }
     if (kind === 'wake')   { ev.x = Math.floor(W * 0.35); ev.y = h0 + Math.floor((H - h0) * 0.35); ev.life = 160; }
-    if (kind === 'harpoon'){ ev.x = W + 4; ev.y = h0 + Math.floor((H - h0) * 0.7); ev.life = W * 3 + 40; }
+    if (kind === 'harpoon'){ ev.x = W + 4; ev.y = h0 + Math.floor((H - h0) * 0.7); ev.life = W * 3 + 80;
+      ev.sprite = ['debris-harpoon', 'debris-harpoon', 'debris-oar', 'debris-plank'][Math.floor(Math.random() * 4)];
+      if (ev.sprite !== 'debris-harpoon') kind = ev.sprite; }
     this.events.push(ev);
     this.setReport(kind, 9000);
   };
@@ -230,6 +260,19 @@
     var self = this;
     this.events = this.events.filter(function (ev) {
       ev.age++;
+      if (ev.kind === 'bubble' && IMG.bubble) {
+        var ab = ev.age, rise = Math.floor(ab / 6);
+        if (ab < 40) { self.ctx.globalAlpha = 1 - ab / 48; self.ctx.drawImage(IMG.bubble, ev.x, ev.y - rise - 3); self.ctx.globalAlpha = 1; }
+        var rg = Math.min(7, Math.floor(ab / 7));
+        if (ab > 8) self.p(ev.x + 2 - rg, ev.y + 1, C.foam, rg * 2, 1);
+        return ab < ev.life;
+      }
+      if (ev.kind === 'harpoon' && IMG['debris-harpoon']) {
+        var dx = ev.x - Math.floor(ev.age / 3), dy = ev.y + ((Math.floor(ev.age / 12) % 2) ? 0 : 1) - 4;
+        var im = IMG[ev.sprite] || IMG['debris-harpoon'];
+        self.ctx.drawImage(im, dx, dy);
+        return dx > -20;
+      }
       if (ev.kind === 'bubble') {
         var a = ev.age;
         if (a < 20) { for (var i = 0; i < 4; i++) if (((a + i * 3) % 6) < 3) self.p(ev.x + (i % 2), ev.y - Math.floor(a / 4) - i, C.foam); }
@@ -264,7 +307,8 @@
     var L = this.line;
     if (!L) return;
     L.age++;
-    var sx = this.ship.x + SHIP[0].length - 2, sy = this.ship.y + 13;
+    var big = !this.compact && IMG.ship;
+    var sx = big ? this.big.x + 72 : this.ship.x + SHIP[0].length - 2, sy = big ? this.big.y + 40 : this.ship.y + 13;
     var ex = Math.floor(this.W * 0.62), ey = this.horizon + 4;
     var prog = Math.min(1, L.age / 22);
     var steps = 60;
@@ -293,7 +337,9 @@
     var r = this.cv.getBoundingClientRect();
     var x = (e.clientX - r.left) / this.px, y = (e.clientY - r.top) / this.px;
     var g = this.gulls;
+    var b = this.big;
     if (Math.abs(x - g.x) < g.r * 2.5 && Math.abs(y - g.y) < g.r * 2) this.setReport('pip', 7000);
+    else if (!this.compact && x > b.x && x < b.x + 76 && y > b.y && y < b.y + 56) this.setReport('ship', 6000);
     else this.setReport('gulls', 5000);
   };
 
@@ -326,11 +372,15 @@
   /* --- boot --------------------------------------------------------------- */
 
   var scenes = [];
-  Array.prototype.forEach.call(document.querySelectorAll('canvas[data-scene]'), function (cv) {
+  var canvases = document.querySelectorAll('canvas[data-scene]');
+  Array.prototype.forEach.call(canvases, function (cv) {
     var s = new Scene(cv);
     s.setReport('calm');
     s.draw();
     scenes.push(s);
+  });
+  if (canvases.length) loadSprites(canvases[0].getAttribute('data-sprites') || '/static/images/sprites/', function () {
+    scenes.forEach(function (s) { s.draw(); });
   });
 
   if (!calm && scenes.length) {

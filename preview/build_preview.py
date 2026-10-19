@@ -65,6 +65,7 @@ for name, html in pages.items():
         html = t + "\n" + html.replace(t, "", 1)
     open(os.path.join(OUT, name), "w").write(html)
 
+shutil.copytree(os.path.join(ROOT, "static", "images", "sprites"), os.path.join(OUT, "static", "images", "sprites"), dirs_exist_ok=True)
 for f in ("pixel.css", "scene.js", "site.js", "tags.json", "images/favicon.png"):
     shutil.copy(os.path.join(ROOT, "static", f), os.path.join(OUT, "static", f))
 shutil.copy(os.path.join(ROOT, "preview", "preview.js"), os.path.join(OUT, "static", "preview.js"))

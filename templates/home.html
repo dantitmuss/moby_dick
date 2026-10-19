@@ -4,7 +4,7 @@
 
 {% block scene %}
 <div class="mdb-scene">
-  <canvas data-scene data-report="mdb-report" aria-hidden="true"></canvas>
+  <canvas data-scene data-sprites="{{ url_for('static', filename='images/sprites/') }}" data-report="mdb-report" aria-hidden="true"></canvas>
 </div>
 <p class="mdb-report" id="mdb-report" aria-hidden="true"></p>
 {% endblock %}
@@ -12,6 +12,10 @@
 {% block content %}
 
   <div class="mdb-intro">
+    <figure class="mdb-epigraph" style="margin:0;">
+      <p>&ldquo;It is not down in any map; true places never are.&rdquo;</p>
+      <figcaption class="mdb-cite">Chapter 12, Biographical</figcaption>
+    </figure>
     <h1 class="mdb-h1">Throw your question to the sea.</h1>
     <p class="mdb-lede">
       Confess a feeling. Name a fear. Ask why your cat looks at you like that. The book writes you a
@@ -73,7 +77,7 @@
   <!-- The ship's log: only shown once something is kept -->
   <section class="mdb-log" id="log" aria-labelledby="log-title" hidden>
     <div class="mdb-section-head">
-      <h2 class="mdb-h2" id="log-title">The ship&rsquo;s log</h2>
+      <h2 class="mdb-h2" id="log-title">The ship's log</h2>
       <p class="mdb-quiet" style="margin:0;">Verses you kept, entered by the ship&rsquo;s clerk. They are stored in this browser only. The clerk does not travel.</p>
     </div>
     <ol class="mdb-log-list" id="mdb-log-list"></ol>

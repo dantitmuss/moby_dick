@@ -85,6 +85,21 @@
     });
   })();
 
+  /* ---- Easier reading: book typeface for long text, remembered here --- */
+  (function () {
+    var btn = $('mdb-easy');
+    if (!btn) return;
+    var root = document.documentElement;
+    function paint() { btn.setAttribute('aria-pressed', root.classList.contains('easy-read') ? 'true' : 'false'); }
+    paint();
+    btn.addEventListener('click', function () {
+      var on = !root.classList.contains('easy-read');
+      root.classList.toggle('easy-read', on);
+      try { localStorage.setItem('mdb-easy', on ? '1' : '0'); } catch (e) { /* not remembered */ }
+      paint();
+    });
+  })();
+
   /* ---- Ask form: placeholder, count, the line going out ---------------- */
   (function () {
     var form = $('search-form'), field = $('query'), count = $('query-count');
@@ -134,7 +149,7 @@
       var dur = 6 + Math.random() * 3;
       el.style.top = (4 + Math.random() * 80) + '%';
       el.style.left = (2 + Math.random() * 66) + '%';
-      el.style.fontSize = (14 + Math.random() * 6) + 'px';
+      el.style.fontSize = (19 + Math.random() * 8) + 'px';
       el.style.setProperty('--dur', dur + 's');
       el.style.setProperty('--peak', (0.12 + Math.random() * 0.12).toFixed(2));
       el.style.setProperty('--drift', (18 + Math.random() * 26) + 'px');
