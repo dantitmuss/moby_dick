@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory, Response
+from markupsafe import Markup, escape
+import re
 from dotenv import load_dotenv
 import os
 import json
@@ -99,6 +101,18 @@ def find_verse_by_id(verse_id, data):
                     "text": verse["text"]
                 })
     return "Verse not found."
+
+# Verse text follows Project Gutenberg #2701: paragraphs are separated by a
+# blank line, _underscores_ mark italics, and footnotes start with "*".
+def render_passage(text):
+    paras = []
+    for para in (text or "").split("\n\n"):
+        html = re.sub(r"_([^_]+)_", r"<em>\1</em>", str(escape(para)))
+        cls = ' class="mdb-fnote"' if para.startswith("*") else ""
+        paras.append(f"<p{cls}>{html}</p>")
+    return Markup("".join(paras))
+
+app.jinja_env.filters["passage"] = render_passage
 
 display_names = {
     "entitites": "Entities",

@@ -511,6 +511,9 @@ a:hover { color: var(--lantern); }
   line-height: 1.65;
   max-width: 36em;
 }
+.mdb-passage p { margin: 0 0 0.75em; }
+.mdb-passage p:last-child { margin-bottom: 0; }
+.mdb-passage .mdb-fnote { font-size: 0.8em; color: var(--fog); }
 .mdb-cite {
   margin: 0;
   font-family: var(--ui);

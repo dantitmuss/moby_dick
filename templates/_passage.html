@@ -9,7 +9,7 @@
     <span><strong>{{ ['First', 'Second', 'Third'][n] if n < 3 else 'Another' }} ship hailed us</strong> with a passage from the novel</span>
   </div>
   {% endif %}
-  <p class="mdb-passage">&ldquo;{{ match.text }}&rdquo;</p>
+  <div class="mdb-passage">{{ match.text | passage }}</div>
   <p class="mdb-cite">Chapter {{ match.chapter_number }}, {{ title }} <span>&middot; verse {{ match.verse_number }}</span></p>
 </article>
 {%- endmacro %}
