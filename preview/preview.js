@@ -112,7 +112,12 @@
     a.appendChild(body);
     var cite = el('p', 'mdb-cite', 'Chapter ' + v.c + ', ' + v.title.replace(/\.$/, '') + ' ');
     cite.appendChild(el('span', null, '\u00b7 verse ' + v.n));
-    a.appendChild(cite);
+    var row = el('div', 'mdb-cite-row');
+    row.appendChild(cite);
+    var ctx = el('a', 'mdb-context', 'Read in context >');
+    ctx.href = 'chapter-' + v.c + '.html#' + v.n;
+    row.appendChild(ctx);
+    a.appendChild(row);
     return a;
   }
   function note(text) {
@@ -151,9 +156,20 @@
     }
   }, true);
 
+  // ---- tag links on the reading pages: the live site serves GET /tag ---------
+  var LABELS = { themes: 'Themes', feeling: 'Feeling', vibe: 'Vibe', symbolism: 'Symbolism', literary_motifs: 'Literary Motifs', entities: 'Entities' };
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a.rd-tag');
+    if (!a) return;
+    e.preventDefault();
+    var qs = new URLSearchParams(a.getAttribute('href').split('?')[1] || '');
+    save({ type: 'tag', category: qs.get('category'), label: LABELS[qs.get('category')] || qs.get('category'), tag: qs.get('tag') });
+    location.href = 'tag-results.html';
+  }, true);
+
   // ---- pages ---------------------------------------------------------------
   if (page === 'index.html' || page === '') {
-    note('Preview build, not live. Asking uses stand-in verses and keyword matching; the live site writes a new verse and matches by meaning. The concordance works for real. Also see the <a href="404.html" style="color:inherit">404 page</a>.');
+    note('Preview build, not live. Asking uses stand-in verses and keyword matching; the live site writes a new verse and matches by meaning. The concordance and the <a href="read.html" style="color:inherit">reading pages</a> work for real. Also see the <a href="404.html" style="color:inherit">404 page</a>.');
   }
 
   if (page === 'results.html') {
