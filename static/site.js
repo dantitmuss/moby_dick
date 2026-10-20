@@ -289,9 +289,11 @@
   window.MDBLog = Log;
 
   function renderLog() {
-    var wrap = $('mdb-log'), list = $('mdb-log-list');
-    if (!wrap || !list) return;
     var entries = Log.read().slice().reverse();
+    // the nav link only appears once there is something to read
+    document.querySelectorAll('a[href="/#log"]').forEach(function (a) { a.hidden = entries.length === 0; });
+    var wrap = $('log'), list = $('mdb-log-list');
+    if (!wrap || !list) return;
     wrap.hidden = entries.length === 0;
     list.innerHTML = '';
     entries.forEach(function (e, i) {
@@ -406,6 +408,7 @@
         if (idx > -1) all.splice(idx, 1); else all.push({ q: keepBtn.getAttribute('data-query') || q, verse: v, at: Date.now() });
         if (!Log.write(all)) { flash(keepBtn, 'This browser won\u2019t keep it'); return; }
         paint();
+        renderLog();
       });
       window.MDBRepaintKeep = paint;
     }
