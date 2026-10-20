@@ -103,7 +103,13 @@
       sp.appendChild(st); sp.appendChild(document.createTextNode(' with a passage from the novel'));
       head.appendChild(sp); a.appendChild(head);
     }
-    a.appendChild(el('p', 'mdb-passage', '\u201c' + v.text + '\u201d'));
+    var body = el('div', 'mdb-passage');
+    v.text.split('\n\n').forEach(function (para) {
+      var p = el('p', para.charAt(0) === '*' ? 'mdb-fnote' : null);
+      para.split(/_([^_]+)_/).forEach(function (bit, i) { p.appendChild(i % 2 ? el('em', null, bit) : document.createTextNode(bit)); });
+      body.appendChild(p);
+    });
+    a.appendChild(body);
     var cite = el('p', 'mdb-cite', 'Chapter ' + v.c + ', ' + v.title.replace(/\.$/, '') + ' ');
     cite.appendChild(el('span', null, '\u00b7 verse ' + v.n));
     a.appendChild(cite);
