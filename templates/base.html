@@ -120,6 +120,7 @@
         <a href="/#log">Log</a>
         <a href="/about" {% if request.path == '/about' %}aria-current="page"{% endif %}>About</a>
         <button type="button" class="mdb-sound" id="mdb-easy" aria-pressed="false" title="Show passages and verses in a book typeface">Easier reading</button>
+        <button type="button" class="mdb-sound" id="mdb-sound" aria-pressed="false">Sound: off</button>
       </nav>
     </div>
   </header>
@@ -155,7 +156,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
   <script src="{{ url_for('static', filename='scene.js') }}?v=3"></script>
-  <script src="{{ url_for('static', filename='site.js') }}?v=4"></script>
+  <script src="{{ url_for('static', filename='site.js') }}?v=3"></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

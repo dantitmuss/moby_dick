@@ -47,6 +47,44 @@
     ['The clerk', 'notes the hour, the weather, and one question cast.']
   ];
 
+  /* ---- Sound: off by default, a soft sea made in the browser ------------ */
+  (function () {
+    var btn = $('mdb-sound');
+    if (!btn) return;
+    var ctx = null, gain = null;
+    function start() {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) { btn.hidden = true; return; }
+      ctx = new AC();
+      var len = ctx.sampleRate * 4;
+      var buf = ctx.createBuffer(1, len, ctx.sampleRate);
+      var data = buf.getChannelData(0), last = 0;
+      for (var i = 0; i < len; i++) {            // brown noise
+        var w = Math.random() * 2 - 1;
+        last = (last + 0.02 * w) / 1.02;
+        data[i] = last * 3.2;
+      }
+      var src = ctx.createBufferSource();
+      src.buffer = buf; src.loop = true;
+      var lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 520;
+      gain = ctx.createGain(); gain.gain.value = 0;
+      var lfo = ctx.createOscillator(); lfo.frequency.value = 0.09;
+      var lfoAmt = ctx.createGain(); lfoAmt.gain.value = 0.05;
+      lfo.connect(lfoAmt); lfoAmt.connect(gain.gain);
+      src.connect(lp); lp.connect(gain); gain.connect(ctx.destination);
+      src.start(); lfo.start();
+    }
+    btn.addEventListener('click', function () {
+      var on = btn.getAttribute('aria-pressed') !== 'true';
+      if (on && !ctx) start();
+      if (!ctx) return;
+      if (on && ctx.state === 'suspended') ctx.resume();
+      gain.gain.setTargetAtTime(on ? 0.1 : 0, ctx.currentTime, 0.6);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.textContent = on ? 'Sound: on' : 'Sound: off';
+    });
+  })();
+
   /* ---- Easier reading: book typeface for long text, remembered here --- */
   (function () {
     var btn = $('mdb-easy');
