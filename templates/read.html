@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}{{ heading }}: {{ title }} | Moby-Dick | The Moby-Dick Bible{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block head %}
+<script>try { if (localStorage.getItem('mdb-read-mode') === 'plain') document.documentElement.classList.add('rd-plain'); } catch (e) {}</script>
+{% if prev %}<link rel="prev" href="{{ url_for('read_chapter', number=prev.n) }}">{% endif %}
+{% if next %}<link rel="next" href="{{ url_for('read_chapter', number=next.n) }}">{% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% macro chapter_nav() %}
+<nav class="rd-pager" aria-label="Chapters">
+  {% if prev %}<a href="{{ url_for('read_chapter', number=prev.n) }}" rel="prev"><span>&lt; {{ prev.heading }}</span>{{ prev.title }}</a>{% else %}<span></span>{% endif %}
+  <a href="{{ url_for('read_index') }}" class="rd-pager-all">Contents</a>
+  {% if next %}<a href="{{ url_for('read_chapter', number=next.n) }}" rel="next" class="rd-pager-next"><span>{{ next.heading }} &gt;</span>{{ next.title }}</a>{% else %}<span></span>{% endif %}
+</nav>
+{% endmacro %}
+
+<a href="{{ url_for('read_index') }}" class="mdb-back">&lt; All chapters</a>
+
+<header class="mdb-intro">
+  <p class="mdb-cite">{{ heading }}</p>
+  <h1 class="mdb-h1">{{ title }}</h1>
+  <p class="mdb-quiet" style="margin:0;">{{ verses|length }} verse{{ '' if verses|length == 1 else 's' }}, each with its own link.</p>
+</header>
+
+<article class="rd-book" id="rd-book" data-chapter="{{ number }}">
+  {% for v in verses %}
+  <section class="rd-verse" aria-label="Verse {{ v.n }}">
+    <div class="rd-verse-head">
+      <a class="rd-label" href="#{{ v.n }}">{{ number }}:{{ v.n }}</a>
+      <button type="button" class="rd-copy" data-verse="{{ v.n }}">Copy link</button>
+    </div>
+    {% for piece in v.pieces %}
+    <p class="rd-p{% if piece.new %} rd-new{% endif %}{% if piece.foot %} rd-fnote{% endif %}">{% if loop.first %}<a class="rd-mark" id="{{ v.n }}" href="#{{ v.n }}" aria-label="Verse {{ v.n }}">{{ v.n }}</a>{% endif %}{{ piece.html }}</p>
+    {% endfor %}
+    {% if v.tags %}
+    <div class="rd-tags">
+      {% for cat, t in v.tags %}<a class="rd-tag" href="{{ url_for('tag_link', category=cat, tag=t) }}">{{ t }}</a>{% endfor %}
+      {% if v.more_tags %}
+      <details class="rd-more">
+        <summary>{{ v.more_tags|length }} more</summary>
+        {% for cat, t in v.more_tags %}<a class="rd-tag" href="{{ url_for('tag_link', category=cat, tag=t) }}">{{ t }}</a>{% endfor %}
+      </details>
+      {% endif %}
+    </div>
+    {% endif %}
+  </section>
+  {% endfor %}
+</article>
+
+{{ chapter_nav() }}
+
+<div class="rd-mode" role="group" aria-label="How to show the text">
+  <button type="button" data-mode="verses" aria-pressed="true">Verses</button>
+  <button type="button" data-mode="plain" aria-pressed="false">Plain</button>
+</div>
+
+{% endblock %}

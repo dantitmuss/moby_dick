@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Read Moby-Dick Online, Chapter by Chapter | The Moby-Dick Bible{% endblock %}
+{% block description %}Read the whole of Herman Melville's Moby-Dick online, all 135 chapters and the Epilogue, as plain text or verse by verse, with every verse linkable.{% endblock %}
+
+{% block content %}
+
+<div class="mdb-intro">
+  <p class="mdb-cite">The whole book</p>
+  <h1 class="mdb-h1">Read the book</h1>
+  <p class="mdb-lede">All 135 chapters and the Epilogue. Read it straight through as Melville set it, or verse by verse, with every verse marked and linkable.</p>
+</div>
+
+<ol class="rd-contents">
+  {% for c in chapters %}
+  <li>
+    <a href="{{ url_for('read_chapter', number=c.n) }}">
+      <span class="rd-contents-n">{{ c.heading }}</span>
+      <span class="rd-contents-t">{{ c.title }}</span>
+      <span class="rd-contents-v">{{ c.verses }} verse{{ '' if c.verses == 1 else 's' }}</span>
+    </a>
+  </li>
+  {% endfor %}
+</ol>
+
+{% endblock %}

@@ -413,4 +413,68 @@
       window.MDBRepaintKeep = paint;
     }
   })();
+
+  /* ---- Reading the book: verse / plain switch, verse links ------------- */
+  (function () {
+    var book = $('rd-book');
+    if (!book) return;
+    var root = document.documentElement;
+    var buttons = document.querySelectorAll('.rd-mode button');
+    var marks = book.querySelectorAll('.rd-mark');
+
+    function paint() {
+      var plain = root.classList.contains('rd-plain');
+      Array.prototype.forEach.call(buttons, function (b) {
+        b.setAttribute('aria-pressed', (b.getAttribute('data-mode') === 'plain') === plain ? 'true' : 'false');
+      });
+    }
+    /* the verse at the top of the screen, so switching keeps your place */
+    function topMark() {
+      for (var i = 0; i < marks.length; i++) {
+        var sec = marks[i].closest('.rd-verse');
+        var r = (root.classList.contains('rd-plain') ? marks[i] : sec).getBoundingClientRect();
+        if (r.bottom > 8 || i === marks.length - 1) return { el: marks[i], top: r.top, sec: sec };
+      }
+      return null;
+    }
+    function where(m) {
+      return (root.classList.contains('rd-plain') ? m.el : m.sec).getBoundingClientRect().top;
+    }
+    function setMode(mode) {
+      var plain = mode === 'plain';
+      if (plain === root.classList.contains('rd-plain')) return;
+      var m = topMark();
+      root.classList.toggle('rd-plain', plain);
+      if (m && m.top < window.innerHeight) window.scrollBy(0, where(m) - Math.max(m.top, 0));
+      try { localStorage.setItem('mdb-read-mode', mode); } catch (e) { /* stays for this visit */ }
+      paint();
+    }
+    Array.prototype.forEach.call(buttons, function (b) {
+      b.addEventListener('click', function () { setMode(b.getAttribute('data-mode')); });
+    });
+    paint();
+
+    /* copy a link to one verse */
+    book.addEventListener('click', function (e) {
+      var btn = e.target.closest('.rd-copy');
+      if (!btn) return;
+      var url = location.origin + location.pathname + '#' + btn.getAttribute('data-verse');
+      var done = function (ok) {
+        btn.textContent = ok ? 'Link copied' : 'Copy blocked';
+        btn.setAttribute('data-done', '');
+        clearTimeout(btn._t);
+        btn._t = setTimeout(function () { btn.textContent = 'Copy link'; btn.removeAttribute('data-done'); }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(function () { done(true); }, function () { done(false); });
+      else done(false);
+    });
+
+    /* replay the highlight when the same verse link is followed twice */
+    window.addEventListener('hashchange', function () {
+      var t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      var sec = t && t.closest('.rd-verse');
+      if (!sec) return;
+      sec.style.animation = 'none'; void sec.offsetWidth; sec.style.animation = '';
+    });
+  })();
 })();
