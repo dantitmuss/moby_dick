@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, send_from_directory, Response
+from flask import Flask, render_template, request, jsonify, send_from_directory, Response, abort, redirect, url_for
 from markupsafe import Markup, escape
 import re
 from dotenv import load_dotenv
@@ -104,12 +104,15 @@ def find_verse_by_id(verse_id, data):
 
 # Verse text follows Project Gutenberg #2701: paragraphs are separated by a
 # blank line, _underscores_ mark italics, and footnotes start with "*".
+def render_inline(para):
+    """One paragraph of verse text as safe HTML, with _italics_ as <em>."""
+    return Markup(re.sub(r"_([^_]+)_", r"<em>\1</em>", str(escape(para))))
+
 def render_passage(text):
     paras = []
     for para in (text or "").split("\n\n"):
-        html = re.sub(r"_([^_]+)_", r"<em>\1</em>", str(escape(para)))
         cls = ' class="mdb-fnote"' if para.startswith("*") else ""
-        paras.append(f"<p{cls}>{html}</p>")
+        paras.append(f"<p{cls}>{render_inline(para)}</p>")
     return Markup("".join(paras))
 
 app.jinja_env.filters["passage"] = render_passage
@@ -130,7 +133,7 @@ SITE_URL = os.getenv("SITE_URL", "https://mobydickbible.com").rstrip("/")
 
 # Pages worth indexing. /search and /tag_search are POST-only result pages and
 # are deliberately excluded (they also carry a noindex tag).
-INDEXABLE_PATHS = ['/', '/about', '/privacy']
+INDEXABLE_PATHS = ['/', '/read', '/about', '/privacy']
 
 
 @app.context_processor
@@ -162,6 +165,9 @@ def sitemap_xml():
         f"<changefreq>{'weekly' if path == '/' else 'yearly'}</changefreq>"
         f"<priority>{'1.0' if path == '/' else '0.5'}</priority></url>"
         for path in INDEXABLE_PATHS
+    ) + "".join(
+        f"<url><loc>{SITE_URL}/read/chapter-{n}</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>"
+        for n in sorted(CHAPTERS)
     )
     body = (
         '<?xml version="1.0" encoding="UTF-8"?>'
@@ -221,25 +227,94 @@ def search():
                            generated_verse=generated_verse,
                            matched_verses=matches)
 
-@app.route('/tag_search', methods=['POST'])
-def find_tag():
-    category = request.form.get('category')
-    tag = request.form.get('tag')
-    pretty_category = display_names.get(category, category.replace("_", " ").title())
-    found_texts = []
+def tag_matches(category, tag):
+    found = []
     for chapter in moby_dick_data:
         for verse in chapter["verses"]:
             if tag.lower() in [t.lower() for t in verse["open_ai_tags"].get(category, [])]:
-                found_texts.append({
+                found.append({
                     "chapter_number": chapter["chapter_number"],
                     "chapter_title": chapter["title"],
                     "verse_number": verse["verse_number"],
                     "text": verse["text"]
                 })
+    return found
+
+def render_tag_results(category, tag):
+    pretty_category = display_names.get(category, category.replace("_", " ").title())
     return render_template('tag-results.html',
                            category=pretty_category,
                            tag=tag,
-                           found_texts=found_texts)
+                           found_texts=tag_matches(category, tag))
+
+@app.route('/tag_search', methods=['POST'])
+def find_tag():
+    return render_tag_results(request.form.get('category', ''), request.form.get('tag', ''))
+
+# The same results as a plain link, so tags on the reading page can point here.
+@app.route('/tag')
+def tag_link():
+    category, tag = request.args.get('category', ''), request.args.get('tag', '')
+    if category not in TAG_ORDER or not tag:
+        abort(404)
+    return render_tag_results(category, tag)
+
+
+# ---- Reading the whole book, one chapter per page -------------------------
+
+CHAPTERS = {c["chapter_number"]: c for c in moby_dick_data}
+TAG_ORDER = ["themes", "feeling", "vibe", "symbolism", "literary_motifs", "entities"]
+TAGS_SHOWN = 4
+
+def chapter_heading(number):
+    return "Epilogue" if number == 136 else f"Chapter {number}"
+
+def short_title(title):
+    return title[:-1] if title.endswith(".") else title
+
+def chapter_paragraphs(chapter):
+    """Lay a chapter out for the reading page. Each verse becomes a list of
+    pieces (one per paragraph of the book it touches); `new` marks a piece
+    that begins a paragraph, so the plain view can join the rest back up."""
+    verses = []
+    for v in chapter["verses"]:
+        paras = v["text"].split("\n\n")
+        pieces = [{"html": render_inline(p), "new": (v.get("para_start", True) if i == 0 else True),
+                   "foot": p.startswith("*")} for i, p in enumerate(paras)]
+        tags = [(cat, t) for cat in TAG_ORDER for t in v["open_ai_tags"].get(cat, [])]
+        seen, unique = set(), []
+        for cat, t in tags:
+            if t.lower() not in seen:
+                seen.add(t.lower()); unique.append((cat, t))
+        verses.append({"n": v["verse_number"], "pieces": pieces,
+                       "tags": unique[:TAGS_SHOWN], "more_tags": unique[TAGS_SHOWN:]})
+    return verses
+
+@app.route('/read')
+def read_index():
+    chapters = [{"n": c["chapter_number"], "heading": chapter_heading(c["chapter_number"]),
+                 "title": short_title(c["title"]), "verses": len(c["verses"])} for c in moby_dick_data]
+    return render_template('read-index.html', chapters=chapters)
+
+@app.route('/read/<int:number>')
+def read_short(number):
+    return redirect(url_for('read_chapter', number=number), code=301)
+
+@app.route('/read/chapter-<int:number>')
+def read_chapter(number):
+    chapter = CHAPTERS.get(number)
+    if not chapter:
+        abort(404)
+    first = re.sub(r"[_*]", "", chapter["verses"][0]["text"].split("\n\n")[0])
+    description = first if len(first) <= 155 else first[:first.rfind(" ", 0, 152)] + "…"
+    nav = lambda n: {"n": n, "heading": chapter_heading(n), "title": short_title(CHAPTERS[n]["title"])} if n in CHAPTERS else None
+    return render_template('read.html',
+                           number=number,
+                           heading=chapter_heading(number),
+                           title=short_title(chapter["title"]),
+                           description=description,
+                           verses=chapter_paragraphs(chapter),
+                           prev=nav(number - 1), next=nav(number + 1))
 
 # 404 page handler
 @app.errorhandler(404)

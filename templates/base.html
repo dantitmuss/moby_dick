@@ -48,7 +48,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='pixel.css') }}?v=2">
+  <link rel="stylesheet" href="{{ url_for('static', filename='pixel.css') }}?v=3">
   <script>try { if (localStorage.getItem('mdb-easy') === '1') document.documentElement.classList.add('easy-read'); } catch (e) {}</script>
 
   {% block robots %}{% endblock %}
@@ -116,6 +116,7 @@
       </a>
       <nav class="mdb-nav" aria-label="Main">
         <a href="/" {% if request.path == '/' %}aria-current="page"{% endif %}>Ask</a>
+        <a href="/read" {% if request.path.startswith('/read') %}aria-current="page"{% endif %}>Read</a>
         <a href="/#chart">Concordance</a>
         <a href="/#log">Log</a>
         <a href="/about" {% if request.path == '/about' %}aria-current="page"{% endif %}>About</a>
@@ -156,7 +157,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
   <script src="{{ url_for('static', filename='scene.js') }}?v=3"></script>
-  <script src="{{ url_for('static', filename='site.js') }}?v=3"></script>
+  <script src="{{ url_for('static', filename='site.js') }}?v=4"></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

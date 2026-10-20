@@ -10,6 +10,9 @@
   </div>
   {% endif %}
   <div class="mdb-passage">{{ match.text | passage }}</div>
-  <p class="mdb-cite">Chapter {{ match.chapter_number }}, {{ title }} <span>&middot; verse {{ match.verse_number }}</span></p>
+  <div class="mdb-cite-row">
+    <p class="mdb-cite">Chapter {{ match.chapter_number }}, {{ title }} <span>&middot; verse {{ match.verse_number }}</span></p>
+    <a class="mdb-context" href="/read/chapter-{{ match.chapter_number }}#{{ match.verse_number }}">Read in context &gt;</a>
+  </div>
 </article>
 {%- endmacro %}

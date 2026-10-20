@@ -295,10 +295,28 @@ tag-results page.
 
 
 ================================================================================
-FEATURE 5: FULL NOVEL VIEW WITH VERSE ANCHOR LINKS
+FEATURE 5: FULL NOVEL VIEW WITH VERSE ANCHOR LINKS                [COMPLETE]
 ================================================================================
 
 SOURCE CONVERSATION: "Improving Verse Variety" (2025-04-07)
+IMPLEMENTED: October 2026
+
+WHAT WAS DONE
+-------------
+- Verse text moved to the current Project Gutenberg #2701 edition first, with
+  paragraph breaks restored (tools/rebuild_from_gutenberg.py); each verse now
+  carries para_start, saying whether it opens a paragraph in the book
+- /read lists all chapters; /read/chapter-N shows one chapter per page
+  (whole book is ~1.2 MB, a chapter ~9 KB on average); /read/N redirects
+- Every verse is addressable as /read/chapter-N#V and is highlighted on arrival
+- Two views on one page, switched by a floating button that stays on screen:
+  Verses (each verse separate, labelled N:V, first 4 tags shown, the rest
+  behind "N more", copy-link button) and Plain (verses flow back into
+  Melville's paragraphs, faint superscript verse numbers). The choice is
+  remembered and switching keeps the reader's place
+- Tags link to GET /tag?category=&tag= (same results as the concordance form)
+- Search and tag results link each passage to "Read in context"
+- All chapter pages are in sitemap.xml, with their own title and description
 
 THE IDEA
 --------

@@ -758,3 +758,180 @@ html.easy-read .mdb-apoc-verse::first-letter { font-size: 2.1em; }
 
 .mdb-drift { font-size: 1.3rem; }
 .cc-window { font-family: var(--ui); font-size: var(--t-sm); line-height: 1.25; }
+
+/* --------------------------------------------------------------------------
+   Reading the book: /read and /read/chapter-N
+   Verse mode (default): each verse on its own, hung from the whale-line.
+   Plain mode (html.rd-plain): the verses flow back into Melville's paragraphs.
+   -------------------------------------------------------------------------- */
+
+.rd-contents { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.rd-contents a {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr auto;
+  gap: 4px 14px;
+  align-items: baseline;
+  padding: 9px 4px;
+  border-bottom: 1px solid var(--swell);
+  color: var(--bone);
+  text-decoration: none;
+}
+.rd-contents a:hover { color: var(--lantern); background: var(--swell); }
+.rd-contents-n { font-family: var(--pixel); font-size: var(--p-xs); color: var(--brass); }
+.rd-contents-v { font-size: var(--t-xs); color: var(--fog); font-variant-numeric: tabular-nums; }
+@media (max-width: 480px) {
+  .rd-contents a { grid-template-columns: 1fr auto; }
+  .rd-contents-n { grid-column: 1 / -1; }
+}
+
+.rd-book { display: flex; flex-direction: column; gap: 26px; }
+
+.rd-verse {
+  position: relative;
+  padding: 2px 12px 2px 18px;
+  border-left: var(--px) solid var(--timber);   /* the whale-line */
+  scroll-margin-top: 24px;
+}
+.rd-verse-head { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+.rd-label {
+  font-family: var(--pixel);
+  font-size: var(--p-xs);
+  color: var(--brass);
+  text-decoration: none;
+}
+.rd-label:hover { color: var(--lantern); }
+.rd-copy {
+  font-family: var(--ui);
+  font-size: var(--t-xs);
+  color: var(--fog);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0;
+}
+.rd-verse:hover .rd-copy, .rd-copy:focus-visible, .rd-copy[data-done] { opacity: 1; }
+@media (hover: none) { .rd-copy { opacity: 1; } }
+.rd-copy:hover { color: var(--lantern); }
+
+.rd-p {
+  margin: 0 0 0.75em;
+  font-family: var(--text);
+  font-size: 1.5rem;
+  line-height: 1.3;
+  max-width: 36em;
+}
+.rd-p.rd-fnote { font-size: 1.2rem; color: var(--fog); }
+html.easy-read .rd-p { font-size: 1.15rem; line-height: 1.65; }
+html.easy-read .rd-p.rd-fnote { font-size: 0.95rem; }
+
+/* the verse number that links can land on; hidden in verse mode */
+.rd-mark {
+  position: absolute; top: 0; left: 0;
+  width: 1px; height: 1px; overflow: hidden;
+  opacity: 0;
+  scroll-margin-top: 24px;
+}
+
+.rd-tags { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; margin-top: 2px; }
+.rd-tag {
+  font-size: var(--t-xs);
+  line-height: 1.2;
+  color: var(--fog);
+  text-decoration: none;
+  padding: 2px 8px 1px;
+  box-shadow: inset 0 0 0 1px var(--timber);
+}
+.rd-tag:hover { color: var(--lantern); box-shadow: inset 0 0 0 1px var(--brass); }
+.rd-more { display: contents; }
+.rd-more summary {
+  font-size: var(--t-xs);
+  color: var(--brass);
+  cursor: pointer;
+  list-style: none;
+  padding: 2px 4px 1px;
+}
+.rd-more summary::-webkit-details-marker { display: none; }
+.rd-more[open] summary { display: none; }
+
+/* arriving at a verse from a link */
+@keyframes rd-found { from { background-color: rgba(242, 169, 59, 0.22); } to { background-color: transparent; } }
+.rd-verse:has(.rd-mark:target) { border-left-color: var(--brass); animation: rd-found 3.5s ease-out; }
+
+/* plain mode */
+html.rd-plain .rd-book { display: block; }
+html.rd-plain .rd-verse { display: contents; }
+html.rd-plain .rd-verse-head,
+html.rd-plain .rd-tags { display: none; }
+html.rd-plain .rd-p { display: inline; margin: 0; }
+html.rd-plain .rd-p.rd-new::before { content: ""; display: block; height: 0.75em; }
+html.rd-plain .rd-verse:first-child .rd-p:first-of-type::before { height: 0; }
+html.rd-plain .rd-p.rd-fnote { display: block; margin: 0.75em 0; }
+html.rd-plain .rd-p.rd-fnote::before { display: none; }
+html.rd-plain .rd-mark {
+  position: static; width: auto; height: auto; overflow: visible;
+  opacity: 0.45;
+  font-family: var(--ui);
+  font-size: 0.55em;
+  vertical-align: super;
+  line-height: 0;
+  color: var(--fog);
+  text-decoration: none;
+  margin-right: 0.25em;
+}
+html.rd-plain .rd-mark:hover { opacity: 1; color: var(--lantern); }
+html.rd-plain .rd-mark:target { opacity: 1; color: var(--brass); }
+html.rd-plain .rd-verse:has(.rd-mark:target) .rd-p { animation: rd-found 3.5s ease-out; }
+
+/* previous / next chapter */
+.rd-pager {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 14px;
+  align-items: start;
+  padding-top: 18px;
+  border-top: var(--px) solid var(--timber);
+}
+.rd-pager a { color: var(--bone); text-decoration: none; display: flex; flex-direction: column; gap: 4px; }
+.rd-pager a:hover { color: var(--lantern); }
+.rd-pager a span { font-family: var(--pixel); font-size: var(--p-xs); color: var(--brass); }
+.rd-pager .rd-pager-next { text-align: right; align-items: flex-end; }
+.rd-pager .rd-pager-all { font-family: var(--pixel); font-size: var(--p-xs); color: var(--fog); padding-top: 2px; }
+@media (max-width: 480px) {
+  .rd-pager { grid-template-columns: 1fr 1fr; }
+  .rd-pager .rd-pager-all { grid-column: 1 / -1; grid-row: 2; justify-self: center; }
+}
+
+/* the floating mode switch */
+.rd-mode {
+  position: fixed;
+  z-index: 30;
+  right: max(16px, env(safe-area-inset-right, 0px));
+  bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  display: flex;
+  background: var(--deep);
+  box-shadow:
+    0 calc(var(--px) * -1) 0 0 var(--timber),
+    0 var(--px) 0 0 var(--timber),
+    calc(var(--px) * -1) 0 0 0 var(--timber),
+    var(--px) 0 0 0 var(--timber),
+    0 calc(var(--px) * 3) 0 0 rgba(0, 0, 0, 0.5);
+}
+.rd-mode button {
+  font-family: var(--pixel);
+  font-size: var(--p-xs);
+  line-height: 1;
+  color: var(--fog);
+  background: transparent;
+  border: 0;
+  padding: 12px 14px 11px;
+  cursor: pointer;
+}
+.rd-mode button:hover { color: var(--lantern); }
+.rd-mode button[aria-pressed="true"] { color: var(--deep); background: var(--brass); }
+.rd-pager { margin-bottom: 56px; }   /* room for the floating switch */
+.mdb-cite-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; }
+.mdb-context { font-family: var(--pixel); font-size: var(--p-xs); color: var(--fog); text-decoration: none; }
+.mdb-context:hover { color: var(--lantern); }

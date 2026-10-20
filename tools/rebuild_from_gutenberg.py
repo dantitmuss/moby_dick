@@ -1,6 +1,7 @@
 """Rebuild verse text from Project Gutenberg #2701 (current edition), keeping every
 verse id, number, boundary, tag and embedding. Paragraphs become blank lines,
-_underscores_ mark italics, footnotes start with "*".
+_underscores_ mark italics, footnotes start with "*". para_start says whether a
+verse opens a new paragraph in the book (the reading page needs it).
 usage: python tools/rebuild_from_gutenberg.py pg2701.txt OLD.json NEW.json REPORT.json"""
 import json, re, sys, difflib
 GUT, OLD, NEW, REP = sys.argv[1:5]
@@ -54,6 +55,7 @@ for ch in data:
         extra = len(words(new)) - len(words(v['text']))
         report.append(dict(id=v['id'], ch=n, v=v['verse_number'], ratio=round(ratio, 3), extra_words=extra, old=v['text'], new=new))
         v['text'] = new
+        v['para_start'] = a == 0 or G[a-1] == '\n'   # plain-text view joins verses that don't
         # key quote: best-matching span in the new verse
         kq = v.get('key_quote_text')
         if kq:

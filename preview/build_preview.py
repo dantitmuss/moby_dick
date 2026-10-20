@@ -37,6 +37,11 @@ with A.app.test_request_context("/somewhere"):
     pages["404.html"] = render_template("404.html")
 with A.app.test_request_context("/search"):
     pages["results.html"] = render_template("results.html", query=SAMPLE_Q, generated_verse=SAMPLE_VERSE, matched_verses=matches)
+with A.app.test_request_context("/read"):
+    pages["read.html"] = A.read_index()
+for n in sorted(A.CHAPTERS):
+    with A.app.test_request_context(f"/read/chapter-{n}"):
+        pages[f"chapter-{n}.html"] = A.read_chapter(n)
 with A.app.test_request_context("/tag_search"):
     pages["tag-results.html"] = render_template("tag-results.html", category="Feeling", tag="Foreboding",
                                                 found_texts=tag_hits("feeling", "Foreboding"))
@@ -49,6 +54,9 @@ for name, html in pages.items():
     for a, b in LINKS.items():
         html = html.replace('href=' + a, 'href=' + b).replace('data-tags=' + a, 'data-tags=' + b)
     html = html.replace('href: "/privacy"', 'href: "privacy.html"')
+    html = re.sub(r'href="/read/chapter-(\d+)', r'href="chapter-\1.html', html)
+    html = html.replace('href="/read"', 'href="read.html"')
+    html = html.replace('href="/tag?', 'href="tag-results.html?')   # preview.js turns these into a stand-in tag search
     html = html.replace("<title>", '<meta name="claude:viewport-fit-sides" content="cover">\n  <title>', 1)
     html = html.replace("<meta charset=\"UTF-8\">", "<meta charset=\"UTF-8\">\n  <script>window.MDB_PREVIEW = true;</script>", 1)
     html = html.replace("</body>", '  <script src="static/preview.js"></script>\n</body>')
