@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}{{ heading }}: {{ title }} | Moby-Dick | The Moby-Dick Bible{% endblock %}
+{% block title %}Moby-Dick {{ heading }}{% if title != heading %}: {{ title }}{% endif %} | The Moby-Dick Bible{% endblock %}
 {% block description %}{{ description }}{% endblock %}
 
 {% block head %}
 <script>try { if (localStorage.getItem('mdb-read-mode') === 'plain') document.documentElement.classList.add('rd-plain'); } catch (e) {}</script>
 {% if prev %}<link rel="prev" href="{{ url_for('read_chapter', number=prev.n) }}">{% endif %}
 {% if next %}<link rel="next" href="{{ url_for('read_chapter', number=next.n) }}">{% endif %}
+<script type="application/ld+json">{{ schema|tojson }}</script>
 {% endblock %}
 
 {% block content %}
@@ -22,8 +23,12 @@
 <a href="{{ url_for('read_index') }}" class="mdb-back">&lt; All chapters</a>
 
 <header class="mdb-intro">
+  {% if title != heading %}
+  <h1 class="mdb-h1"><span class="mdb-cite rd-h1-num">{{ heading }}<span class="sr-only">: </span></span>{{ title }}</h1>
+  {% else %}
   <p class="mdb-cite">{{ heading }}</p>
   <h1 class="mdb-h1">{{ title }}</h1>
+  {% endif %}
   <p class="mdb-quiet" style="margin:0;">{{ verses|length }} verse{{ '' if verses|length == 1 else 's' }}, each with its own link.</p>
 </header>
 
