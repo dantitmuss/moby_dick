@@ -144,6 +144,17 @@ def inject_seo():
     }
 
 
+# Security headers on every response. CSP is left for later: GTM, jsDelivr,
+# cdnjs and Google Fonts would all need allow-listing first.
+@app.after_request
+def security_headers(response):
+    response.headers.setdefault("Strict-Transport-Security", "max-age=31536000")
+    response.headers.setdefault("X-Content-Type-Options", "nosniff")
+    response.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
+    response.headers.setdefault("X-Frame-Options", "SAMEORIGIN")
+    return response
+
+
 @app.route('/robots.txt')
 def robots_txt():
     body = "\n".join([
@@ -257,7 +268,14 @@ def tag_link():
     category, tag = request.args.get('category', ''), request.args.get('tag', '')
     if category not in TAG_ORDER or not tag:
         abort(404)
-    return render_tag_results(category, tag)
+    canonical = TAG_CASING.get((category, tag.strip().lower()))
+    if canonical is None:
+        # Unknown tag: keep the friendly empty page, but say 404 so it is not a soft 404.
+        return render_tag_results(category, tag), 404
+    if tag != canonical:
+        # One URL per tag: send other casings to the spelling the book's data uses.
+        return redirect(url_for('tag_link', category=category, tag=canonical), code=301)
+    return render_tag_results(category, canonical)
 
 
 # ---- Reading the whole book, one chapter per page -------------------------
@@ -265,6 +283,14 @@ def tag_link():
 CHAPTERS = {c["chapter_number"]: c for c in moby_dick_data}
 TAG_ORDER = ["themes", "feeling", "vibe", "symbolism", "literary_motifs", "entities"]
 TAGS_SHOWN = 4
+
+# The canonical spelling of each tag, keyed by (category, lowercased tag).
+TAG_CASING = {}
+for _chapter in moby_dick_data:
+    for _verse in _chapter["verses"]:
+        for _cat, _tags in _verse["open_ai_tags"].items():
+            for _t in _tags:
+                TAG_CASING.setdefault((_cat, _t.strip().lower()), _t.strip())
 
 def chapter_heading(number):
     return "Epilogue" if number == 136 else f"Chapter {number}"
@@ -290,6 +316,52 @@ def chapter_paragraphs(chapter):
                        "tags": unique[:TAGS_SHOWN], "more_tags": unique[TAGS_SHOWN:]})
     return verses
 
+DESCRIPTION_LIMIT = 155
+
+def chapter_description(heading, title, chapter):
+    """'Moby-Dick, Chapter 42: “The Whiteness of the Whale.” What the white whale…'
+    The label gives context even when a chapter opens on a stage direction."""
+    if heading == title:                      # the Epilogue
+        label = f"Moby-Dick, {heading}."
+    else:
+        end = "" if title[-1:] in "?!." else "."
+        label = f"Moby-Dick, {heading}: “{title}{end}”"
+    opening = " ".join(re.sub(r"[_*]", "", chapter["verses"][0]["text"]).split())
+    text = f"{label} {opening}"
+    if len(text) <= DESCRIPTION_LIMIT:
+        return text
+    return text[:text.rfind(" ", 0, DESCRIPTION_LIMIT - 1)].rstrip(",;:—-") + "…"
+
+def chapter_schema(number, heading, title):
+    url = f"{SITE_URL}/read/chapter-{number}"
+    return {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Chapter",
+                "name": title if heading == title else f"{heading}: {title}",
+                "position": number,
+                "url": url,
+                "inLanguage": "en",
+                "isPartOf": {
+                    "@type": "Book",
+                    "name": "Moby-Dick; or, The Whale",
+                    "author": {"@type": "Person", "name": "Herman Melville"},
+                    "datePublished": "1851",
+                    "url": f"{SITE_URL}/read",
+                },
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "The Moby-Dick Bible", "item": f"{SITE_URL}/"},
+                    {"@type": "ListItem", "position": 2, "name": "Read the book", "item": f"{SITE_URL}/read"},
+                    {"@type": "ListItem", "position": 3, "name": heading, "item": url},
+                ],
+            },
+        ],
+    }
+
 @app.route('/read')
 def read_index():
     chapters = [{"n": c["chapter_number"], "heading": chapter_heading(c["chapter_number"]),
@@ -305,14 +377,16 @@ def read_chapter(number):
     chapter = CHAPTERS.get(number)
     if not chapter:
         abort(404)
-    first = re.sub(r"[_*]", "", chapter["verses"][0]["text"].split("\n\n")[0])
-    description = first if len(first) <= 155 else first[:first.rfind(" ", 0, 152)] + "…"
+    heading, title = chapter_heading(number), short_title(chapter["title"])
+    description = chapter_description(heading, title, chapter)
+    schema = chapter_schema(number, heading, title)
     nav = lambda n: {"n": n, "heading": chapter_heading(n), "title": short_title(CHAPTERS[n]["title"])} if n in CHAPTERS else None
     return render_template('read.html',
                            number=number,
-                           heading=chapter_heading(number),
-                           title=short_title(chapter["title"]),
+                           heading=heading,
+                           title=title,
                            description=description,
+                           schema=schema,
                            verses=chapter_paragraphs(chapter),
                            prev=nav(number - 1), next=nav(number + 1))
 
