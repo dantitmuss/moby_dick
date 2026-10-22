@@ -17,6 +17,12 @@ data = json.load(open(ROOT / "moby_dick_2025-03-22.json"))
 novel = norm(" ".join(v["text"] for c in data for v in c["verses"]))
 
 found = []
+chapter_titles = {norm(c["title"]) for c in data}
+for t in json.load(open(ROOT / "concordance_topics.json"))["topics"]:
+    for p in t["intro"]:
+        for q in re.findall(r"“([^”]{6,})”", p):
+            if norm(q) not in chapter_titles:
+                found.append(("concordance_topics.json:" + t["slug"], q))
 for path in list((ROOT / "templates").glob("*.html")) + [ROOT / "static/site.js", ROOT / "static/scene.js"]:
     text = path.read_text()
     if path.suffix == ".js":

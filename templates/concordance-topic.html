@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% from "_passage.html" import gam %}
+
+{% block title %}{{ topic.title }} | The Moby-Dick Bible{% endblock %}
+{% block description %}{{ topic.description }}{% endblock %}
+
+{% block head %}
+<script type="application/ld+json">{{ schema|tojson }}</script>
+{% endblock %}
+
+{% block content %}
+
+<a href="{{ url_for('concordance_index') }}" class="mdb-back">&lt; The concordance</a>
+
+<header class="mdb-intro">
+  <p class="mdb-cite">The concordance <span>&rsaquo; {{ topic.group }}</span></p>
+  <h1 class="mdb-h1">{{ topic.name }}</h1>
+</header>
+
+<div class="mdb-prose cc-intro">
+  {% for p in topic.intro %}<p>{{ p|safe }}</p>{% endfor %}
+</div>
+
+<p class="mdb-quiet" style="margin:0;">
+  {% if total > verses|length %}{{ total }} passages in the novel carry this mark. Here are {{ verses|length }} of them{% else %}{{ total }} passage{{ '' if total == 1 else 's' }} in the novel carry this mark{% endif %}{% if iconic_count %}: the most quoted first, then the rest {{ 'spread from first to last' if total > verses|length else 'in the order they appear' }}.{% else %}{{ ', spread from first to last' if total > verses|length else ', in the order they appear' }}.{% endif %}
+</p>
+
+<div class="mdb-canon-list" id="cc-list" data-fold="{{ fold }}">
+  {% for verse in verses %}{{ gam(verse) }}{% endfor %}
+</div>
+<button type="button" class="mdb-btn mdb-btn--quiet" id="cc-more" hidden>Show more passages</button>
+
+{% if marks %}
+<section class="mdb-prose" aria-labelledby="cc-marks-title">
+  <h2 class="mdb-h3" id="cc-marks-title">Every passage, mark by mark</h2>
+  <p class="mdb-quiet" style="margin:0;">This page gathers several marks from the concordance. Follow one to read every passage that carries it.</p>
+  <nav class="rd-tags" aria-label="Marks behind this page">
+    {% for m in marks %}<a class="rd-tag" href="{{ url_for('tag_link', category=m.category, tag=m.tag) }}">{{ m.tag }} <span class="cc-n">{{ m.category_name }}, {{ m.count }}</span></a>{% endfor %}
+  </nav>
+</section>
+{% endif %}
+
+{% if related %}
+<section class="mdb-prose" aria-labelledby="cc-related-title">
+  <h2 class="mdb-h3" id="cc-related-title">Nearby in the concordance</h2>
+  <nav class="rd-tags" aria-label="Related topics">
+    {% for r in related %}<a class="rd-tag" href="{{ url_for('concordance_topic', slug=r.slug) }}">{{ r.name }}</a>{% endfor %}
+    <a class="rd-tag" href="{{ url_for('concordance_index') }}">All topics</a>
+  </nav>
+</section>
+{% endif %}
+
+<div class="mdb-actions">
+  <a href="/" class="mdb-btn">Ask the book</a>
+  <a href="/#chart" class="mdb-btn mdb-btn--quiet">Wander the concordance</a>
+</div>
+
+<script>
+(function () {
+  // Every passage is in the HTML (so search engines and no-JS readers get them all);
+  // with JS, fold all but the first few and reveal them a batch at a time.
+  var list = document.getElementById('cc-list'), more = document.getElementById('cc-more');
+  if (!list || !more) return;
+  var step = parseInt(list.getAttribute('data-fold'), 10) || 10;
+  var items = Array.prototype.slice.call(list.children);
+  if (items.length <= step) return;
+  items.forEach(function (el, i) { if (i >= step) el.classList.add('is-folded'); });
+  more.hidden = false;
+  more.addEventListener('click', function () {
+    var folded = list.querySelectorAll('.is-folded');
+    for (var i = 0; i < folded.length && i < step; i++) folded[i].classList.remove('is-folded');
+    if (folded.length <= step) more.hidden = true;
+    var first = folded[0] && folded[0].querySelector('.mdb-context');
+    if (first) first.focus({ preventScroll: true });
+  });
+})();
+</script>
+
+{% endblock %}
