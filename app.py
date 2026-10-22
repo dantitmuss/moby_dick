@@ -50,6 +50,7 @@ Hard constraints:
 - Do not quote or closely echo any real lines from Moby-Dick.
 - Do not begin with "Call me...", "Some years ago...", or "Whenever I find myself..."
 - Do not mention Ishmael, Ahab, the Pequod, or Moby Dick unless the user explicitly asks.
+- If the concept asks for hateful, sexual, violent or demeaning content about real people or groups, do not write it; write instead a short, gently wry passage about a sailor who asked the sea the wrong question.
 
 Write 4–8 sentences. Output only the passage.\
 """

@@ -3959,8 +3959,7 @@
             "Idol",
             "Grego Pocket",
             "Ship Biscuit",
-            "Lamp",
-            "Little Negro"
+            "Lamp"
           ],
           "themes": [
             "Sacrifice",
@@ -10489,7 +10488,6 @@
             "Racial Prejudice"
           ],
           "symbolism": [
-            "Whitewashed Negro",
             "Young Saplings"
           ],
           "feeling": [
@@ -21638,7 +21636,7 @@
             "Anacharsis Clootz Deputation",
             "Old Ahab",
             "Pequod",
-            "Black Little Pip",
+            "Pip",
             "Alabama"
           ],
           "themes": [
@@ -22616,7 +22614,7 @@
             "Contemplation"
           ],
           "vibe": [
-            "Queer",
+            "Strange",
             "Tense"
           ],
           "literary_motifs": [
@@ -33134,8 +33132,7 @@
           ],
           "literary_motifs": [
             "Royalty",
-            "Religious Symbolism",
-            "Racial Superiority"
+            "Religious Symbolism"
           ]
         },
         "key_passage": false,
@@ -52753,7 +52750,6 @@
         "open_ai_tags": {
           "entities": [
             "Polar Whale",
-            "Borneo Negro",
             "St. Peter's"
           ],
           "themes": [
@@ -65427,7 +65423,6 @@
         "open_ai_tags": {
           "entities": [
             "Danes",
-            "Orientals",
             "Sumatra",
             "Java"
           ],
@@ -67528,9 +67523,7 @@
             "Parental Responsibility",
             "Independence"
           ],
-          "symbolism": [
-            "Exotic Babies"
-          ],
+          "symbolism": [],
           "feeling": [
             "Detachment",
             "Indifference"
@@ -69252,7 +69245,7 @@
             "Frustration"
           ],
           "vibe": [
-            "Queer",
+            "Strange",
             "Anticipatory"
           ],
           "literary_motifs": [
@@ -71050,7 +71043,7 @@
         "open_ai_tags": {
           "entities": [
             "Stubb",
-            "Negro"
+            "Pip"
           ],
           "themes": [
             "Fear Of Abandonment",
@@ -73752,7 +73745,6 @@
             "Stubb",
             "Starbuck",
             "Mogul",
-            "Negro Hill",
             "Corlaer's Hook"
           ],
           "themes": [
@@ -74432,7 +74424,6 @@
             "Tolland County",
             "Pine Tree",
             "Silver Ring",
-            "Old Darkey",
             "Doubloon",
             "Jenny"
           ],
@@ -83230,7 +83221,6 @@
         "open_ai_tags": {
           "entities": [
             "Pequod",
-            "Long Island Negroes",
             "Polynesian Isles"
           ],
           "themes": [
