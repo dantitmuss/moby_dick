@@ -931,6 +931,7 @@ html.rd-plain .rd-verse:has(.rd-mark:target) .rd-p { animation: rd-found 3.5s ea
 }
 .rd-mode button:hover { color: var(--lantern); }
 .rd-mode button[aria-pressed="true"] { color: var(--deep); background: var(--brass); }
+.rd-mode .rd-easy { border-left: var(--px) solid var(--timber); }   /* a separate setting from verses/plain */
 .rd-pager { margin-bottom: 56px; }   /* room for the floating switch */
 .mdb-cite-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; }
 .mdb-context { font-family: var(--pixel); font-size: var(--p-xs); color: var(--fog); text-decoration: none; }
