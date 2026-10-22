@@ -87,16 +87,22 @@
 
   /* ---- Easier reading: book typeface for long text, remembered here --- */
   (function () {
-    var btn = $('mdb-easy');
-    if (!btn) return;
+    // The header button, plus any extra copies (e.g. the reading page's floating switch).
+    var btns = document.querySelectorAll('#mdb-easy, [data-easy-toggle]');
+    if (!btns.length) return;
     var root = document.documentElement;
-    function paint() { btn.setAttribute('aria-pressed', root.classList.contains('easy-read') ? 'true' : 'false'); }
+    function paint() {
+      var on = root.classList.contains('easy-read') ? 'true' : 'false';
+      Array.prototype.forEach.call(btns, function (b) { b.setAttribute('aria-pressed', on); });
+    }
     paint();
-    btn.addEventListener('click', function () {
-      var on = !root.classList.contains('easy-read');
-      root.classList.toggle('easy-read', on);
-      try { localStorage.setItem('mdb-easy', on ? '1' : '0'); } catch (e) { /* not remembered */ }
-      paint();
+    Array.prototype.forEach.call(btns, function (btn) {
+      btn.addEventListener('click', function () {
+        var on = !root.classList.contains('easy-read');
+        root.classList.toggle('easy-read', on);
+        try { localStorage.setItem('mdb-easy', on ? '1' : '0'); } catch (e) { /* not remembered */ }
+        paint();
+      });
     });
   })();
 
@@ -419,7 +425,7 @@
     var book = $('rd-book');
     if (!book) return;
     var root = document.documentElement;
-    var buttons = document.querySelectorAll('.rd-mode button');
+    var buttons = document.querySelectorAll('.rd-mode button[data-mode]');
     var marks = book.querySelectorAll('.rd-mark');
 
     function paint() {
