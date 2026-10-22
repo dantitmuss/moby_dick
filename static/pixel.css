@@ -946,3 +946,9 @@ html.rd-plain .rd-verse:has(.rd-mark:target) .rd-p { animation: rd-found 3.5s ea
   text-shadow: none;
   text-wrap: nowrap;
 }
+
+/* Concordance topic pages */
+.is-folded { display: none !important; }
+.rd-tag .cc-n { color: var(--fog); font-size: 0.85em; margin-left: 4px; }
+.cc-intro p { margin: 0; }
+.cc-iconic { color: var(--lantern); margin-bottom: -4px; }

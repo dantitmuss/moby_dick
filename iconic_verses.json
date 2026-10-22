@@ -1,0 +1,776 @@
+{
+ "_about": "Verses that appear on well-known Moby-Dick quote lists (Goodreads' most popular quotes, 1-60; Audible UK's 'Moby-Dick quotes'; SparkNotes' important quotes, by theme and by character). Collected October 2026. Concordance topic pages show these first. Add or remove entries by hand; 'opening' is only a reminder of which line it is.",
+ "verses": [
+  {
+   "chapter": 1,
+   "verse": 1,
+   "sources": [
+    "goodreads",
+    "sparknotes"
+   ],
+   "opening": "Call me Ishmael. Some years ago—never mind how long precisely—having"
+  },
+  {
+   "chapter": 1,
+   "verse": 2,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Whenever I find myself growing grim about the mouth; whenever it is"
+  },
+  {
+   "chapter": 1,
+   "verse": 8,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Yes, as everyone knows, meditation and water are wedded"
+  },
+  {
+   "chapter": 1,
+   "verse": 12,
+   "sources": [
+    "audible"
+   ],
+   "opening": "Why did the old Persians hold the sea holy? Why did the"
+  },
+  {
+   "chapter": 1,
+   "verse": 13,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Why did the old Persians hold the sea holy?"
+  },
+  {
+   "chapter": 1,
+   "verse": 20,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Who ain’t a slave? Tell me that. Well, then,"
+  },
+  {
+   "chapter": 1,
+   "verse": 21,
+   "sources": [
+    "audible"
+   ],
+   "opening": "There is all the difference in the world between paying and being"
+  },
+  {
+   "chapter": 1,
+   "verse": 27,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "Though I cannot tell why it was exactly that those stage managers,"
+  },
+  {
+   "chapter": 1,
+   "verse": 28,
+   "sources": [
+    "goodreads",
+    "audible"
+   ],
+   "opening": "As for me, I am tormented with an everlasting itch for things"
+  },
+  {
+   "chapter": 3,
+   "verse": 52,
+   "sources": [
+    "audible"
+   ],
+   "opening": "It's only his outside; a man can be honest in any sort"
+  },
+  {
+   "chapter": 3,
+   "verse": 56,
+   "sources": [
+    "goodreads",
+    "audible"
+   ],
+   "opening": "Ignorance is the parent of fear."
+  },
+  {
+   "chapter": 3,
+   "verse": 70,
+   "sources": [
+    "goodreads",
+    "audible"
+   ],
+   "opening": "Better to sleep with a sober cannibal than a drunk Christian."
+  },
+  {
+   "chapter": 6,
+   "verse": 10,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "In New Bedford, fathers, they say, give whales for dowers to their"
+  },
+  {
+   "chapter": 9,
+   "verse": 18,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "In this world, shipmates, sin that pays its way can travel freely"
+  },
+  {
+   "chapter": 10,
+   "verse": 19,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "How it is I know not; but there is no place like"
+  },
+  {
+   "chapter": 11,
+   "verse": 2,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "To enjoy bodily warmth, some small part of you must be cold"
+  },
+  {
+   "chapter": 11,
+   "verse": 5,
+   "sources": [
+    "audible"
+   ],
+   "opening": "Because no man can ever feel his own identity aright except his"
+  },
+  {
+   "chapter": 11,
+   "verse": 6,
+   "sources": [
+    "goodreads",
+    "audible"
+   ],
+   "opening": "See how elastic our prejudices grow when once love comes to bend"
+  },
+  {
+   "chapter": 12,
+   "verse": 1,
+   "sources": [
+    "goodreads",
+    "audible"
+   ],
+   "opening": "It is not down on any map; true places never are."
+  },
+  {
+   "chapter": 12,
+   "verse": 8,
+   "sources": [
+    "audible"
+   ],
+   "opening": "Thought he, it's a wicked world in all meridians; I'll die a"
+  },
+  {
+   "chapter": 13,
+   "verse": 20,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "We cannibals must help these Christians."
+  },
+  {
+   "chapter": 16,
+   "verse": 9,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "A noble craft, but somehow a most melancholy! All noble things are"
+  },
+  {
+   "chapter": 16,
+   "verse": 18,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "Lost by a whale! Young man, come nearer to me: it was"
+  },
+  {
+   "chapter": 16,
+   "verse": 28,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "For all men tragically great are made so through"
+  },
+  {
+   "chapter": 16,
+   "verse": 29,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "For all men tragically great are made so through"
+  },
+  {
+   "chapter": 17,
+   "verse": 24,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "In one word, Queequeg, said I, rather digressively; hell"
+  },
+  {
+   "chapter": 19,
+   "verse": 11,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "It is the easiest thing in the world for a man to"
+  },
+  {
+   "chapter": 20,
+   "verse": 8,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "If I had been downright honest with myself, I"
+  },
+  {
+   "chapter": 20,
+   "verse": 9,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "If I had been downright honest with myself, I"
+  },
+  {
+   "chapter": 23,
+   "verse": 2,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Wonderfullest things are ever the unmentionable; deep memories yield"
+  },
+  {
+   "chapter": 23,
+   "verse": 4,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Know ye now, Bulkington? Glimpses do ye seem to"
+  },
+  {
+   "chapter": 23,
+   "verse": 5,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Know ye now, Bulkington? Glimpses do ye seem to"
+  },
+  {
+   "chapter": 26,
+   "verse": 6,
+   "sources": [
+    "audible"
+   ],
+   "opening": "An utterly fearless man is a far more dangerous comrade than a"
+  },
+  {
+   "chapter": 29,
+   "verse": 7,
+   "sources": [
+    "audible"
+   ],
+   "opening": "Is he mad? Anyway there's something on his mind, as sure as"
+  },
+  {
+   "chapter": 29,
+   "verse": 11,
+   "sources": [
+    "goodreads",
+    "audible"
+   ],
+   "opening": "Think not, is my eleventh commandment; and sleep when you can, is"
+  },
+  {
+   "chapter": 32,
+   "verse": 11,
+   "sources": [
+    "audible"
+   ],
+   "opening": "I promise nothing complete; because any human thing supposed to be complete,"
+  },
+  {
+   "chapter": 32,
+   "verse": 14,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "First: The uncertain, unsettled condition of this science of cetology is in"
+  },
+  {
+   "chapter": 32,
+   "verse": 24,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "He is, without doubt, the largest inhabitant of the globe; the most"
+  },
+  {
+   "chapter": 32,
+   "verse": 61,
+   "sources": [
+    "audible"
+   ],
+   "opening": "For we are all killers, on land and on sea; Bonapartes and"
+  },
+  {
+   "chapter": 32,
+   "verse": 73,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "For small erections may be finished by their first"
+  },
+  {
+   "chapter": 36,
+   "verse": 15,
+   "sources": [
+    "audible"
+   ],
+   "opening": "But what's this long face about, Mr. Starbuck; wilt thou not chase"
+  },
+  {
+   "chapter": 36,
+   "verse": 17,
+   "sources": [
+    "audible"
+   ],
+   "opening": "Vengeance on a dumb brute that simply smote thee from blindest instinct!"
+  },
+  {
+   "chapter": 36,
+   "verse": 19,
+   "sources": [
+    "goodreads",
+    "audible",
+    "sparknotes"
+   ],
+   "opening": "Talk not to me of blasphemy, man; I'd strike the sun if"
+  },
+  {
+   "chapter": 37,
+   "verse": 5,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "The prophecy was that I should be dismembered; and - Aye! I lost"
+  },
+  {
+   "chapter": 37,
+   "verse": 7,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Swerve me? The path to my fixed purpose is"
+  },
+  {
+   "chapter": 39,
+   "verse": 2,
+   "sources": [
+    "goodreads",
+    "audible"
+   ],
+   "opening": "I know not all that may be coming, but be it what"
+  },
+  {
+   "chapter": 41,
+   "verse": 1,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "I, Ishmael, was one of that crew; my shouts had gone up"
+  },
+  {
+   "chapter": 41,
+   "verse": 11,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "One of the wild suggestions referred to, as a last coming to"
+  },
+  {
+   "chapter": 41,
+   "verse": 20,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "He piled upon the whale's white hump the sum"
+  },
+  {
+   "chapter": 41,
+   "verse": 23,
+   "sources": [
+    "goodreads",
+    "audible"
+   ],
+   "opening": "Human madness is oftentimes a cunning and most feline thing. When you"
+  },
+  {
+   "chapter": 41,
+   "verse": 26,
+   "sources": [
+    "audible"
+   ],
+   "opening": "All my means are sane, my motive and my object mad."
+  },
+  {
+   "chapter": 41,
+   "verse": 31,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "How it was that they so aboundingly responded to the old man's"
+  },
+  {
+   "chapter": 42,
+   "verse": 1,
+   "sources": [
+    "audible",
+    "sparknotes"
+   ],
+   "opening": "It was the whiteness of the whale that above all things appalled"
+  },
+  {
+   "chapter": 42,
+   "verse": 28,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Is it that by its indefiniteness it shadows forth"
+  },
+  {
+   "chapter": 42,
+   "verse": 29,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Is it that by its indefiniteness it shadows forth"
+  },
+  {
+   "chapter": 42,
+   "verse": 30,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Is it that by its indefiniteness it shadows forth"
+  },
+  {
+   "chapter": 44,
+   "verse": 19,
+   "sources": [
+    "audible",
+    "sparknotes"
+   ],
+   "opening": "God help thee, old man, thy thoughts have created a creature in"
+  },
+  {
+   "chapter": 45,
+   "verse": 11,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "So ignorant are most landsmen of some of the plainest and most"
+  },
+  {
+   "chapter": 45,
+   "verse": 13,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "For God's sake, be economical with your lamps and"
+  },
+  {
+   "chapter": 48,
+   "verse": 21,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "And here was Flask now standing, Daggoo with one lifted arm furnishing"
+  },
+  {
+   "chapter": 49,
+   "verse": 1,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "There are certain queer times and occasions in this strange mixed affair"
+  },
+  {
+   "chapter": 49,
+   "verse": 2,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "There are certain queer times and occasions in this"
+  },
+  {
+   "chapter": 57,
+   "verse": 4,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "Long exile from Christendom and civilization inevitably restores a man to that"
+  },
+  {
+   "chapter": 58,
+   "verse": 8,
+   "sources": [
+    "goodreads",
+    "audible"
+   ],
+   "opening": "Consider the subtleness of the sea; how its most dreaded creatures glide"
+  },
+  {
+   "chapter": 58,
+   "verse": 9,
+   "sources": [
+    "audible"
+   ],
+   "opening": "For as this appalling ocean surrounds the verdant land, so in the"
+  },
+  {
+   "chapter": 60,
+   "verse": 11,
+   "sources": [
+    "goodreads",
+    "sparknotes"
+   ],
+   "opening": "All men live enveloped in whale-lines. All are born with halters round"
+  },
+  {
+   "chapter": 65,
+   "verse": 11,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Cannibals? Who is not a cannibal? I tell you"
+  },
+  {
+   "chapter": 68,
+   "verse": 12,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "It does seem to me, that herein we see"
+  },
+  {
+   "chapter": 70,
+   "verse": 7,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Speak, thou vast and venerable head,” muttered Ahab, “which,"
+  },
+  {
+   "chapter": 70,
+   "verse": 8,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Speak, thou vast and venerable head,” muttered Ahab, “which,"
+  },
+  {
+   "chapter": 79,
+   "verse": 2,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "I try all things, I achieve what I can."
+  },
+  {
+   "chapter": 86,
+   "verse": 5,
+   "sources": [
+    "audible"
+   ],
+   "opening": "Real strength never impairs beauty or harmony, but it often bestows it"
+  },
+  {
+   "chapter": 86,
+   "verse": 20,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "The more I consider this mighty tail, the more do I deplore"
+  },
+  {
+   "chapter": 87,
+   "verse": 19,
+   "sources": [
+    "goodreads",
+    "audible"
+   ],
+   "opening": "There is no folly of the beast of the earth which is"
+  },
+  {
+   "chapter": 87,
+   "verse": 36,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "But even so, amid the tornadoed Atlantic of my"
+  },
+  {
+   "chapter": 93,
+   "verse": 18,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "The sea had jeeringly kept his finite body up, but drowned the"
+  },
+  {
+   "chapter": 94,
+   "verse": 4,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Squeeze! Squeeze! Squeeze! all the morning long; I squeezed that sperm till"
+  },
+  {
+   "chapter": 96,
+   "verse": 23,
+   "sources": [
+    "goodreads",
+    "audible"
+   ],
+   "opening": "There is a wisdom that is woe; but there is a woe"
+  },
+  {
+   "chapter": 99,
+   "verse": 11,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Book! You lie there; the fact is, you books"
+  },
+  {
+   "chapter": 104,
+   "verse": 6,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "To produce a mighty book, you must choose a"
+  },
+  {
+   "chapter": 107,
+   "verse": 1,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Seat thyself sultanically among the moons of Saturn, and"
+  },
+  {
+   "chapter": 110,
+   "verse": 2,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Top-heavy was the ship as a dinnerless student with all Aristotle in"
+  },
+  {
+   "chapter": 111,
+   "verse": 1,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "There is, one knows not what sweet mystery about this sea, whose"
+  },
+  {
+   "chapter": 114,
+   "verse": 6,
+   "sources": [
+    "goodreads",
+    "audible"
+   ],
+   "opening": "Our souls are like those orphans whose unwedded mothers die in bearing"
+  },
+  {
+   "chapter": 114,
+   "verse": 7,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Let faith oust fact; let fancy oust memory; I"
+  },
+  {
+   "chapter": 124,
+   "verse": 13,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "In his fiery eyes of scorn and triumph, you then saw Ahab"
+  },
+  {
+   "chapter": 129,
+   "verse": 7,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "Hist! above there, I hear ivory—Oh, master! master! I am indeed down-hearted"
+  },
+  {
+   "chapter": 132,
+   "verse": 10,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "This is the magic glass, man; I see my wife and my"
+  },
+  {
+   "chapter": 132,
+   "verse": 13,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Is Ahab, Ahab? Is it I, God, or who,"
+  },
+  {
+   "chapter": 132,
+   "verse": 14,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "Is Ahab, Ahab? Is it I, God, or who,"
+  },
+  {
+   "chapter": 134,
+   "verse": 27,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "Ahab is forever Ahab, man. This whole act's immutably decreed. 'Twas rehearsed"
+  },
+  {
+   "chapter": 135,
+   "verse": 49,
+   "sources": [
+    "goodreads",
+    "audible"
+   ],
+   "opening": "to the last I grapple with thee; from hell's heart I stab"
+  },
+  {
+   "chapter": 135,
+   "verse": 54,
+   "sources": [
+    "goodreads"
+   ],
+   "opening": "[T]hen all collapsed, and the great shroud of the"
+  },
+  {
+   "chapter": 136,
+   "verse": 3,
+   "sources": [
+    "sparknotes"
+   ],
+   "opening": "Till, gaining that vital centre, the black bubble upward burst; and now,"
+  }
+ ]
+}

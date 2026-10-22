@@ -1,0 +1,487 @@
+{
+  "groups": [
+    "Characters",
+    "Themes",
+    "The whale"
+  ],
+  "topics": [
+    {
+      "slug": "ahab",
+      "group": "Characters",
+      "name": "Ahab",
+      "title": "Captain Ahab Quotes from Moby-Dick",
+      "description": "Captain Ahab in Moby-Dick: the passages where he speaks, broods and commands, from the quarter-deck to the final chase, with chapter and verse.",
+      "intro": [
+        "Captain of the <em>Pequod</em>, owner of one ivory leg and one idea. Ahab does not come on deck until Chapter 28, and by then the book has spent a long time warning you about him. Captain Peleg calls him “a grand, ungodly, god-like man”.",
+        "These are the passages where he speaks, broods, commands and burns: from the quarter-deck, where he nails a gold doubloon to the mast, to the last day of the chase. Read them in order and you can watch a man become his own weather."
+      ],
+      "tags": [
+        "ahab",
+        "captain ahab",
+        "ahab's leg"
+      ],
+      "related": [
+        "obsession",
+        "revenge",
+        "madness",
+        "the-white-whale"
+      ],
+      "include": [
+        [
+          36,
+          15
+        ],
+        [
+          36,
+          19
+        ],
+        [
+          37,
+          5
+        ],
+        [
+          135,
+          49
+        ]
+      ]
+    },
+    {
+      "slug": "the-white-whale",
+      "group": "Characters",
+      "name": "The White Whale",
+      "title": "Moby-Dick Quotes About the White Whale",
+      "description": "Every passage about Moby Dick, the white whale, from sailors' rumours and Ahab's scars to the three-day chase that ends the novel.",
+      "intro": [
+        "He gives the book its name, yet he only appears in the flesh in its last three chapters. Everything before that is rumour, sighting, scar and theory: tales swapped with passing ships, Ahab’s missing leg, and a whole chapter on the horror of his colour.",
+        "These passages follow Moby Dick through the novel, first as a legend and then as something that breaches. This site never draws him, but here, at least, he can be named."
+      ],
+      "tags": [
+        "moby dick",
+        "moby-dick",
+        "white whale",
+        "the white whale",
+        "whiteness"
+      ],
+      "related": [
+        "ahab",
+        "whales",
+        "revenge",
+        "fate"
+      ],
+      "include": [
+        [
+          135,
+          49
+        ]
+      ]
+    },
+    {
+      "slug": "ishmael",
+      "group": "Characters",
+      "name": "Ishmael",
+      "title": "Ishmael Quotes from Moby-Dick",
+      "description": "Ishmael, the narrator of Moby-Dick: the passages where he steps out from behind the whales and the crew to speak for himself, with chapter and verse.",
+      "intro": [
+        "“Call me Ishmael.” The narrator gives you three words of introduction and then very little else: an empty purse, a damp, drizzly November in his soul, and the habit of going to sea whenever he feels grim about the mouth.",
+        "For long stretches he all but disappears behind the whales, the crew and Ahab. These are some of the passages where he steps back into view: a schoolmaster turned whaleman, Queequeg’s bosom friend, and in the end the only one left to tell the story."
+      ],
+      "tags": [
+        "ishmael"
+      ],
+      "related": [
+        "queequeg",
+        "friendship",
+        "the-sea",
+        "isolation"
+      ],
+      "include": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          28
+        ],
+        [
+          3,
+          70
+        ],
+        [
+          49,
+          1
+        ],
+        [
+          136,
+          3
+        ]
+      ]
+    },
+    {
+      "slug": "queequeg",
+      "group": "Characters",
+      "name": "Queequeg",
+      "title": "Queequeg Quotes from Moby-Dick",
+      "description": "Queequeg in Moby-Dick: harpooneer, prince of Kokovoko and Ishmael's bosom friend. Every passage he appears in, with chapter and verse.",
+      "intro": [
+        "Harpooneer, prince of the island of Kokovoko, seller of embalmed heads, and the best friend anyone in the novel has. Ishmael’s first night with him, sharing a bed at the Spouter-Inn, is a comedy of terror. By the morning he has decided: “Better sleep with a sober cannibal than a drunken Christian.”",
+        "Here he is wherever the tags could find him: at the harpoon, at prayer before his little idol Yojo, diving overboard to save a man who mocked him, and lying in the coffin he asked the ship’s carpenter to make."
+      ],
+      "tags": [
+        "queequeg"
+      ],
+      "related": [
+        "friendship",
+        "ishmael",
+        "god-and-faith",
+        "death"
+      ],
+      "include": [
+        [
+          3,
+          52
+        ],
+        [
+          3,
+          70
+        ]
+      ]
+    },
+    {
+      "slug": "starbuck",
+      "group": "Characters",
+      "name": "Starbuck",
+      "title": "Starbuck Quotes from Moby-Dick",
+      "description": "Starbuck, the Pequod's chief mate: the voice of caution in Moby-Dick and the one man who tells Ahab to his face that the hunt is madness.",
+      "intro": [
+        "The chief mate, a Nantucketer of Quaker stock: brave, but never reckless, and the one man aboard who tells Ahab to his face that this is madness. His rule for whaleboats is simple. “I will have no man in my boat,” said Starbuck, “who is not afraid of a whale.”",
+        "These passages follow the voice of caution through a voyage that will not listen to it, including the night he stands outside Ahab’s cabin with a loaded musket in his hands."
+      ],
+      "tags": [
+        "starbuck",
+        "mr. starbuck"
+      ],
+      "related": [
+        "ahab",
+        "madness",
+        "fate",
+        "god-and-faith"
+      ]
+    },
+    {
+      "slug": "obsession",
+      "group": "Themes",
+      "name": "Obsession",
+      "title": "Moby-Dick Quotes About Obsession",
+      "description": "Passages from Moby-Dick about obsession and monomania: how one purpose takes hold of Ahab, his crew and the whole voyage. With chapter and verse.",
+      "intro": [
+        "Melville’s word for it is monomania: one idea that eats all the others. Ahab’s idea is a single whale, and he explains it to Starbuck in a sentence that never quite lets go: “He tasks me; he heaps me.”",
+        "These are the passages where one purpose takes over a man, then a ship, then thirty-odd souls who signed up to hunt whales for oil. Read them alongside Madness and Revenge, which are never far away."
+      ],
+      "tags": [
+        "obsession",
+        "monomania",
+        "fixation"
+      ],
+      "related": [
+        "ahab",
+        "madness",
+        "revenge",
+        "the-white-whale"
+      ],
+      "include": [
+        [
+          44,
+          19
+        ]
+      ]
+    },
+    {
+      "slug": "revenge",
+      "group": "Themes",
+      "name": "Revenge",
+      "title": "Moby-Dick Quotes About Revenge",
+      "description": "Passages from Moby-Dick about revenge and vengeance: Ahab's oath on the quarter-deck, Starbuck's objection, and the chase that follows.",
+      "intro": [
+        "The whale took Ahab’s leg, and Ahab wants the whale. On the quarter-deck in Chapter 36 he turns a voyage for oil into a vendetta, and only Starbuck objects: “Vengeance on a dumb brute!”",
+        "Here are the passages where vengeance is sworn, toasted, questioned and pursued to the end, all the way to Ahab’s last words to the whale."
+      ],
+      "tags": [
+        "revenge",
+        "vengeance"
+      ],
+      "related": [
+        "ahab",
+        "obsession",
+        "the-white-whale",
+        "madness"
+      ]
+    },
+    {
+      "slug": "fate",
+      "group": "Themes",
+      "name": "Fate",
+      "title": "Moby-Dick Quotes About Fate",
+      "description": "Passages from Moby-Dick about fate, prophecy and destiny: Elijah's warning, Fedallah's hearses and a voyage that seems already written.",
+      "intro": [
+        "<em>Moby-Dick</em> is full of prophets: Elijah on the Nantucket wharf, Gabriel raving aboard the <em>Jeroboam</em>, Fedallah with his riddle of two hearses. Even Ishmael, weaving a mat in Chapter 47, decides that chance, free will and necessity are all at work together.",
+        "These are the passages where the voyage seems already written and the characters half know it. It is hard to read them without feeling the ending coming."
+      ],
+      "tags": [
+        "fate",
+        "destiny",
+        "inevitability",
+        "prophecy",
+        "fatalism"
+      ],
+      "related": [
+        "death",
+        "god-and-faith",
+        "ahab",
+        "the-white-whale"
+      ],
+      "include": [
+        [
+          60,
+          11
+        ]
+      ]
+    },
+    {
+      "slug": "death",
+      "group": "Themes",
+      "name": "Death",
+      "title": "Moby-Dick Quotes About Death",
+      "description": "Passages from Moby-Dick about death and mortality, from the whaleman's chapel and its memorial tablets to the coffin that ends the book.",
+      "intro": [
+        "The book opens with a man who catches himself “pausing before coffin warehouses” and ends with a coffin used as a life-buoy. In between come memorial tablets, a will, sharks and a great many whales.",
+        "Ishmael’s own view is surprisingly cheerful: “Methinks we have hugely mistaken this matter of Life and Death.” These are the passages where death comes close, from the whaleman’s chapel in New Bedford to the last page."
+      ],
+      "tags": [
+        "death",
+        "mortality",
+        "life and death",
+        "coffin"
+      ],
+      "related": [
+        "fate",
+        "the-sea",
+        "queequeg",
+        "god-and-faith"
+      ]
+    },
+    {
+      "slug": "isolation",
+      "group": "Themes",
+      "name": "Isolation and Loneliness",
+      "title": "Moby-Dick Quotes About Isolation and Loneliness",
+      "description": "Passages from Moby-Dick about isolation and loneliness: the crew of Isolatoes, Ahab alone with his charts and Pip lost in the open sea.",
+      "intro": [
+        "Ishmael calls the crew Isolatoes, men “not acknowledging the common continent of men”, each living on an island of his own. Then there is Ahab, alone below decks with his charts, and Pip, left alone in the open sea until his mind leaves him.",
+        "These are the novel’s loneliest passages, and there are a lot of them."
+      ],
+      "tags": [
+        "isolation",
+        "solitude",
+        "loneliness"
+      ],
+      "related": [
+        "ishmael",
+        "madness",
+        "the-sea",
+        "ahab"
+      ]
+    },
+    {
+      "slug": "the-sea",
+      "group": "Themes",
+      "name": "The Sea",
+      "title": "Moby-Dick Quotes About the Sea",
+      "description": "Passages from Moby-Dick about the sea and the ocean: its calms, its storms, its meadows of brit and the pull it has on everyone ashore.",
+      "intro": [
+        "Ishmael goes to sea whenever he feels grim about the mouth, and he insists that everyone feels the same pull. On a Sunday afternoon in Manhattan, he says, thousands of city-dwellers stand at the water’s edge, “fixed in ocean reveries.”",
+        "Across the novel the sea is a mirror, a grave, a pasture and something close to a god. These passages gather its moods, from the calm of the Pacific to the typhoon."
+      ],
+      "tags": [
+        "sea",
+        "the sea",
+        "ocean"
+      ],
+      "related": [
+        "man-vs-nature",
+        "whales",
+        "isolation",
+        "death"
+      ],
+      "include": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          111,
+          1
+        ]
+      ]
+    },
+    {
+      "slug": "man-vs-nature",
+      "group": "Themes",
+      "name": "Man vs. Nature",
+      "title": "Moby-Dick Quotes About Man vs. Nature",
+      "description": "Passages from Moby-Dick about man against nature: small boats, vast whales, typhoons and an ocean that does not care either way.",
+      "intro": [
+        "Whaling, as Melville tells it, is a small wooden boat against the largest animal on earth, on an ocean that does not care either way. “Consider the subtleness of the sea,” he writes; “how its most dreaded creatures glide under water, unapparent for the most part.”",
+        "These passages are about that contest: storms and calms, fire on the masts, and the whale itself, which has the last word."
+      ],
+      "tags": [
+        "man vs. nature",
+        "man vs nature",
+        "nature vs. man",
+        "struggle against nature",
+        "nature's power"
+      ],
+      "related": [
+        "the-sea",
+        "whales",
+        "the-white-whale",
+        "fate"
+      ]
+    },
+    {
+      "slug": "madness",
+      "group": "Themes",
+      "name": "Madness",
+      "title": "Moby-Dick Quotes About Madness",
+      "description": "Passages from Moby-Dick about madness and insanity: Ahab's sane means and mad purpose, Pip's vision in the sea and a ship of mad prophets.",
+      "intro": [
+        "Ahab knows exactly what he is: “all my means are sane, my motive and my object mad.” Starbuck calls the hunt madness, Pip loses his mind in the open sea, and the <em>Jeroboam</em> sails under the spell of a mad prophet.",
+        "Melville does not treat madness simply as an illness. Of Pip he writes: “So man’s insanity is heaven’s sense.” These passages gather the madness of the voyage, and the wisdom hidden in some of it."
+      ],
+      "tags": [
+        "madness",
+        "insanity"
+      ],
+      "related": [
+        "ahab",
+        "obsession",
+        "isolation",
+        "starbuck"
+      ],
+      "include": [
+        [
+          96,
+          23
+        ]
+      ]
+    },
+    {
+      "slug": "god-and-faith",
+      "group": "Themes",
+      "name": "God and Faith",
+      "title": "Moby-Dick Quotes About God and Faith",
+      "description": "Passages from Moby-Dick about God, faith and religion: Father Mapple's sermon, Queequeg's idol Yojo and Ahab defying the fire.",
+      "intro": [
+        "Before he ever sees a whale, Ishmael sits through Father Mapple’s sermon on Jonah, preached from a pulpit you climb by rope ladder. Soon afterwards he joins Queequeg in worshipping a small wooden idol, and talks himself into it as a good Presbyterian.",
+        "The novel argues with God all the way through, from the sermon and Queequeg’s Ramadan to Ahab defying the fire in “The Candles”. These passages gather its faith, its doubt and its blasphemy."
+      ],
+      "tags": [
+        "god",
+        "faith",
+        "religion",
+        "divine intervention",
+        "spirituality"
+      ],
+      "related": [
+        "fate",
+        "death",
+        "queequeg",
+        "ishmael"
+      ],
+      "include": [
+        [
+          9,
+          18
+        ],
+        [
+          36,
+          19
+        ],
+        [
+          114,
+          6
+        ]
+      ]
+    },
+    {
+      "slug": "friendship",
+      "group": "Themes",
+      "name": "Friendship",
+      "title": "Moby-Dick Quotes About Friendship",
+      "description": "Passages from Moby-Dick about friendship and companionship: Ishmael and Queequeg, the monkey-rope and the brotherhood of the crew.",
+      "intro": [
+        "The warmest thing in <em>Moby-Dick</em> is the friendship between Ishmael and Queequeg. It starts with terror in a shared bed and turns, within a day, into something that mends Ishmael’s spirits: “I felt a melting in me.”",
+        "These are the passages about companionship at sea: shipmates and bosom friends, the monkey-rope that ties two men’s lives together, and a tub of spermaceti squeezed in brotherly love."
+      ],
+      "tags": [
+        "friendship",
+        "camaraderie",
+        "companionship",
+        "brotherhood"
+      ],
+      "related": [
+        "queequeg",
+        "ishmael",
+        "isolation",
+        "starbuck"
+      ]
+    },
+    {
+      "slug": "whales",
+      "group": "The whale",
+      "name": "Whales",
+      "title": "Moby-Dick Quotes About Whales",
+      "description": "Passages from Moby-Dick about whales: the sperm whale, the right whale, the leviathan of scripture and Ishmael's cetology, with chapter and verse.",
+      "intro": [
+        "<em>Moby-Dick</em> is also a book about whales in general, sometimes to its readers’ despair. Ishmael sorts them like a librarian in “Cetology”, measures their skeletons, reviews their portraits and puzzles over their spouts.",
+        "His definition is splendidly simple: a whale is “a spouting fish with a horizontal tail.” These passages gather the sperm whale, the right whale, the leviathan of scripture and the rest of the pod."
+      ],
+      "tags": [
+        "whale",
+        "whales",
+        "sperm whale",
+        "right whale",
+        "leviathan",
+        "greenland whale"
+      ],
+      "related": [
+        "the-white-whale",
+        "the-sea",
+        "man-vs-nature",
+        "ahab"
+      ],
+      "include": [
+        [
+          32,
+          11
+        ],
+        [
+          32,
+          24
+        ],
+        [
+          86,
+          5
+        ],
+        [
+          86,
+          20
+        ]
+      ]
+    }
+  ]
+}

@@ -133,7 +133,7 @@ SITE_URL = os.getenv("SITE_URL", "https://mobydickbible.com").rstrip("/")
 
 # Pages worth indexing. /search and /tag_search are POST-only result pages and
 # are deliberately excluded (they also carry a noindex tag).
-INDEXABLE_PATHS = ['/', '/read', '/about', '/privacy']
+INDEXABLE_PATHS = ['/', '/read', '/concordance', '/about', '/privacy']
 
 
 @app.context_processor
@@ -179,6 +179,9 @@ def sitemap_xml():
     ) + "".join(
         f"<url><loc>{SITE_URL}/read/chapter-{n}</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>"
         for n in sorted(CHAPTERS)
+    ) + "".join(
+        f"<url><loc>{SITE_URL}/concordance/{slug}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>"
+        for slug in TOPICS
     )
     body = (
         '<?xml version="1.0" encoding="UTF-8"?>'
@@ -191,7 +194,7 @@ def sitemap_xml():
 # Flask Homepage
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html', popular_topics=list(TOPICS.values()))
 
 # Flask About Page
 @app.route('/about')
@@ -389,6 +392,101 @@ def read_chapter(number):
                            schema=schema,
                            verses=chapter_paragraphs(chapter),
                            prev=nav(number - 1), next=nav(number + 1))
+
+# ---- Concordance topic pages ----------------------------------------------
+# Hand-written, indexable pages that gather the passages behind several related
+# tags (e.g. death + mortality + coffin). Content lives in concordance_topics.json.
+
+with open("concordance_topics.json", encoding="utf-8") as _f:
+    _topic_data = json.load(_f)
+TOPIC_GROUPS = _topic_data["groups"]
+TOPICS = {t["slug"]: t for t in _topic_data["topics"]}
+with open("iconic_verses.json", encoding="utf-8") as _f:
+    # how many of the quote lists each famous verse appears on (more lists = shown earlier)
+    ICONIC = {(v["chapter"], v["verse"]): len(v["sources"]) for v in json.load(_f)["verses"]}
+TOPIC_SHOWN = 50      # passages rendered on a topic page: iconic ones first, then an even spread
+TOPIC_FOLD = 10       # passages visible before "Show more"
+CATEGORY_NAMES = {"themes": "Themes", "feeling": "Feeling", "vibe": "Vibe", "symbolism": "Symbolism",
+                  "literary_motifs": "Literary motifs", "entities": "People, places & things"}
+
+def _build_topic(topic):
+    wanted = set(topic["tags"])
+    extra = {tuple(x) for x in topic.get("include", [])}   # hand-picked verses the tags missed
+    verses, marks = [], {}
+    for chapter in moby_dick_data:
+        for verse in chapter["verses"]:
+            hit = (chapter["chapter_number"], verse["verse_number"]) in extra
+            for cat, tags in verse["open_ai_tags"].items():
+                for t in tags:
+                    key = (cat, t.strip().lower())
+                    if key[1] in wanted:
+                        hit = True
+                        marks[key] = marks.get(key, 0) + 1
+            if hit:
+                verses.append({"chapter_number": chapter["chapter_number"], "chapter_title": chapter["title"],
+                               "verse_number": verse["verse_number"], "text": verse["text"],
+                               "iconic": (chapter["chapter_number"], verse["verse_number"]) in ICONIC})
+    total = len(verses)
+    # The famous passages first (in book order), then the rest. If there are too many,
+    # the rest are an even spread, so long topics are not cut off a third of the way in.
+    iconic = sorted((v for v in verses if v["iconic"]),
+                    key=lambda v: -ICONIC[(v["chapter_number"], v["verse_number"])])[:TOPIC_SHOWN]
+    rest = [v for v in verses if not v["iconic"]]
+    room = TOPIC_SHOWN - len(iconic)
+    if total > TOPIC_SHOWN + 10 and len(rest) > room:
+        step = (len(rest) - 1) / (room - 1) if room > 1 else 0
+        rest = [rest[round(i * step)] for i in range(room)] if room > 0 else []
+    verses = iconic + rest
+    # the tag pages behind this topic, biggest first (only ones with a few passages)
+    mark_links = [{"category": cat, "category_name": CATEGORY_NAMES.get(cat, cat), "tag": TAG_CASING[(cat, t)], "count": n}
+                  for (cat, t), n in sorted(marks.items(), key=lambda kv: -kv[1]) if n >= 3][:10]
+    return {"verses": verses, "total": total, "marks": mark_links, "iconic_count": len(iconic)}
+
+TOPIC_PASSAGES = {slug: _build_topic(t) for slug, t in TOPICS.items()}
+
+def topic_schema(topic, url, items):
+    return {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "CollectionPage",
+                "name": topic["title"],
+                "description": topic["description"],
+                "url": url,
+                "inLanguage": "en",
+                "isPartOf": {"@type": "WebSite", "name": "The Moby-Dick Bible", "url": f"{SITE_URL}/"},
+                "about": {"@type": "Book", "name": "Moby-Dick; or, The Whale",
+                          "author": {"@type": "Person", "name": "Herman Melville"}},
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": u}
+                                    for i, (n, u) in enumerate(items)],
+            },
+        ],
+    }
+
+@app.route('/concordance')
+def concordance_index():
+    groups = [{"name": g, "topics": [dict(t, total=TOPIC_PASSAGES[t["slug"]]["total"])
+                                     for t in TOPICS.values() if t["group"] == g]} for g in TOPIC_GROUPS]
+    url = f"{SITE_URL}/concordance"
+    schema = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "The Moby-Dick Bible", "item": f"{SITE_URL}/"},
+        {"@type": "ListItem", "position": 2, "name": "The concordance", "item": url}]}
+    return render_template('concordance-index.html', groups=groups, schema=schema)
+
+@app.route('/concordance/<slug>')
+def concordance_topic(slug):
+    topic = TOPICS.get(slug)
+    if not topic:
+        abort(404)
+    url = f"{SITE_URL}/concordance/{slug}"
+    schema = topic_schema(topic, url, [("The Moby-Dick Bible", f"{SITE_URL}/"),
+                                       ("The concordance", f"{SITE_URL}/concordance"), (topic["name"], url)])
+    return render_template('concordance-topic.html', topic=topic, fold=TOPIC_FOLD,
+                           related=[TOPICS[s] for s in topic["related"] if s in TOPICS],
+                           schema=schema, **TOPIC_PASSAGES[slug])
 
 # 404 page handler
 @app.errorhandler(404)

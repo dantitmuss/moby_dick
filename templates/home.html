@@ -72,6 +72,14 @@
         <button type="submit" class="mdb-btn mdb-btn--quiet">Show passages</button>
       </div>
     </form>
+
+    <div class="mdb-section-head">
+      <p class="mdb-label" style="margin:0;">Or start with a well-worn mark</p>
+      <nav class="rd-tags" aria-label="Popular topics">
+        {% for t in popular_topics %}<a class="rd-tag" href="{{ url_for('concordance_topic', slug=t.slug) }}">{{ t.name }}</a>{% endfor %}
+        <a class="rd-tag" href="{{ url_for('concordance_index') }}">All topics &gt;</a>
+      </nav>
+    </div>
   </section>
 
   <!-- The ship's log: only shown once something is kept -->

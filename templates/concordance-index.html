@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}The Moby-Dick Concordance: Quotes by Character and Theme | The Moby-Dick Bible{% endblock %}
+{% block description %}Moby-Dick quotes gathered by character and theme: Ahab, the white whale, obsession, death, the sea and more, each with chapter and verse.{% endblock %}
+
+{% block head %}
+<script type="application/ld+json">{{ schema|tojson }}</script>
+{% endblock %}
+
+{% block content %}
+
+<header class="mdb-intro">
+  <p class="mdb-cite">The concordance</p>
+  <h1 class="mdb-h1">Quotes by character and theme</h1>
+</header>
+
+<div class="mdb-prose">
+  <p>A concordance is an old scholar’s tool: an index of every place a word or idea appears in a sacred text. Every verse of <em>Moby-Dick</em> on this site carries marks for its themes, feelings and people. These pages gather the most travelled of them, so you can follow one thread through the whole voyage.</p>
+</div>
+
+{% for g in groups %}
+<section class="mdb-prose" aria-labelledby="cc-g{{ loop.index }}">
+  <h2 class="mdb-h3" id="cc-g{{ loop.index }}">{{ g.name }}</h2>
+  <nav class="rd-tags" aria-label="{{ g.name }}">
+    {% for t in g.topics %}<a class="rd-tag" href="{{ url_for('concordance_topic', slug=t.slug) }}">{{ t.name }} <span class="cc-n">{{ t.total }}</span></a>{% endfor %}
+  </nav>
+</section>
+{% endfor %}
+
+<section class="mdb-prose" aria-labelledby="cc-more-title">
+  <h2 class="mdb-h3" id="cc-more-title">Every other mark</h2>
+  <p>There are thousands more marks, from Abednego to Zoroaster. <a href="/#chart">Wander the full concordance</a> and pick any one of them.</p>
+</section>
+
+{% endblock %}
