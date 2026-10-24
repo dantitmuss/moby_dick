@@ -236,13 +236,24 @@
     }
     function sample(arr, n) { return arr.slice().sort(function () { return 0.5 - Math.random(); }).slice(0, n); }
 
+    // Every mark of every kind, once each (the first spelling met wins).
+    function allTags() {
+      var seen = {}, out = [];
+      Object.keys(tagsData).forEach(function (k) {
+        (tagsData[k] || []).forEach(function (t) {
+          var key = String(t).toLowerCase();
+          if (!seen[key]) { seen[key] = true; out.push(t); }
+        });
+      });
+      return out;
+    }
+
     function apply() {
-      var cat = selected();
-      current = (tagsData[cat] || []).slice().sort(function (a, b) {
+      var cat = selected() || 'all';
+      current = (cat === 'all' ? allTags() : (tagsData[cat] || []).slice()).sort(function (a, b) {
         return a.toLowerCase().localeCompare(b.toLowerCase());
       });
-      input.disabled = !cat;
-      input.placeholder = cat ? 'Start typing, or pick from the list' : 'Choose a category first';
+      input.disabled = false;
       if (!window.Awesomplete) return;
       if (!aw) {
         aw = new Awesomplete(input, {
@@ -263,6 +274,27 @@
     input.addEventListener('focus', function () {
       if (aw && !input.value && current.length) { aw.list = sample(current, 10); aw.minChars = 0; aw.evaluate(); }
     });
+
+    /* Phones: the keyboard covers half the screen, so bring the field up near the
+       top and keep the suggestion list inside the space that is left. */
+    var touch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    var vv = window.visualViewport;
+    function fitList() {
+      if (!aw || !aw.ul) return;
+      var room = (vv ? vv.height + vv.offsetTop : window.innerHeight) - input.getBoundingClientRect().bottom - 16;
+      aw.ul.style.maxHeight = Math.max(120, Math.min(room, 16 * 16)) + 'px';
+    }
+    if (touch) {
+      input.addEventListener('focus', function () {
+        setTimeout(function () {
+          var top = input.getBoundingClientRect().top - (vv ? vv.offsetTop : 0);
+          if (top > 80) window.scrollBy({ top: top - 64, behavior: 'smooth' });
+          setTimeout(fitList, 350);
+        }, 300);
+      });
+      if (vv) { vv.addEventListener('resize', fitList); vv.addEventListener('scroll', fitList); }
+    }
+    input.addEventListener('awesomplete-open', fitList);
     input.addEventListener('input', function () {
       if (aw) { aw.list = current; aw.minChars = 1; }
     });

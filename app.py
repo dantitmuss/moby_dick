@@ -251,10 +251,13 @@ def search():
                            matched_verses=matches)
 
 def tag_matches(category, tag):
-    found = []
+    """Verses carrying `tag` in `category`, or in any category when category is 'all'."""
+    found, want = [], tag.strip().lower()
     for chapter in moby_dick_data:
         for verse in chapter["verses"]:
-            if tag.lower() in [t.lower() for t in verse["open_ai_tags"].get(category, [])]:
+            tags = verse["open_ai_tags"]
+            pool = [t for ts in tags.values() for t in ts] if category == "all" else tags.get(category, [])
+            if want in (t.strip().lower() for t in pool):
                 found.append({
                     "chapter_number": chapter["chapter_number"],
                     "chapter_title": chapter["title"],
@@ -264,7 +267,10 @@ def tag_matches(category, tag):
     return found
 
 def render_tag_results(category, tag):
-    pretty_category = display_names.get(category, category.replace("_", " ").title())
+    pretty_category = "All marks" if category == "all" else display_names.get(category, category.replace("_", " ").title())
+    if category == "all":
+        key = tag.strip().lower()
+        tag = next((TAG_CASING[(c, key)] for c in TAG_ORDER if (c, key) in TAG_CASING), tag)
     return render_template('tag-results.html',
                            category=pretty_category,
                            tag=tag,

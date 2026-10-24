@@ -27,9 +27,32 @@
 </section>
 {% endfor %}
 
-<section class="mdb-prose" aria-labelledby="cc-more-title">
-  <h2 class="mdb-h3" id="cc-more-title">Every other mark</h2>
-  <p>There are thousands more marks, from Abednego to Zoroaster. <a href="/#chart">Wander the full concordance</a> and pick any one of them.</p>
+<section class="mdb-chart" id="search" aria-labelledby="cc-more-title">
+  <div class="mdb-section-head">
+    <h2 class="mdb-h3" id="cc-more-title">Every other mark</h2>
+    <p class="mdb-quiet" style="margin:0;">There are thousands more marks, from Abednego to Zoroaster. Type any word, or narrow it to one kind of mark first.</p>
+  </div>
+
+  <form id="tag-form" class="mdb-frame mdb-chart" action="/tag_search" method="post" data-tags="/tags.json">
+    <fieldset class="mdb-chips">
+      <legend class="mdb-label">Kind of mark</legend>
+      <label class="mdb-chip"><input type="radio" name="category" value="all" checked><span>All marks</span></label>
+      <label class="mdb-chip"><input type="radio" name="category" value="themes"><span>Themes</span></label>
+      <label class="mdb-chip"><input type="radio" name="category" value="feeling"><span>Feeling</span></label>
+      <label class="mdb-chip"><input type="radio" name="category" value="vibe"><span>Vibe</span></label>
+      <label class="mdb-chip"><input type="radio" name="category" value="symbolism"><span>Symbolism</span></label>
+      <label class="mdb-chip"><input type="radio" name="category" value="literary_motifs"><span>Literary motifs</span></label>
+      <label class="mdb-chip"><input type="radio" name="category" value="entities"><span>People, places &amp; things</span></label>
+    </fieldset>
+    <div class="mdb-chart-row">
+      <div>
+        <label for="tag" class="mdb-label">Mark</label>
+        <input id="tag" name="tag" class="mdb-field" autocomplete="off" autocapitalize="off" enterkeyhint="search" required
+               placeholder="Start typing, or pick from the list">
+      </div>
+      <button type="submit" class="mdb-btn mdb-btn--quiet">Show passages</button>
+    </div>
+  </form>
 </section>
 
 {% endblock %}
