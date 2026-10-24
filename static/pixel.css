@@ -949,3 +949,15 @@ html.rd-plain .rd-verse:has(.rd-mark:target) .rd-p { animation: rd-found 3.5s ea
 .rd-tag .cc-n { color: var(--fog); font-size: 0.85em; margin-left: 4px; }
 .cc-intro p { margin: 0; }
 .cc-iconic { color: var(--lantern); margin-bottom: -4px; }
+
+/* The ship's own voice (crew asides, the clerk, small jokes) is set in pixel type.
+   Anything Melville wrote stays in the reading face, so the canon always looks like the book. */
+.mdb-crew, .mdb-crew.mdb-small {
+  font-family: var(--pixel);
+  font-size: var(--p-xs);
+  line-height: 2;
+  color: var(--fog);
+}
+.mdb-crew b { font-family: inherit; font-size: inherit; font-weight: 400; color: var(--brass); }
+.mdb-loading-crew { line-height: 2; }
+.mdb-btn--quiet { font-size: var(--p-sm); }   /* match the main button, not the body scale */
