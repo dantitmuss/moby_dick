@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}The Ship's Log | The Moby-Dick Bible{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+{% block description %}The verses you kept from the Moby-Dick Bible, stored in this browser only.{% endblock %}
+
+{% block content %}
+
+<header class="mdb-intro">
+  <p class="mdb-cite">Kept on this device</p>
+  <h1 class="mdb-h1">The ship&rsquo;s log</h1>
+  <p class="mdb-crew" style="margin:0;">Verses you kept, entered by the ship&rsquo;s clerk. Stored in this browser only; the clerk does not travel.</p>
+</header>
+
+<section class="mdb-log" id="log" aria-label="Kept verses">
+  <ol class="mdb-log-list" id="mdb-log-list"></ol>
+  <p class="mdb-crew" id="mdb-log-empty" style="margin:0;" hidden>The log is empty. Keep a verse from any answer and the clerk will enter it here.</p>
+</section>
+
+<div class="mdb-actions">
+  <a href="/" class="mdb-btn">Ask the book</a>
+</div>
+
+{% endblock %}

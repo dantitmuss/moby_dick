@@ -92,9 +92,7 @@ a:hover { color: var(--lantern); }
   max-width: 64rem;
   margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   gap: 10px 20px;
 }
 
@@ -102,6 +100,7 @@ a:hover { color: var(--lantern); }
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  margin-right: auto;
   font-family: var(--pixel);
   font-size: var(--p-sm);
   color: var(--bone);
@@ -113,27 +112,74 @@ a:hover { color: var(--lantern); }
 
 .mdb-nav {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 4px 18px;
+  gap: 18px;
   font-family: var(--pixel);
   font-size: var(--p-xs);
 }
-.mdb-nav a { color: var(--fog); text-decoration: none; padding-block: 4px; }
-.mdb-nav a:hover, .mdb-nav a[aria-current="page"] { color: var(--bone); }
-.mdb-nav a[aria-current="page"] { box-shadow: 0 var(--px) 0 var(--brass); }
+.mdb-nav a, .mdb-more summary { color: var(--fog); text-decoration: none; padding-block: 4px; }
+.mdb-nav a:hover, .mdb-nav a[aria-current="page"],
+.mdb-more summary:hover, .mdb-more summary[data-current] { color: var(--bone); }
+.mdb-nav > a[aria-current="page"], .mdb-more summary[data-current] { box-shadow: 0 var(--px) 0 var(--brass); }
 
-.mdb-sound {
+/* Popovers: the More menu and the settings wheel */
+.mdb-pop { position: relative; }
+.mdb-pop summary { list-style: none; cursor: pointer; }
+.mdb-pop summary::-webkit-details-marker { display: none; }
+.mdb-pop-panel {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 11rem;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  background: var(--deep);
+  box-shadow:
+    0 calc(var(--px) * -1) 0 0 var(--timber),
+    0 var(--px) 0 0 var(--timber),
+    calc(var(--px) * -1) 0 0 0 var(--timber),
+    var(--px) 0 0 0 var(--timber),
+    0 calc(var(--px) * 3) 0 0 rgba(0, 0, 0, 0.5);
+}
+.mdb-pop-panel a, .mdb-toggle {
+  display: block;
+  padding: 10px 10px 9px;
   font-family: var(--pixel);
   font-size: var(--p-xs);
-  color: var(--fog);
-  background: none;
-  border: 1px solid var(--swell);
-  padding: 4px 8px;
-  cursor: pointer;
+  line-height: 1.4;
+  text-align: left;
+  white-space: nowrap;
 }
-.mdb-sound:hover { color: var(--bone); border-color: var(--timber); }
-.mdb-sound[aria-pressed="true"] { color: var(--brass); border-color: var(--timber); }
+.mdb-pop-panel a:hover, .mdb-toggle:hover { background: var(--swell); color: var(--lantern); }
+.mdb-more summary::after { content: " \25BE"; font-family: var(--ui); font-size: 1.1em; line-height: 0; }
+.mdb-more { display: none; }
+
+.mdb-settings summary {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: var(--fog);
+  border: 1px solid var(--swell);
+}
+.mdb-settings summary:hover, .mdb-settings[open] summary { color: var(--lantern); border-color: var(--timber); }
+.mdb-settings svg { width: 24px; height: 24px; fill: currentColor; }
+.mdb-settings .mdb-compass-n { fill: var(--brass); }
+
+.mdb-toggle { color: var(--fog); background: none; border: 0; cursor: pointer; }
+.mdb-toggle[aria-pressed="true"] { color: var(--brass); }
+#mdb-easy::after { content: ": off"; }
+#mdb-easy[aria-pressed="true"]::after { content: ": on"; }
+
+/* Phones: title and settings on one row, the three main links below, Log and About under More */
+@media (max-width: 640px) {
+  .mdb-top-inner { flex-wrap: wrap; }
+  .mdb-nav { order: 3; width: 100%; gap: 20px; }
+  .mdb-nav-wide { display: none; }
+  .mdb-more { display: block; }
+}
 
 /* --------------------------------------------------------------------------
    The scene

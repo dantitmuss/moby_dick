@@ -296,11 +296,9 @@
 
   function renderLog() {
     var entries = Log.read().slice().reverse();
-    // the nav link only appears once there is something to read
-    document.querySelectorAll('a[href="/#log"]').forEach(function (a) { a.hidden = entries.length === 0; });
-    var wrap = $('log'), list = $('mdb-log-list');
-    if (!wrap || !list) return;
-    wrap.hidden = entries.length === 0;
+    var list = $('mdb-log-list'), empty = $('mdb-log-empty');
+    if (!list) return;
+    if (empty) empty.hidden = entries.length > 0;
     list.innerHTML = '';
     entries.forEach(function (e, i) {
       var li = document.createElement('li');
@@ -481,6 +479,26 @@
       var sec = t && t.closest('.rd-verse');
       if (!sec) return;
       sec.style.animation = 'none'; void sec.offsetWidth; sec.style.animation = '';
+    });
+  })();
+
+  /* ---- Header popovers (More, settings): one open at a time ------------ */
+  (function () {
+    var pops = document.querySelectorAll('.mdb-pop');
+    if (!pops.length) return;
+    function closeAll(except) {
+      Array.prototype.forEach.call(pops, function (d) { if (d !== except) d.open = false; });
+    }
+    Array.prototype.forEach.call(pops, function (d) {
+      d.addEventListener('toggle', function () { if (d.open) closeAll(d); });
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.mdb-pop')) closeAll(null);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      var open = document.querySelector('.mdb-pop[open]');
+      if (open) { open.open = false; open.querySelector('summary').focus(); }
     });
   })();
 })();
