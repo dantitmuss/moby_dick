@@ -165,7 +165,8 @@ a:hover { color: var(--lantern); }
   border: 1px solid var(--swell);
 }
 .mdb-settings summary:hover, .mdb-settings[open] summary { color: var(--lantern); border-color: var(--timber); }
-.mdb-settings svg { width: 22px; height: 22px; fill: currentColor; }
+.mdb-settings svg { width: 24px; height: 24px; fill: currentColor; }
+.mdb-settings .mdb-compass-n { fill: var(--brass); }
 
 .mdb-toggle { color: var(--fog); background: none; border: 0; cursor: pointer; }
 .mdb-toggle[aria-pressed="true"] { color: var(--brass); }
