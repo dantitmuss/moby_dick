@@ -1023,3 +1023,10 @@ html.rd-plain .rd-verse:has(.rd-mark:target) .rd-p { animation: rd-found 3.5s ea
 .mdb-crew b { font-family: inherit; font-size: inherit; font-weight: 400; color: var(--brass); }
 .mdb-loading-crew { line-height: 2; }
 .mdb-btn--quiet { font-size: var(--p-sm); }   /* match the main button, not the body scale */
+
+/* Concordance search on touch screens: room below the field while typing,
+   so it can scroll up clear of the keyboard even at the foot of the page */
+@media (pointer: coarse) {
+  #search:focus-within { padding-bottom: 60vh; }
+}
+#search { scroll-margin-top: 16px; }
