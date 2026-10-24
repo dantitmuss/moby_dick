@@ -950,6 +950,22 @@ html.rd-plain .rd-verse:has(.rd-mark:target) .rd-p { animation: rd-found 3.5s ea
 .cc-intro p { margin: 0; }
 .cc-iconic { color: var(--lantern); margin-bottom: -4px; }
 
+/* Etymology and Extracts: the front matter before Chapter 1 */
+.ee-book { gap: 26px; }
+.ee-section { display: flex; flex-direction: column; gap: 22px; scroll-margin-top: 24px; }
+.ee-section + .ee-section { padding-top: 28px; border-top: var(--px) solid var(--timber); }
+.ee-head { display: flex; flex-direction: column; gap: 8px; }
+.ee-credit { margin: 0; font-style: italic; color: var(--fog); }
+.ee-book > .ee-section > .rd-p { margin: 0; }
+.ee-quote { margin: 0; padding: 2px 12px 2px 18px; border-left: var(--px) solid var(--timber); }
+.ee-quote .rd-p { margin-bottom: 0.4em; }
+.ee-src { margin: 0; max-width: 36em; font-size: var(--t-sm); color: var(--fog); }
+.ee-src em { color: var(--bone); }
+.ee-words { border-collapse: collapse; font-size: var(--t-read); }
+.ee-words td { padding: 3px 0; vertical-align: baseline; }
+.ee-word { padding-right: 2em !important; letter-spacing: 0.04em; text-align: left; unicode-bidi: isolate; }
+.ee-lang { color: var(--fog); }
+.rd-mode .rd-easy:first-child { border-left: 0; }
 /* The ship's own voice (crew asides, the clerk, small jokes) is set in pixel type.
    Anything Melville wrote stays in the reading face, so the canon always looks like the book. */
 .mdb-crew, .mdb-crew.mdb-small {

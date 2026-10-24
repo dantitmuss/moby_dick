@@ -8,10 +8,17 @@
 <div class="mdb-intro">
   <p class="mdb-cite">The whole book</p>
   <h1 class="mdb-h1">Read the book</h1>
-  <p class="mdb-lede">All 135 chapters and the Epilogue. Read it straight through as Melville set it, or verse by verse, with every verse marked and linkable.</p>
+  <p class="mdb-lede">All 135 chapters and the Epilogue, with Melville&rsquo;s Etymology and Extracts up front. Read it straight through as Melville set it, or verse by verse, with every verse marked and linkable.</p>
 </div>
 
 <ol class="rd-contents">
+  <li>
+    <a href="{{ front.url }}">
+      <span class="rd-contents-n">{{ front.heading }}</span>
+      <span class="rd-contents-t">{{ front.title }}</span>
+      <span class="rd-contents-v">{{ front_count }} extracts</span>
+    </a>
+  </li>
   {% for c in chapters %}
   <li>
     <a href="{{ url_for('read_chapter', number=c.n) }}">

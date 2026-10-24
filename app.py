@@ -118,6 +118,7 @@ def render_passage(text):
     return Markup("".join(paras))
 
 app.jinja_env.filters["passage"] = render_passage
+app.jinja_env.filters["inline"] = render_inline
 
 display_names = {
     "entitites": "Entities",
@@ -135,7 +136,7 @@ SITE_URL = os.getenv("SITE_URL", "https://mobydickbible.com").rstrip("/")
 
 # Pages worth indexing. /search and /tag_search are POST-only result pages and
 # are deliberately excluded (they also carry a noindex tag).
-INDEXABLE_PATHS = ['/', '/read', '/concordance', '/about', '/privacy']
+INDEXABLE_PATHS = ['/', '/read', '/read/etymology-and-extracts', '/concordance', '/about', '/privacy']
 
 
 @app.context_processor
@@ -368,11 +369,58 @@ def chapter_schema(number, heading, title):
         ],
     }
 
+# ---- Etymology and Extracts: the front matter before Chapter 1 -------------
+# Read-only page. Not in the verse data, the FAISS index or search.
+# Built from Gutenberg by tools/build_front_matter.py.
+
+with open("front_matter.json", encoding="utf-8") as _f:
+    FRONT_MATTER = json.load(_f)
+FRONT_TITLE = "Etymology and Extracts"
+FRONT_LABEL = "Front matter"
+FRONT_NAV = {"url": "/read/etymology-and-extracts", "heading": FRONT_LABEL, "title": FRONT_TITLE}
+
+def front_matter_description():
+    n_words = len(FRONT_MATTER["etymology"]["words"])
+    n_extracts = len(FRONT_MATTER["extracts"]["list"])
+    return (f"The opening pages of Moby-Dick: the Etymology, with the word for whale in {n_words} "
+            f"languages, and {n_extracts} Extracts on whales, from Genesis to whaling songs.")
+
+@app.route('/read/etymology-and-extracts')
+def read_front_matter():
+    url = f"{SITE_URL}/read/etymology-and-extracts"
+    schema = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebPage",
+                "name": f"{FRONT_TITLE}, Moby-Dick",
+                "url": url,
+                "inLanguage": "en",
+                "isPartOf": {"@type": "Book", "name": "Moby-Dick; or, The Whale",
+                             "author": {"@type": "Person", "name": "Herman Melville"},
+                             "datePublished": "1851", "url": f"{SITE_URL}/read"},
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "The Moby-Dick Bible", "item": f"{SITE_URL}/"},
+                    {"@type": "ListItem", "position": 2, "name": "Read the book", "item": f"{SITE_URL}/read"},
+                    {"@type": "ListItem", "position": 3, "name": FRONT_TITLE, "item": url},
+                ],
+            },
+        ],
+    }
+    first = {"url": url_for('read_chapter', number=1), "heading": chapter_heading(1),
+             "title": short_title(CHAPTERS[1]["title"])}
+    return render_template('front-matter.html', fm=FRONT_MATTER, title=FRONT_TITLE, label=FRONT_LABEL,
+                           description=front_matter_description(), schema=schema, next=first)
+
 @app.route('/read')
 def read_index():
     chapters = [{"n": c["chapter_number"], "heading": chapter_heading(c["chapter_number"]),
                  "title": short_title(c["title"]), "verses": len(c["verses"])} for c in moby_dick_data]
-    return render_template('read-index.html', chapters=chapters)
+    return render_template('read-index.html', chapters=chapters, front=FRONT_NAV,
+                           front_count=len(FRONT_MATTER["extracts"]["list"]))
 
 @app.route('/read/<int:number>')
 def read_short(number):
@@ -386,7 +434,8 @@ def read_chapter(number):
     heading, title = chapter_heading(number), short_title(chapter["title"])
     description = chapter_description(heading, title, chapter)
     schema = chapter_schema(number, heading, title)
-    nav = lambda n: {"n": n, "heading": chapter_heading(n), "title": short_title(CHAPTERS[n]["title"])} if n in CHAPTERS else None
+    nav = lambda n: {"url": url_for('read_chapter', number=n), "heading": chapter_heading(n),
+                     "title": short_title(CHAPTERS[n]["title"])} if n in CHAPTERS else None
     return render_template('read.html',
                            number=number,
                            heading=heading,
@@ -394,7 +443,7 @@ def read_chapter(number):
                            description=description,
                            schema=schema,
                            verses=chapter_paragraphs(chapter),
-                           prev=nav(number - 1), next=nav(number + 1))
+                           prev=nav(number - 1) or (FRONT_NAV if number == 1 else None), next=nav(number + 1))
 
 # ---- Concordance topic pages ----------------------------------------------
 # Hand-written, indexable pages that gather the passages behind several related

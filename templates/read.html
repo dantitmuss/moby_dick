@@ -5,8 +5,8 @@
 
 {% block head %}
 <script>try { if (localStorage.getItem('mdb-read-mode') === 'plain') document.documentElement.classList.add('rd-plain'); } catch (e) {}</script>
-{% if prev %}<link rel="prev" href="{{ url_for('read_chapter', number=prev.n) }}">{% endif %}
-{% if next %}<link rel="next" href="{{ url_for('read_chapter', number=next.n) }}">{% endif %}
+{% if prev %}<link rel="prev" href="{{ prev.url }}">{% endif %}
+{% if next %}<link rel="next" href="{{ next.url }}">{% endif %}
 <script type="application/ld+json">{{ schema|tojson }}</script>
 {% endblock %}
 
@@ -14,9 +14,9 @@
 
 {% macro chapter_nav() %}
 <nav class="rd-pager" aria-label="Chapters">
-  {% if prev %}<a href="{{ url_for('read_chapter', number=prev.n) }}" rel="prev"><span>&lt; {{ prev.heading }}</span>{{ prev.title }}</a>{% else %}<span></span>{% endif %}
+  {% if prev %}<a href="{{ prev.url }}" rel="prev"><span>&lt; {{ prev.heading }}</span>{{ prev.title }}</a>{% else %}<span></span>{% endif %}
   <a href="{{ url_for('read_index') }}" class="rd-pager-all">Contents</a>
-  {% if next %}<a href="{{ url_for('read_chapter', number=next.n) }}" rel="next" class="rd-pager-next"><span>{{ next.heading }} &gt;</span>{{ next.title }}</a>{% else %}<span></span>{% endif %}
+  {% if next %}<a href="{{ next.url }}" rel="next" class="rd-pager-next"><span>{{ next.heading }} &gt;</span>{{ next.title }}</a>{% else %}<span></span>{% endif %}
 </nav>
 {% endmacro %}
 

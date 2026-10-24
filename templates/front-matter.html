@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Moby-Dick {{ title }} | The Moby-Dick Bible{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block head %}
+<link rel="next" href="{{ next.url }}">
+<script type="application/ld+json">{{ schema|tojson }}</script>
+{% endblock %}
+
+{% block content %}
+
+<header class="mdb-intro">
+  <nav aria-label="Breadcrumb"><p class="mdb-cite"><a href="{{ url_for('read_index') }}">Read the book</a> <span>&rsaquo; {{ label }}</span></p></nav>
+  <h1 class="mdb-h1">{{ title }}</h1>
+  <p class="mdb-quiet" style="margin:0;">Before the first chapter, Melville hands the book to two minor clerks of the whale: an usher with a dusty lexicon, and a sub-sub-librarian with a sack of quotations.</p>
+</header>
+
+<article class="rd-book ee-book" id="rd-book">
+
+  {# ---- Etymology ---------------------------------------------------- #}
+  <section class="ee-section" id="etymology" aria-labelledby="etymology-title">
+    <header class="ee-head">
+      <h2 class="mdb-h2" id="etymology-title">Etymology</h2>
+      <p class="ee-credit">{{ fm.etymology.credit }}</p>
+    </header>
+
+    {% for p in fm.etymology.intro %}<p class="rd-p">{{ p|inline }}</p>{% endfor %}
+
+    {% for q in fm.etymology.quotes %}
+    <blockquote class="ee-quote">
+      <p class="rd-p">{{ q.text|inline }}</p>
+      <p class="ee-src">&mdash;{{ q.source|inline }}</p>
+    </blockquote>
+    {% endfor %}
+
+    <table class="ee-words">
+      <caption class="sr-only">The word for whale in thirteen languages</caption>
+      <tbody>
+        {% for w in fm.etymology.words %}
+        <tr><td class="ee-word"><span dir="auto">{{ w.word }}</span></td><td class="ee-lang">{{ w.language|inline }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  {# ---- Extracts ------------------------------------------------------ #}
+  <section class="ee-section" id="extracts" aria-labelledby="extracts-title">
+    <header class="ee-head">
+      <h2 class="mdb-h2" id="extracts-title">Extracts</h2>
+      <p class="ee-credit">{{ fm.extracts.credit }}</p>
+    </header>
+
+    {% for p in fm.extracts.intro %}<p class="rd-p">{{ p|inline }}</p>{% endfor %}
+
+    {% for x in fm.extracts.list %}
+    <section class="rd-verse" aria-label="Extract {{ x.n }}">
+      <div class="rd-verse-head">
+        <a class="rd-label" href="#extract-{{ x.n }}">Extract {{ x.n }}</a>
+        <button type="button" class="rd-copy" data-verse="extract-{{ x.n }}">Copy link</button>
+      </div>
+      {% for p in x.paragraphs %}
+      <p class="rd-p">{% if loop.first %}<a class="rd-mark" id="extract-{{ x.n }}" href="#extract-{{ x.n }}" aria-label="Extract {{ x.n }}">{{ x.n }}</a>{% endif %}{{ p|inline }}</p>
+      {% endfor %}
+      <p class="ee-src">&mdash;{{ x.source|inline }}</p>
+    </section>
+    {% endfor %}
+  </section>
+
+</article>
+
+<nav class="rd-pager" aria-label="Chapters">
+  <span></span>
+  <a href="{{ url_for('read_index') }}" class="rd-pager-all">Contents</a>
+  <a href="{{ next.url }}" rel="next" class="rd-pager-next"><span>{{ next.heading }} &gt;</span>{{ next.title }}</a>
+</nav>
+
+<div class="rd-mode" role="group" aria-label="How to show the text">
+  <button type="button" class="rd-easy" data-easy-toggle aria-pressed="false" title="Larger text and more space between lines">Easier</button>
+</div>
+
+{% endblock %}
