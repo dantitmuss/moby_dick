@@ -10,10 +10,8 @@
 
 {% block content %}
 
-<a href="{{ url_for('concordance_index') }}" class="mdb-back">&lt; The concordance</a>
-
 <header class="mdb-intro">
-  <p class="mdb-cite">The concordance <span>&rsaquo; {{ topic.group }}</span></p>
+  <nav aria-label="Breadcrumb"><p class="mdb-cite"><a href="{{ url_for('concordance_index') }}">The concordance</a> <span>&rsaquo; {{ topic.group }}</span></p></nav>
   <h1 class="mdb-h1">{{ topic.name }}</h1>
 </header>
 

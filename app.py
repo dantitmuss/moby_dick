@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory, Response, abort, redirect, url_for
 from markupsafe import Markup, escape
 import re
+from datetime import date
 from dotenv import load_dotenv
 import os
 import json
@@ -142,6 +143,7 @@ def inject_seo():
     return {
         "site_url": SITE_URL,
         "canonical_url": SITE_URL + request.path,
+        "current_year": date.today().year,
     }
 
 
