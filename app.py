@@ -200,6 +200,11 @@ def sitemap_xml():
 def home():
     return render_template('home.html', popular_topics=list(TOPICS.values()))
 
+# The ship's log: kept verses, read from this browser's storage by site.js
+@app.route('/log')
+def ship_log():
+    return render_template('log.html')
+
 # Flask About Page
 @app.route('/about')
 def about():
