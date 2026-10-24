@@ -163,11 +163,12 @@ a:hover { color: var(--lantern); }
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
   background: var(--deep);
-  font-family: var(--ui);
-  font-size: var(--t-xs);
+  font-family: var(--pixel);
+  font-size: var(--p-xs);
+  line-height: 1.8;
   color: var(--fog);
   text-align: right;
-  min-height: 2.4em;
+  min-height: 3.4em;
 }
 .mdb-report b { color: var(--brass); font-weight: 400; }
 
