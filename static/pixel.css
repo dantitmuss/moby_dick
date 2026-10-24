@@ -24,18 +24,18 @@
   --blood:   #a3242c;   /* the shadow under the big type */
 
   /* type */
-  --pixel: "Press Start 2P", "Courier New", ui-monospace, monospace;   /* headings, buttons, labels */
-  --ui:    "VT323", "Courier New", ui-monospace, monospace;            /* everything else */
-  --read:  "Alegreya", "Iowan Old Style", "Palatino Linotype", Georgia, serif; /* easier-reading mode */
+  --pixel: "Press Start 2P", "Courier New", ui-monospace, monospace;   /* headings, titles, menus, buttons */
+  --ui:    "Crimson Pro", "Iowan Old Style", "Palatino Linotype", Georgia, serif; /* everything else */
   --text:  var(--ui);                                                  /* long passages and verses */
 
-  /* scale (1.25) */
-  /* VT323 runs small, so its scale sits higher */
-  --t-xs: 1.05rem;
-  --t-sm: 1.2rem;
-  --t-md: 1.375rem;
-  --t-lg: 1.6rem;
-  --t-xl: 1.9rem;
+  /* body scale (Crimson Pro has a small x-height, so it sits a touch large) */
+  --t-xs: 0.95rem;
+  --t-sm: 1.05rem;
+  --t-md: 1.2rem;
+  --t-lg: 1.4rem;
+  --t-xl: 1.65rem;
+  --t-read: 1.2rem;     /* passages and verses */
+  --lh-read: 1.6;
   /* Press Start 2P is crisp only near multiples of 8px */
   --p-xs: 0.625rem;
   --p-sm: 0.75rem;
@@ -128,12 +128,12 @@ a:hover { color: var(--lantern); }
   font-size: var(--p-xs);
   color: var(--fog);
   background: none;
-  border: 2px solid var(--swell);
-  padding: 3px 8px;
+  border: 1px solid var(--swell);
+  padding: 4px 8px;
   cursor: pointer;
 }
 .mdb-sound:hover { color: var(--bone); border-color: var(--timber); }
-.mdb-sound[aria-pressed="true"] { color: var(--deep); background: var(--brass); border-color: var(--brass); }
+.mdb-sound[aria-pressed="true"] { color: var(--brass); border-color: var(--timber); }
 
 /* --------------------------------------------------------------------------
    The scene
@@ -522,6 +522,8 @@ a:hover { color: var(--lantern); }
   font-variant-numeric: tabular-nums;
 }
 .mdb-cite span { color: var(--fog); }
+.mdb-cite a { color: inherit; text-decoration: none; }
+.mdb-cite a:hover { color: var(--lantern); text-decoration: underline; }
 
 .mdb-section-head { display: flex; flex-direction: column; gap: 6px; }
 
@@ -712,11 +714,11 @@ a:hover { color: var(--lantern); }
 }
 
 /* --------------------------------------------------------------------------
-   Type pass: everything pixel, long text in VT323 at a reading size.
-   "Easier reading" swaps passages and verses to a book face.
+   Type pass: pixel for headings, titles, menus and buttons; Crimson Pro for
+   everything you read. "Easier reading" makes that text larger and airier.
    -------------------------------------------------------------------------- */
 
-body { line-height: 1.3; -webkit-font-smoothing: none; }
+body { line-height: 1.55; }
 
 .mdb-h1 {
   line-height: 1.35;
@@ -728,14 +730,14 @@ body { line-height: 1.3; -webkit-font-smoothing: none; }
 .mdb-epigraph { display: flex; flex-direction: column; gap: 4px; }
 .mdb-epigraph p { margin: 0; font-size: var(--t-lg); color: var(--bone); }
 
-.mdb-lede { font-size: var(--t-lg); line-height: 1.3; }
+.mdb-lede { font-size: var(--t-lg); line-height: 1.45; }
 .mdb-field::placeholder { font-style: normal; }
-.mdb-field { font-size: var(--t-lg); line-height: 1.25; }
+.mdb-field { font-size: var(--t-md); line-height: 1.45; }
 .mdb-chart .mdb-field { font-size: var(--t-md); }
 .mdb-label { line-height: 1.6; }
 .mdb-btn { letter-spacing: 0.04em; padding: 16px 22px 15px; }
 .mdb-btn--quiet { padding: 12px 14px 11px; }
-.mdb-chip span { font-family: var(--ui); font-size: var(--t-sm); padding: 4px 12px 3px; }
+.mdb-chip span { font-family: var(--ui); font-size: var(--t-sm); padding: 5px 12px 4px; }
 .mdb-cite { font-size: var(--t-sm); }
 .mdb-gam-head, .mdb-apoc-head { line-height: 1.6; }
 .mdb-crew { color: var(--fog); }
@@ -743,21 +745,16 @@ body { line-height: 1.3; -webkit-font-smoothing: none; }
 
 .mdb-passage, .mdb-apoc-verse, .mdb-pull p, .mdb-log-entry p {
   font-family: var(--text);
-  font-size: 1.5rem;
-  line-height: 1.3;
+  font-size: var(--t-read);
+  line-height: var(--lh-read);
 }
 .mdb-apoc-title { font-family: var(--ui); font-size: var(--t-lg); }
-.mdb-apoc-verse::first-letter { font-size: 1.6em; line-height: 1; margin: 0.12em 0.18em 0 0; }
+.mdb-apoc-verse::first-letter { font-size: 1.9em; line-height: 1; margin: 0.12em 0.18em 0 0; }
 
-html.easy-read { --text: var(--read); }
-html.easy-read .mdb-passage,
-html.easy-read .mdb-apoc-verse,
-html.easy-read .mdb-pull p,
-html.easy-read .mdb-log-entry p { font-size: 1.15rem; line-height: 1.65; -webkit-font-smoothing: antialiased; }
-html.easy-read .mdb-apoc-verse::first-letter { font-size: 2.1em; }
+html.easy-read { --t-read: 1.4rem; --lh-read: 1.75; }
 
-.mdb-drift { font-size: 1.3rem; }
-.cc-window { font-family: var(--ui); font-size: var(--t-sm); line-height: 1.25; }
+.mdb-drift { font-size: 1.15rem; }
+.cc-window { font-family: var(--ui); font-size: var(--t-sm); line-height: 1.4; }
 
 /* --------------------------------------------------------------------------
    Reading the book: /read and /read/chapter-N
@@ -819,13 +816,11 @@ html.easy-read .mdb-apoc-verse::first-letter { font-size: 2.1em; }
 .rd-p {
   margin: 0 0 0.75em;
   font-family: var(--text);
-  font-size: 1.5rem;
-  line-height: 1.3;
+  font-size: var(--t-read);
+  line-height: var(--lh-read);
   max-width: 36em;
 }
-.rd-p.rd-fnote { font-size: 1.2rem; color: var(--fog); }
-html.easy-read .rd-p { font-size: 1.15rem; line-height: 1.65; }
-html.easy-read .rd-p.rd-fnote { font-size: 0.95rem; }
+.rd-p.rd-fnote { font-size: 0.85em; color: var(--fog); }
 
 /* the verse number that links can land on; hidden in verse mode */
 .rd-mark {
