@@ -485,7 +485,21 @@ TOPIC_FOLD = 10       # passages visible before "Show more"
 CATEGORY_NAMES = {"themes": "Themes", "feeling": "Feeling", "vibe": "Vibe", "symbolism": "Symbolism",
                   "literary_motifs": "Literary motifs", "entities": "People, places & things"}
 
+def _build_ordered_topic(topic):
+    # A hand-ranked page (e.g. the famous quotes): every listed verse, in the given order,
+    # each with its famous line highlighted. No star, since every verse here is famous.
+    verses = []
+    for rank, (ch, vn) in enumerate(topic["order"], 1):
+        chapter = CHAPTERS[ch]
+        verse = next(v for v in chapter["verses"] if v["verse_number"] == vn)
+        verses.append({"chapter_number": ch, "chapter_title": chapter["title"], "verse_number": vn,
+                       "text": verse["text"], "iconic": False, "rank": rank,
+                       "quote": verse.get("key_quote_text") or None})
+    return {"verses": verses, "total": len(verses), "marks": [], "iconic_count": 0, "ranked": True}
+
 def _build_topic(topic):
+    if "order" in topic:
+        return _build_ordered_topic(topic)
     wanted = set(topic["tags"])
     extra = {tuple(x) for x in topic.get("include", [])}   # hand-picked verses the tags missed
     verses, marks = [], {}
