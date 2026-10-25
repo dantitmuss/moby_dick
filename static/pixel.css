@@ -995,6 +995,16 @@ html.rd-plain .rd-verse:has(.rd-mark:target) .rd-p { animation: rd-found 3.5s ea
 .rd-tag .cc-n { color: var(--fog); font-size: 0.85em; margin-left: 4px; }
 .cc-intro p { margin: 0; }
 .cc-iconic { color: var(--lantern); margin-bottom: -4px; }
+/* The famous line inside an often-quoted verse: brass tint, the rest of the verse dimmed */
+.mdb-passage.has-quote { color: var(--fog); }
+.mdb-quote {
+  background: rgba(242, 169, 59, 0.2);   /* --brass at 20% */
+  color: var(--bone);
+  padding: 1px 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+@media (forced-colors: active) { .mdb-quote { background: Mark; color: MarkText; } }
 
 /* Etymology and Extracts: the front matter before Chapter 1 */
 .ee-book { gap: 26px; }
