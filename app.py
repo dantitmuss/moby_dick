@@ -110,11 +110,24 @@ def render_inline(para):
     """One paragraph of verse text as safe HTML, with _italics_ as <em>."""
     return Markup(re.sub(r"_([^_]+)_", r"<em>\1</em>", str(escape(para))))
 
-def render_passage(text):
+# Private-use markers for the start and end of a highlighted quote. They survive
+# escaping untouched and are swapped for <mark> tags afterwards.
+_Q_OPEN, _Q_CLOSE = "", ""
+
+def render_passage(text, quote=None):
+    """Verse text as HTML. If `quote` is given and appears in the verse, it is
+    wrapped in <mark class="mdb-quote"> (split per paragraph if it spans two)."""
+    text = text or ""
+    if quote and isinstance(quote, str) and quote in text:
+        start = text.index(quote)
+        inner = quote.replace("\n\n", f"{_Q_CLOSE}\n\n{_Q_OPEN}")
+        text = text[:start] + _Q_OPEN + inner + _Q_CLOSE + text[start + len(quote):]
     paras = []
-    for para in (text or "").split("\n\n"):
+    for para in text.split("\n\n"):
         cls = ' class="mdb-fnote"' if para.startswith("*") else ""
-        paras.append(f"<p{cls}>{render_inline(para)}</p>")
+        html = str(render_inline(para))
+        html = html.replace(_Q_OPEN, '<mark class="mdb-quote">').replace(_Q_CLOSE, "</mark>")
+        paras.append(f"<p{cls}>{html}</p>")
     return Markup("".join(paras))
 
 app.jinja_env.filters["passage"] = render_passage
@@ -486,9 +499,12 @@ def _build_topic(topic):
                         hit = True
                         marks[key] = marks.get(key, 0) + 1
             if hit:
+                iconic = (chapter["chapter_number"], verse["verse_number"]) in ICONIC
                 verses.append({"chapter_number": chapter["chapter_number"], "chapter_title": chapter["title"],
                                "verse_number": verse["verse_number"], "text": verse["text"],
-                               "iconic": (chapter["chapter_number"], verse["verse_number"]) in ICONIC})
+                               "iconic": iconic,
+                               # the famous line inside an often-quoted verse, highlighted on the page
+                               "quote": (verse.get("key_quote_text") or None) if iconic else None})
     total = len(verses)
     # The famous passages first (in book order), then the rest. If there are too many,
     # the rest are an even spread, so long topics are not cut off a third of the way in.

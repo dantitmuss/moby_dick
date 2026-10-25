@@ -10,7 +10,8 @@
   </div>
   {% endif %}
   {% if match.iconic %}<p class="mdb-cite cc-iconic">&#9733; Often quoted</p>{% endif %}
-  <div class="mdb-passage">{{ match.text | passage }}</div>
+  {% if match.quote %}<div class="mdb-passage has-quote">{{ match.text | passage(match.quote) }}</div>
+  {% else %}<div class="mdb-passage">{{ match.text | passage }}</div>{% endif %}
   <div class="mdb-cite-row">
     <p class="mdb-cite">Chapter {{ match.chapter_number }}, {{ title }} <span>&middot; verse {{ match.verse_number }}</span></p>
     <a class="mdb-context" href="/read/chapter-{{ match.chapter_number }}#{{ match.verse_number }}">Read in context &gt;</a>
