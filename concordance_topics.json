@@ -400,7 +400,8 @@
           48,
           21
         ]
-      ]
+      ],
+      "card_line": "Call me Ishmael."
     },
     {
       "slug": "ahab",
@@ -440,7 +441,8 @@
           135,
           49
         ]
-      ]
+      ],
+      "card_line": "Talk not to me of blasphemy, man; I’d strike the sun if it insulted me."
     },
     {
       "slug": "the-white-whale",
@@ -470,7 +472,8 @@
           135,
           49
         ]
-      ]
+      ],
+      "card_line": "It was the whiteness of the whale that above all things appalled me."
     },
     {
       "slug": "ishmael",
@@ -512,7 +515,8 @@
           136,
           3
         ]
-      ]
+      ],
+      "card_line": "I am tormented with an everlasting itch for things remote."
     },
     {
       "slug": "queequeg",
@@ -542,7 +546,8 @@
           3,
           70
         ]
-      ]
+      ],
+      "card_line": "Better sleep with a sober cannibal than a drunken Christian."
     },
     {
       "slug": "starbuck",
@@ -563,7 +568,8 @@
         "madness",
         "fate",
         "god-and-faith"
-      ]
+      ],
+      "card_line": "Vengeance on a dumb brute!"
     },
     {
       "slug": "obsession",
@@ -591,7 +597,8 @@
           44,
           19
         ]
-      ]
+      ],
+      "card_line": "The path to my fixed purpose is laid with iron rails, whereon my soul is grooved to run."
     },
     {
       "slug": "revenge",
@@ -612,7 +619,8 @@
         "obsession",
         "the-white-whale",
         "madness"
-      ]
+      ],
+      "card_line": "from hell’s heart I stab at thee; for hate’s sake I spit my last breath at thee."
     },
     {
       "slug": "fate",
@@ -642,7 +650,8 @@
           60,
           11
         ]
-      ]
+      ],
+      "card_line": "we are turned round and round in this world, like yonder windlass, and Fate is the handspike."
     },
     {
       "slug": "death",
@@ -665,7 +674,8 @@
         "the-sea",
         "queequeg",
         "god-and-faith"
-      ]
+      ],
+      "card_line": "Methinks we have hugely mistaken this matter of Life and Death."
     },
     {
       "slug": "isolation",
@@ -687,7 +697,8 @@
         "madness",
         "the-sea",
         "ahab"
-      ]
+      ],
+      "card_line": "in the soul of man there lies one insular Tahiti, full of peace and joy"
     },
     {
       "slug": "the-sea",
@@ -723,7 +734,8 @@
           111,
           1
         ]
-      ]
+      ],
+      "card_line": "meditation and water are wedded for ever."
     },
     {
       "slug": "man-vs-nature",
@@ -747,7 +759,8 @@
         "whales",
         "the-white-whale",
         "fate"
-      ]
+      ],
+      "card_line": "the great shroud of the sea rolled on as it rolled five thousand years ago."
     },
     {
       "slug": "madness",
@@ -774,7 +787,8 @@
           96,
           23
         ]
-      ]
+      ],
+      "card_line": "There is a wisdom that is woe; but there is a woe that is madness."
     },
     {
       "slug": "god-and-faith",
@@ -812,7 +826,8 @@
           114,
           6
         ]
-      ]
+      ],
+      "card_line": "Is it I, God, or who, that lifts this arm?"
     },
     {
       "slug": "friendship",
@@ -835,7 +850,8 @@
         "ishmael",
         "isolation",
         "starbuck"
-      ]
+      ],
+      "card_line": "see how elastic our stiff prejudices grow when love once comes to bend them."
     },
     {
       "slug": "whales",
@@ -878,7 +894,8 @@
           86,
           20
         ]
-      ]
+      ],
+      "card_line": "Oh, man! admire and model thyself after the whale!"
     },
     {
       "slug": "stubb",
@@ -909,7 +926,8 @@
           39,
           2
         ]
-      ]
+      ],
+      "card_line": "Think not, is my eleventh commandment; and sleep when you can, is my twelfth"
     },
     {
       "slug": "flask",
@@ -940,7 +958,8 @@
           48,
           21
         ]
-      ]
+      ],
+      "card_line": "with one dexterous fling landed the little man high and dry on his shoulders."
     },
     {
       "slug": "pip",
@@ -974,7 +993,8 @@
           129,
           7
         ]
-      ]
+      ],
+      "card_line": "The sea had jeeringly kept his finite body up, but drowned the infinite of his soul."
     },
     {
       "slug": "the-harpooneers",
@@ -1003,7 +1023,8 @@
           27,
           13
         ]
-      ]
+      ],
+      "card_line": "It’s a mutual, joint-stock world, in all meridians. We cannibals must help these Christians."
     },
     {
       "slug": "fedallah",
@@ -1030,7 +1051,8 @@
           117,
           5
         ]
-      ]
+      ],
+      "card_line": "Hemp only can kill thee."
     },
     {
       "slug": "peleg-and-bildad",
@@ -1059,7 +1081,8 @@
           16,
           18
         ]
-      ]
+      ],
+      "card_line": "_Lay_ not up for yourselves treasures upon earth"
     },
     {
       "slug": "father-mapple-and-jonah",
@@ -1086,7 +1109,8 @@
           9,
           18
         ]
-      ]
+      ],
+      "card_line": "And God had prepared a great fish to swallow up Jonah."
     },
     {
       "slug": "the-pequod",
@@ -1116,7 +1140,8 @@
           16,
           9
         ]
-      ]
+      ],
+      "card_line": "A cannibal of a craft, tricking herself forth in the chased bones of her enemies."
     },
     {
       "slug": "fear",
@@ -1147,7 +1172,8 @@
           42,
           1
         ]
-      ]
+      ],
+      "card_line": "Ignorance is the parent of fear"
     },
     {
       "slug": "identity",
@@ -1178,7 +1204,8 @@
           11,
           5
         ]
-      ]
+      ],
+      "card_line": "no man can ever feel his own identity aright except his eyes be closed"
     },
     {
       "slug": "leadership-and-authority",
@@ -1210,7 +1237,8 @@
           109,
           8
         ]
-      ]
+      ],
+      "card_line": "There is one God that is Lord over the earth, and one Captain that is lord over the Pequod."
     },
     {
       "slug": "rebellion-and-mutiny",
@@ -1234,7 +1262,8 @@
         "starbuck",
         "courage-and-defiance",
         "ahab"
-      ]
+      ],
+      "card_line": "I’ll hold the musket boldly while I think."
     },
     {
       "slug": "pride",
@@ -1262,7 +1291,8 @@
           124,
           13
         ]
-      ]
+      ],
+      "card_line": "In his fiery eyes of scorn and triumph, you then saw Ahab in all his fatal pride."
     },
     {
       "slug": "perception-and-reality",
@@ -1300,7 +1330,8 @@
           42,
           29
         ]
-      ]
+      ],
+      "card_line": "All visible objects, man, are but as pasteboard masks."
     },
     {
       "slug": "despair",
@@ -1331,7 +1362,8 @@
           96,
           23
         ]
-      ]
+      ],
+      "card_line": "God! God! God!—crack my heart!—stave my brain!"
     },
     {
       "slug": "courage-and-defiance",
@@ -1363,7 +1395,8 @@
           26,
           6
         ]
-      ]
+      ],
+      "card_line": "an utterly fearless man is a far more dangerous comrade than a coward."
     },
     {
       "slug": "mystery",
@@ -1394,7 +1427,8 @@
           1,
           13
         ]
-      ]
+      ],
+      "card_line": "It is the image of the ungraspable phantom of life; and this is the key to it all."
     },
     {
       "slug": "awe",
@@ -1428,7 +1462,8 @@
           111,
           1
         ]
-      ]
+      ],
+      "card_line": "amid the tornadoed Atlantic of my being, do I myself still for ever centrally disport in mute calm"
     },
     {
       "slug": "humour",
@@ -1463,7 +1498,8 @@
           49,
           2
         ]
-      ]
+      ],
+      "card_line": "I know not all that may be coming, but be it what it will, I’ll go to it laughing."
     },
     {
       "slug": "melancholy",
@@ -1497,7 +1533,8 @@
           16,
           9
         ]
-      ]
+      ],
+      "card_line": "whenever it is a damp, drizzly November in my soul"
     },
     {
       "slug": "the-hunt",
@@ -1528,7 +1565,8 @@
           135,
           49
         ]
-      ]
+      ],
+      "card_line": "There she blows!"
     },
     {
       "slug": "storms-and-weather",
@@ -1562,7 +1600,8 @@
           119,
           19
         ]
-      ]
+      ],
+      "card_line": "the white flame but lights the way to the White Whale"
     },
     {
       "slug": "nantucket",
@@ -1590,7 +1629,8 @@
           14,
           1
         ]
-      ]
+      ],
+      "card_line": "Nantucket! Take out your map and look at it."
     },
     {
       "slug": "the-doubloon",
@@ -1621,7 +1661,8 @@
           99,
           20
         ]
-      ]
+      ],
+      "card_line": "I look, you look, he looks; we look, ye look, they look."
     },
     {
       "slug": "survival",
@@ -1647,7 +1688,8 @@
           136,
           3
         ]
-      ]
+      ],
+      "card_line": "Buoyed up by that coffin, for almost one whole day and night, I floated on a soft and dirgelike main."
     }
   ]
 }

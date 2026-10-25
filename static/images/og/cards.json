@@ -1,0 +1,917 @@
+{
+ "/": {
+  "file": "images/og/home.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The Moby-Dick Bible: Ask the book anything. “Call me Ishmael.”",
+  "v": "290a784dc4"
+ },
+ "/read": {
+  "file": "images/og/read.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The Moby-Dick Bible: Read the whole book. “It is not down in any map; true places never are.”",
+  "v": "b2f2ab26e0"
+ },
+ "/concordance": {
+  "file": "images/og/concordance.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The Moby-Dick Bible: The concordance. “I try all things; I achieve what I can.”",
+  "v": "73f0c4c66e"
+ },
+ "/about": {
+  "file": "images/og/about.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The Moby-Dick Bible: About this site. “This whole book is but a draught—nay, but the draught of a draught.”",
+  "v": "f48e6dec4a"
+ },
+ "/read/etymology-and-extracts": {
+  "file": "images/og/etymology-and-extracts.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Before Chapter 1: Etymology and Extracts. “He loved to dust his old grammars; it somehow mildly reminded him of his mortality.”",
+  "v": "3ff06525d3"
+ },
+ "/concordance/famous-quotes": {
+  "file": "images/og/topic-famous-quotes.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: The most famous quotes. “Call me Ishmael.”",
+  "v": "d69cbe0837"
+ },
+ "/concordance/ahab": {
+  "file": "images/og/topic-ahab.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Ahab. “Talk not to me of blasphemy, man; I’d strike the sun if it insulted me.”",
+  "v": "a282668d39"
+ },
+ "/concordance/the-white-whale": {
+  "file": "images/og/topic-the-white-whale.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: The White Whale. “It was the whiteness of the whale that above all things appalled me.”",
+  "v": "2a5af5db94"
+ },
+ "/concordance/ishmael": {
+  "file": "images/og/topic-ishmael.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Ishmael. “I am tormented with an everlasting itch for things remote.”",
+  "v": "25011b5501"
+ },
+ "/concordance/queequeg": {
+  "file": "images/og/topic-queequeg.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Queequeg. “Better sleep with a sober cannibal than a drunken Christian.”",
+  "v": "4dfc97f447"
+ },
+ "/concordance/starbuck": {
+  "file": "images/og/topic-starbuck.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Starbuck. “Vengeance on a dumb brute!”",
+  "v": "ce31c9c4f5"
+ },
+ "/concordance/obsession": {
+  "file": "images/og/topic-obsession.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Obsession. “The path to my fixed purpose is laid with iron rails, whereon my soul is grooved to run.”",
+  "v": "dc1f39c425"
+ },
+ "/concordance/revenge": {
+  "file": "images/og/topic-revenge.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Revenge. “from hell’s heart I stab at thee; for hate’s sake I spit my last breath at thee.”",
+  "v": "d7f91812f7"
+ },
+ "/concordance/fate": {
+  "file": "images/og/topic-fate.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Fate. “we are turned round and round in this world, like yonder windlass, and Fate is the handspike.”",
+  "v": "a830f6364d"
+ },
+ "/concordance/death": {
+  "file": "images/og/topic-death.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Death. “Methinks we have hugely mistaken this matter of Life and Death.”",
+  "v": "d3135fb8a0"
+ },
+ "/concordance/isolation": {
+  "file": "images/og/topic-isolation.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Isolation and Loneliness. “in the soul of man there lies one insular Tahiti, full of peace and joy”",
+  "v": "6594ffcd55"
+ },
+ "/concordance/the-sea": {
+  "file": "images/og/topic-the-sea.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: The Sea. “meditation and water are wedded for ever.”",
+  "v": "4ae0c2e600"
+ },
+ "/concordance/man-vs-nature": {
+  "file": "images/og/topic-man-vs-nature.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Man vs. Nature. “the great shroud of the sea rolled on as it rolled five thousand years ago.”",
+  "v": "51ec31d0ed"
+ },
+ "/concordance/madness": {
+  "file": "images/og/topic-madness.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Madness. “There is a wisdom that is woe; but there is a woe that is madness.”",
+  "v": "4ec9525ee6"
+ },
+ "/concordance/god-and-faith": {
+  "file": "images/og/topic-god-and-faith.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: God and Faith. “Is it I, God, or who, that lifts this arm?”",
+  "v": "00d838927b"
+ },
+ "/concordance/friendship": {
+  "file": "images/og/topic-friendship.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Friendship. “see how elastic our stiff prejudices grow when love once comes to bend them.”",
+  "v": "6ddc52b69d"
+ },
+ "/concordance/whales": {
+  "file": "images/og/topic-whales.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Whales. “Oh, man! admire and model thyself after the whale!”",
+  "v": "79cc323bdf"
+ },
+ "/concordance/stubb": {
+  "file": "images/og/topic-stubb.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Stubb. “Think not, is my eleventh commandment; and sleep when you can, is my twelfth”",
+  "v": "eed157ff4c"
+ },
+ "/concordance/flask": {
+  "file": "images/og/topic-flask.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Flask. “with one dexterous fling landed the little man high and dry on his shoulders.”",
+  "v": "31378e779b"
+ },
+ "/concordance/pip": {
+  "file": "images/og/topic-pip.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Pip. “The sea had jeeringly kept his finite body up, but drowned the infinite of his soul.”",
+  "v": "f79788fd5e"
+ },
+ "/concordance/the-harpooneers": {
+  "file": "images/og/topic-the-harpooneers.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: The harpooneers. “It’s a mutual, joint-stock world, in all meridians. We cannibals must help these Christians.”",
+  "v": "c727731395"
+ },
+ "/concordance/fedallah": {
+  "file": "images/og/topic-fedallah.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Fedallah. “Hemp only can kill thee.”",
+  "v": "57fd76e029"
+ },
+ "/concordance/peleg-and-bildad": {
+  "file": "images/og/topic-peleg-and-bildad.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Peleg and Bildad. “Lay not up for yourselves treasures upon earth”",
+  "v": "c1f5f10f5c"
+ },
+ "/concordance/father-mapple-and-jonah": {
+  "file": "images/og/topic-father-mapple-and-jonah.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Father Mapple and Jonah. “And God had prepared a great fish to swallow up Jonah.”",
+  "v": "c889cf87ff"
+ },
+ "/concordance/the-pequod": {
+  "file": "images/og/topic-the-pequod.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: The Pequod. “A cannibal of a craft, tricking herself forth in the chased bones of her enemies.”",
+  "v": "a53eba3c5f"
+ },
+ "/concordance/fear": {
+  "file": "images/og/topic-fear.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Fear. “Ignorance is the parent of fear”",
+  "v": "03e537268e"
+ },
+ "/concordance/identity": {
+  "file": "images/og/topic-identity.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Identity. “no man can ever feel his own identity aright except his eyes be closed”",
+  "v": "0d3e5520e0"
+ },
+ "/concordance/leadership-and-authority": {
+  "file": "images/og/topic-leadership-and-authority.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Leadership and authority. “There is one God that is Lord over the earth, and one Captain that is lord over the Pequod.”",
+  "v": "0db5feaf31"
+ },
+ "/concordance/rebellion-and-mutiny": {
+  "file": "images/og/topic-rebellion-and-mutiny.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Rebellion and mutiny. “I’ll hold the musket boldly while I think.”",
+  "v": "ed254ffb2a"
+ },
+ "/concordance/pride": {
+  "file": "images/og/topic-pride.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Pride. “In his fiery eyes of scorn and triumph, you then saw Ahab in all his fatal pride.”",
+  "v": "25c4c197c0"
+ },
+ "/concordance/perception-and-reality": {
+  "file": "images/og/topic-perception-and-reality.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Perception and reality. “All visible objects, man, are but as pasteboard masks.”",
+  "v": "b3ae608efa"
+ },
+ "/concordance/despair": {
+  "file": "images/og/topic-despair.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Despair. “God! God! God!—crack my heart!—stave my brain!”",
+  "v": "9549d936cf"
+ },
+ "/concordance/courage-and-defiance": {
+  "file": "images/og/topic-courage-and-defiance.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Courage and defiance. “an utterly fearless man is a far more dangerous comrade than a coward.”",
+  "v": "0bfedb30ba"
+ },
+ "/concordance/mystery": {
+  "file": "images/og/topic-mystery.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Mystery and the unknown. “It is the image of the ungraspable phantom of life; and this is the key to it all.”",
+  "v": "b9e99035de"
+ },
+ "/concordance/awe": {
+  "file": "images/og/topic-awe.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Awe and the sublime. “amid the tornadoed Atlantic of my being, do I myself still for ever centrally disport in mute calm”",
+  "v": "035a564e82"
+ },
+ "/concordance/humour": {
+  "file": "images/og/topic-humour.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Humour. “I know not all that may be coming, but be it what it will, I’ll go to it laughing.”",
+  "v": "58f44df411"
+ },
+ "/concordance/melancholy": {
+  "file": "images/og/topic-melancholy.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Melancholy. “whenever it is a damp, drizzly November in my soul”",
+  "v": "fe12a6dc01"
+ },
+ "/concordance/the-hunt": {
+  "file": "images/og/topic-the-hunt.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: The hunt. “There she blows!”",
+  "v": "253e55b12b"
+ },
+ "/concordance/storms-and-weather": {
+  "file": "images/og/topic-storms-and-weather.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Storms and weather. “the white flame but lights the way to the White Whale”",
+  "v": "a22973d51d"
+ },
+ "/concordance/nantucket": {
+  "file": "images/og/topic-nantucket.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Nantucket. “Nantucket! Take out your map and look at it.”",
+  "v": "0f29f4d282"
+ },
+ "/concordance/the-doubloon": {
+  "file": "images/og/topic-the-doubloon.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: The doubloon. “I look, you look, he looks; we look, ye look, they look.”",
+  "v": "5bec78b8ca"
+ },
+ "/concordance/survival": {
+  "file": "images/og/topic-survival.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. The concordance: Survival. “Buoyed up by that coffin, for almost one whole day and night, I floated on a soft and dirgelike main.”",
+  "v": "866b7b4d00"
+ },
+ "/read/chapter-1": {
+  "file": "images/og/chapter-1.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 1: Loomings. “Call me Ishmael.”",
+  "v": "976fb6ccf2"
+ },
+ "/read/chapter-2": {
+  "file": "images/og/chapter-2.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 2: The Carpet-Bag. “I stuffed a shirt or two into my old carpet-bag, tucked it under my arm, and started for Cape Horn and the Pacific.”",
+  "v": "59ea5174f4"
+ },
+ "/read/chapter-3": {
+  "file": "images/og/chapter-3.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 3: The Spouter-Inn. “Better sleep with a sober cannibal than a drunken Christian.”",
+  "v": "7d81db040c"
+ },
+ "/read/chapter-4": {
+  "file": "images/og/chapter-4.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 4: The Counterpane. “Upon waking next morning about daylight, I found Queequeg’s arm thrown over me in the most loving and affectionate manner.”",
+  "v": "092d51084e"
+ },
+ "/read/chapter-5": {
+  "file": "images/og/chapter-5.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 5: Breakfast. “I quickly followed suit, and descending into the bar-room accosted the grinning landlord very pleasantly.”",
+  "v": "ca30e2b88d"
+ },
+ "/read/chapter-6": {
+  "file": "images/og/chapter-6.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 6: The Street. “In New Bedford, fathers, they say, give whales for dowers to their daughters, and portion off their nieces with a few porpoises a-piece.”",
+  "v": "719f959f53"
+ },
+ "/read/chapter-7": {
+  "file": "images/og/chapter-7.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 7: The Chapel. “In this same New Bedford there stands a Whaleman’s Chapel, and few are the moody fishermen, shortly bound for the Indian Ocean or Pacific, who fail…”",
+  "v": "7fe2fcc38d"
+ },
+ "/read/chapter-8": {
+  "file": "images/og/chapter-8.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 8: The Pulpit. “I had not been seated very long ere a man of a certain venerable robustness entered; immediately as the storm-pelted door flew back upon admitting…”",
+  "v": "473840528b"
+ },
+ "/read/chapter-9": {
+  "file": "images/og/chapter-9.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 9: The Sermon. “In this world, shipmates, sin that pays its way can travel freely, and without a passport; whereas Virtue, if a pauper, is stopped at all frontiers.”",
+  "v": "c1a4de7f22"
+ },
+ "/read/chapter-10": {
+  "file": "images/og/chapter-10.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 10: A Bosom Friend. “there is no place like a bed for confidential disclosures between friends.”",
+  "v": "5b7f1093d3"
+ },
+ "/read/chapter-11": {
+  "file": "images/og/chapter-11.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 11: Nightgown. “see how elastic our stiff prejudices grow when love once comes to bend them.”",
+  "v": "eb86d8da12"
+ },
+ "/read/chapter-12": {
+  "file": "images/og/chapter-12.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 12: Biographical. “It is not down in any map; true places never are.”",
+  "v": "3c6ed069aa"
+ },
+ "/read/chapter-13": {
+  "file": "images/og/chapter-13.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 13: Wheelbarrow. “It’s a mutual, joint-stock world, in all meridians. We cannibals must help these Christians.”",
+  "v": "c84deb2c80"
+ },
+ "/read/chapter-14": {
+  "file": "images/og/chapter-14.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 14: Nantucket. “Nothing more happened on the passage worthy the mentioning; so, after a fine run, we safely arrived in Nantucket.”",
+  "v": "13fe9fe5c1"
+ },
+ "/read/chapter-15": {
+  "file": "images/og/chapter-15.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 15: Chowder. “It was quite late in the evening when the little Moss came snugly to anchor, and Queequeg and I went ashore; so we could attend to no business that…”",
+  "v": "953f6a92f5"
+ },
+ "/read/chapter-16": {
+  "file": "images/og/chapter-16.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 16: The Ship. “Be sure of this, O young ambition, all mortal greatness is but disease.”",
+  "v": "606818dfea"
+ },
+ "/read/chapter-17": {
+  "file": "images/og/chapter-17.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 17: The Ramadan. “hell is an idea first born on an undigested apple-dumpling”",
+  "v": "4a1d61e9ca"
+ },
+ "/read/chapter-18": {
+  "file": "images/og/chapter-18.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 18: His Mark. “As we were walking down the end of the wharf towards the ship, Queequeg carrying his harpoon, Captain Peleg in his gruff voice loudly hailed us from…”",
+  "v": "3779553407"
+ },
+ "/read/chapter-19": {
+  "file": "images/og/chapter-19.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 19: The Prophet. “It is the easiest thing in the world for a man to look as if he had a great secret in him.”",
+  "v": "20a398484a"
+ },
+ "/read/chapter-20": {
+  "file": "images/og/chapter-20.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 20: All Astir. “without once laying my eyes on the man who was to be the absolute dictator of it”",
+  "v": "3a1e27f07e"
+ },
+ "/read/chapter-21": {
+  "file": "images/og/chapter-21.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 21: Going Aboard. “It was nearly six o’clock, but only grey imperfect misty dawn, when we drew nigh the wharf.”",
+  "v": "ed36404752"
+ },
+ "/read/chapter-22": {
+  "file": "images/og/chapter-22.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 22: Merry Christmas. “At length, towards noon, upon the final dismissal of the ship’s riggers, and after the Pequod had been hauled out from the wharf, and after the…”",
+  "v": "4ea2a5c70c"
+ },
+ "/read/chapter-23": {
+  "file": "images/og/chapter-23.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 23: The Lee Shore. “all deep, earnest thinking is but the intrepid effort of the soul to keep the open independence of her sea”",
+  "v": "24a144c81a"
+ },
+ "/read/chapter-24": {
+  "file": "images/og/chapter-24.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 24: The Advocate. “As Queequeg and I are now fairly embarked in this business of whaling; and as this business of whaling has somehow come to be regarded among landsmen…”",
+  "v": "3cb2120bb7"
+ },
+ "/read/chapter-25": {
+  "file": "images/og/chapter-25.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 25: Postscript. “In behalf of the dignity of whaling, I would fain advance naught but substantiated facts.”",
+  "v": "4fabfe5c26"
+ },
+ "/read/chapter-26": {
+  "file": "images/og/chapter-26.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 26: Knights and Squires. “an utterly fearless man is a far more dangerous comrade than a coward.”",
+  "v": "4d876f3f31"
+ },
+ "/read/chapter-27": {
+  "file": "images/og/chapter-27.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 27: Knights and Squires. “Stubb was the second mate.”",
+  "v": "dc413cfec6"
+ },
+ "/read/chapter-28": {
+  "file": "images/og/chapter-28.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 28: Ahab. “For several days after leaving Nantucket, nothing above hatches was seen of Captain Ahab.”",
+  "v": "9e29e9015c"
+ },
+ "/read/chapter-29": {
+  "file": "images/og/chapter-29.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 29: Enter Ahab; to Him, Stubb. “is he mad? Anyway there’s something on his mind, as sure as there must be something on a deck when it cracks.”",
+  "v": "ebe1248534"
+ },
+ "/read/chapter-30": {
+  "file": "images/og/chapter-30.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 30: The Pipe. “When Stubb had departed, Ahab stood for a while leaning over the bulwarks; and then, as had been usual with him of late, calling a sailor of the…”",
+  "v": "0c313a77db"
+ },
+ "/read/chapter-31": {
+  "file": "images/og/chapter-31.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 31: Queen Mab. “Next morning Stubb accosted Flask.”",
+  "v": "94f004f819"
+ },
+ "/read/chapter-32": {
+  "file": "images/og/chapter-32.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 32: Cetology. “For we are all killers, on land and on sea; Bonapartes and Sharks included.”",
+  "v": "898eb9bc10"
+ },
+ "/read/chapter-33": {
+  "file": "images/og/chapter-33.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 33: The Specksnyder. “Concerning the officers of the whale-craft, this seems as good a place as any to set down a little domestic peculiarity on ship-board, arising from…”",
+  "v": "0282b24893"
+ },
+ "/read/chapter-34": {
+  "file": "images/og/chapter-34.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 34: The Cabin-Table. “It is noon; and Dough-Boy, the steward, thrusting his pale loaf-of-bread face from the cabin-scuttle, announces dinner to his lord and master; who…”",
+  "v": "d207a2e8e6"
+ },
+ "/read/chapter-35": {
+  "file": "images/og/chapter-35.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 35: The Mast-Head. “It was during the more pleasant weather, that in due rotation with the other seamen my first mast-head came round.”",
+  "v": "f0ba758f5e"
+ },
+ "/read/chapter-36": {
+  "file": "images/og/chapter-36.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 36: The Quarter-Deck. “Talk not to me of blasphemy, man; I’d strike the sun if it insulted me.”",
+  "v": "2606c1cd8c"
+ },
+ "/read/chapter-37": {
+  "file": "images/og/chapter-37.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 37: Sunset. “The path to my fixed purpose is laid with iron rails, whereon my soul is grooved to run.”",
+  "v": "b784d2213a"
+ },
+ "/read/chapter-38": {
+  "file": "images/og/chapter-38.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 38: Dusk. “(By the Mainmast; Starbuck leaning against it.)”",
+  "v": "702f991539"
+ },
+ "/read/chapter-39": {
+  "file": "images/og/chapter-39.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 39: First Night-Watch. “I know not all that may be coming, but be it what it will, I’ll go to it laughing.”",
+  "v": "d0c93afca7"
+ },
+ "/read/chapter-40": {
+  "file": "images/og/chapter-40.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 40: Midnight, Forecastle. “HARPOONEERS AND SAILORS.”",
+  "v": "e842235468"
+ },
+ "/read/chapter-41": {
+  "file": "images/og/chapter-41.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 41: Moby Dick. “all my means are sane, my motive and my object mad.”",
+  "v": "8ab6067ef7"
+ },
+ "/read/chapter-42": {
+  "file": "images/og/chapter-42.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 42: The Whiteness of the Whale. “It was the whiteness of the whale that above all things appalled me.”",
+  "v": "7baf52d7f2"
+ },
+ "/read/chapter-43": {
+  "file": "images/og/chapter-43.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 43: Hark!. “HIST!",
+  "v": "fee8f00539"
+ },
+ "/read/chapter-44": {
+  "file": "images/og/chapter-44.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 44: The Chart. “God help thee, old man, thy thoughts have created a creature in thee; and he whose intense thinking thus makes him a Prometheus; a vulture feeds upon…”",
+  "v": "53df0f9f3a"
+ },
+ "/read/chapter-45": {
+  "file": "images/og/chapter-45.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 45: The Affidavit. “For this is one of those disheartening instances where truth requires full as much bolstering as error.”",
+  "v": "0993a18ec6"
+ },
+ "/read/chapter-46": {
+  "file": "images/og/chapter-46.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 46: Surmises. “Though, consumed with the hot fire of his purpose, Ahab in all his thoughts and actions ever had in view the ultimate capture of Moby Dick; though he…”",
+  "v": "bbb28ec19c"
+ },
+ "/read/chapter-47": {
+  "file": "images/og/chapter-47.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 47: The Mat-Maker. “It was a cloudy, sultry afternoon; the seamen were lazily lounging about the decks, or vacantly gazing over into the lead-coloured waters.”",
+  "v": "f25e24b069"
+ },
+ "/read/chapter-48": {
+  "file": "images/og/chapter-48.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 48: The First Lowering. “with one dexterous fling landed the little man high and dry on his shoulders.”",
+  "v": "dc9509ee1a"
+ },
+ "/read/chapter-49": {
+  "file": "images/og/chapter-49.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 49: The Hyena. “There is nothing like the perils of whaling to breed this free and easy sort of genial, desperado philosophy”",
+  "v": "28a78627e5"
+ },
+ "/read/chapter-50": {
+  "file": "images/og/chapter-50.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 50: Ahab’s Boat and Crew. Fedallah. “Who would have thought it, Flask!”",
+  "v": "54432704ef"
+ },
+ "/read/chapter-51": {
+  "file": "images/og/chapter-51.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 51: The Spirit-Spout. “Days, weeks passed, and under easy sail, the ivory Pequod had slowly swept across four several cruising-grounds; that off the Azores; off the Cape de…”",
+  "v": "d8820028c2"
+ },
+ "/read/chapter-52": {
+  "file": "images/og/chapter-52.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 52: The Albatross. “South-eastward from the Cape, off the distant Crozetts, a good cruising ground for Right Whalemen, a sail loomed ahead, the Goney (Albatross) by name.”",
+  "v": "5677c71450"
+ },
+ "/read/chapter-53": {
+  "file": "images/og/chapter-53.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 53: The Gam. “The ostensible reason why Ahab did not go on board of the whaler we had spoken was this: the wind and sea betokened storms.”",
+  "v": "1cfdc8c2ef"
+ },
+ "/read/chapter-54": {
+  "file": "images/og/chapter-54.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 54: The Town-Ho’s Story. “(As told at the Golden Inn.)”",
+  "v": "abf314d79e"
+ },
+ "/read/chapter-55": {
+  "file": "images/og/chapter-55.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 55: Of the Monstrous Pictures of Whales. “I shall ere long paint to you as well as one can without canvas, something like the true form of the whale as he actually appears to the eye of the…”",
+  "v": "e3d54187ac"
+ },
+ "/read/chapter-56": {
+  "file": "images/og/chapter-56.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 56: Of the Less Erroneous Pictures of Whales, and the True Pictures of Whaling Scenes. “In connexion with the monstrous pictures of whales, I am strongly tempted here to enter upon those still more monstrous stories of…”",
+  "v": "33c7a96ebf"
+ },
+ "/read/chapter-57": {
+  "file": "images/og/chapter-57.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 57: Of Whales in Paint; in Teeth; in Wood; in Sheet-Iron; in Stone; in Mountains; in Stars. “Your true whale-hunter is as much a savage as an Iroquois.”",
+  "v": "11a00218f2"
+ },
+ "/read/chapter-58": {
+  "file": "images/og/chapter-58.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 58: Brit. “For as this appalling ocean surrounds the verdant land, so in the soul of man there lies one insular Tahiti, full of peace and joy, but encompassed…”",
+  "v": "96d414e420"
+ },
+ "/read/chapter-59": {
+  "file": "images/og/chapter-59.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 59: Squid. “Slowly wading through the meadows of brit, the Pequod still held on her way north-eastward towards the island of Java; a gentle air impelling her…”",
+  "v": "5a96723fe9"
+ },
+ "/read/chapter-60": {
+  "file": "images/og/chapter-60.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 60: The Line. “All men live enveloped in whale-lines. All are born with halters round their necks; but it is only when caught in the swift, sudden turn of death…”",
+  "v": "2fa641310a"
+ },
+ "/read/chapter-61": {
+  "file": "images/og/chapter-61.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 61: Stubb Kills a Whale. “If to Starbuck the apparition of the Squid was a thing of portents, to Queequeg it was quite a different object.”",
+  "v": "551850ea3c"
+ },
+ "/read/chapter-62": {
+  "file": "images/og/chapter-62.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 62: The Dart. “A word concerning an incident in the last chapter.”",
+  "v": "4f33158bbd"
+ },
+ "/read/chapter-63": {
+  "file": "images/og/chapter-63.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 63: The Crotch. “Out of the trunk, the branches grow; out of them, the twigs.”",
+  "v": "3f5ce1c3db"
+ },
+ "/read/chapter-64": {
+  "file": "images/og/chapter-64.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 64: Stubb’s Supper. “Stubb’s whale had been killed some distance from the ship.”",
+  "v": "a0ca0573ce"
+ },
+ "/read/chapter-65": {
+  "file": "images/og/chapter-65.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 65: The Whale as a Dish. “But Stubb, he eats the whale by its own light, does he? and that is adding insult to injury, is it?”",
+  "v": "a266f59757"
+ },
+ "/read/chapter-66": {
+  "file": "images/og/chapter-66.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 66: The Shark Massacre. “When in the Southern Fishery, a captured Sperm Whale, after long and weary toil, is brought alongside late at night, it is not, as a general thing at…”",
+  "v": "89f12f7caa"
+ },
+ "/read/chapter-67": {
+  "file": "images/og/chapter-67.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 67: Cutting In. “It was a Saturday night, and such a Sabbath as followed!”",
+  "v": "3ee556ec31"
+ },
+ "/read/chapter-68": {
+  "file": "images/og/chapter-68.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 68: The Blanket. “Oh, man! admire and model thyself after the whale! Do thou, too, remain warm among ice. Do thou, too, live in this world without being of it.”",
+  "v": "f9d18c5afd"
+ },
+ "/read/chapter-69": {
+  "file": "images/og/chapter-69.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 69: The Funeral. “Haul in the chains!",
+  "v": "ef669e449b"
+ },
+ "/read/chapter-70": {
+  "file": "images/og/chapter-70.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 70: The Sphynx. “O head! thou hast seen enough to split the planets and make an infidel of Abraham, and not one syllable is thine!”",
+  "v": "f711a78fb8"
+ },
+ "/read/chapter-71": {
+  "file": "images/og/chapter-71.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 71: The Jeroboam’s Story. “Hand in hand, ship and breeze blew on; but the breeze came faster than the ship, and soon the Pequod began to rock.”",
+  "v": "eb6b8dc47c"
+ },
+ "/read/chapter-72": {
+  "file": "images/og/chapter-72.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 72: The Monkey-Rope. “In the tumultuous business of cutting-in and attending to a whale, there is much running backwards and forwards among the crew.”",
+  "v": "917eaf7fbc"
+ },
+ "/read/chapter-73": {
+  "file": "images/og/chapter-73.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 73: Stubb and Flask kill a Right Whale; and Then Have a Talk over Him. “It must be borne in mind that all this time we have a Sperm Whale’s prodigious head hanging to the Pequod’s side.”",
+  "v": "98f84526e7"
+ },
+ "/read/chapter-74": {
+  "file": "images/og/chapter-74.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 74: The Sperm Whale’s Head—Contrasted View. “Here, now, are two great whales, laying their heads together; let us join them, and lay together our own.”",
+  "v": "763d3d5811"
+ },
+ "/read/chapter-75": {
+  "file": "images/og/chapter-75.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 75: The Right Whale’s Head—Contrasted View. “Crossing the deck, let us now have a good long look at the Right Whale’s head.”",
+  "v": "5553e3264f"
+ },
+ "/read/chapter-76": {
+  "file": "images/og/chapter-76.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 76: The Battering-Ram. “Ere quitting, for the nonce, the Sperm Whale’s head, I would have you, as a sensible physiologist, simply—particularly remark its front aspect, in…”",
+  "v": "7c93eab16c"
+ },
+ "/read/chapter-77": {
+  "file": "images/og/chapter-77.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 77: The Great Heidelburgh Tun. “Now comes the Baling of the Case.”",
+  "v": "d1060db6d9"
+ },
+ "/read/chapter-78": {
+  "file": "images/og/chapter-78.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 78: Cistern and Buckets. “Nimble as a cat, Tashtego mounts aloft; and without altering his erect posture, runs straight out upon the overhanging mainyard-arm, to the part…”",
+  "v": "a3574d363e"
+ },
+ "/read/chapter-79": {
+  "file": "images/og/chapter-79.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 79: The Prairie. “I try all things; I achieve what I can.”",
+  "v": "d9c1643f5e"
+ },
+ "/read/chapter-80": {
+  "file": "images/og/chapter-80.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 80: The Nut. “If the Sperm Whale be physiognomically a Sphinx, to the phrenologist his brain seems that geometrical circle which it is impossible to square.”",
+  "v": "ff6d008479"
+ },
+ "/read/chapter-81": {
+  "file": "images/og/chapter-81.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 81: The Pequod Meets The Virgin. “The predestinated day arrived, and we duly met the ship Jungfrau, Derick De Deer, master, of Bremen.”",
+  "v": "882651cdb8"
+ },
+ "/read/chapter-82": {
+  "file": "images/og/chapter-82.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 82: The Honor and Glory of Whaling. “There are some enterprises in which a careful disorderliness is the true method.”",
+  "v": "e633f9f65a"
+ },
+ "/read/chapter-83": {
+  "file": "images/og/chapter-83.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 83: Jonah Historically Regarded. “Reference was made to the historical story of Jonah and the whale in the preceding chapter.”",
+  "v": "d79b1ee194"
+ },
+ "/read/chapter-84": {
+  "file": "images/og/chapter-84.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 84: Pitchpoling. “To make them run easily and swiftly, the axles of carriages are anointed; and for much the same purpose, some whalers perform an analogous operation…”",
+  "v": "36f9bdd322"
+ },
+ "/read/chapter-85": {
+  "file": "images/og/chapter-85.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 85: The Fountain. “That for six thousand years—and no one knows how many millions of ages before—the great whales should have been spouting all over the sea, and…”",
+  "v": "b5d8c12043"
+ },
+ "/read/chapter-86": {
+  "file": "images/og/chapter-86.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 86: The Tail. “The more I consider this mighty tail, the more do I deplore my inability to express it.”",
+  "v": "d2a4720125"
+ },
+ "/read/chapter-87": {
+  "file": "images/og/chapter-87.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 87: The Grand Armada. “amid the tornadoed Atlantic of my being, do I myself still for ever centrally disport in mute calm”",
+  "v": "82845bae3f"
+ },
+ "/read/chapter-88": {
+  "file": "images/og/chapter-88.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 88: Schools and Schoolmasters. “The previous chapter gave account of an immense body or herd of Sperm Whales, and there was also then given the probable cause inducing those vast…”",
+  "v": "547b7eeec2"
+ },
+ "/read/chapter-89": {
+  "file": "images/og/chapter-89.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 89: Fast-Fish and Loose-Fish. “The allusion to the waif and waif-poles in the last chapter but one, necessitates some account of the laws and regulations of the whale fishery, of…”",
+  "v": "a124cd22aa"
+ },
+ "/read/chapter-90": {
+  "file": "images/og/chapter-90.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 90: Heads or Tails. “De balena vero sufficit, si rex habeat caput, et regina caudam.”",
+  "v": "23973dd6ce"
+ },
+ "/read/chapter-91": {
+  "file": "images/og/chapter-91.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 91: The Pequod Meets The Rose-Bud. “In vain it was to rake for Ambergriese in the paunch of this Leviathan, insufferable fetor denying not inquiry.”",
+  "v": "f59d1385e4"
+ },
+ "/read/chapter-92": {
+  "file": "images/og/chapter-92.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 92: Ambergris. “Now this ambergris is a very curious substance, and so important as an article of commerce, that in 1791 a certain Nantucket-born Captain Coffin was…”",
+  "v": "d318b9a0d4"
+ },
+ "/read/chapter-93": {
+  "file": "images/og/chapter-93.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 93: The Castaway. “The sea had jeeringly kept his finite body up, but drowned the infinite of his soul.”",
+  "v": "b75169ef76"
+ },
+ "/read/chapter-94": {
+  "file": "images/og/chapter-94.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 94: A Squeeze of the Hand. “let us squeeze ourselves universally into the very milk and sperm of kindness.”",
+  "v": "4fa50d51a0"
+ },
+ "/read/chapter-95": {
+  "file": "images/og/chapter-95.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 95: The Cassock. “Had you stepped on board the Pequod at a certain juncture of this post-mortemizing of the whale; and had you strolled forward nigh the windlass…”",
+  "v": "9096b1d096"
+ },
+ "/read/chapter-96": {
+  "file": "images/og/chapter-96.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 96: The Try-Works. “There is a wisdom that is woe; but there is a woe that is madness.”",
+  "v": "45359a96cb"
+ },
+ "/read/chapter-97": {
+  "file": "images/og/chapter-97.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 97: The Lamp. “Had you descended from the Pequod’s try-works to the Pequod’s forecastle, where the off duty watch were sleeping, for one single moment you would…”",
+  "v": "bf4795a686"
+ },
+ "/read/chapter-98": {
+  "file": "images/og/chapter-98.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 98: Stowing Down and Clearing Up. “Already has it been related how the great leviathan is afar off descried from the mast-head; how he is chased over the watery moors, and slaughtered…”",
+  "v": "11776c4015"
+ },
+ "/read/chapter-99": {
+  "file": "images/og/chapter-99.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 99: The Doubloon. “You’ll do to give us the bare words and facts, but we come in to supply the thoughts.”",
+  "v": "7e2a4ff3e8"
+ },
+ "/read/chapter-100": {
+  "file": "images/og/chapter-100.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 100: Leg and Arm. “The Pequod, of Nantucket, Meets the Samuel Enderby, of London.”",
+  "v": "98aee300ef"
+ },
+ "/read/chapter-101": {
+  "file": "images/og/chapter-101.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 101: The Decanter. “Ere the English ship fades from sight, be it set down here, that she hailed from London, and was named after the late Samuel Enderby, merchant of…”",
+  "v": "2166f80dd5"
+ },
+ "/read/chapter-102": {
+  "file": "images/og/chapter-102.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 102: A Bower in the Arsacides. “Hitherto, in descriptively treating of the Sperm Whale, I have chiefly dwelt upon the marvels of his outer aspect; or separately and in detail upon…”",
+  "v": "4dd6ab0a3f"
+ },
+ "/read/chapter-103": {
+  "file": "images/og/chapter-103.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 103: Measurement of The Whale’s Skeleton. “In the first place, I wish to lay before you a particular, plain statement, touching the living bulk of this leviathan, whose skeleton we are briefly…”",
+  "v": "2eae132b82"
+ },
+ "/read/chapter-104": {
+  "file": "images/og/chapter-104.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 104: The Fossil Whale. “To produce a mighty book, you must choose a mighty theme. No great and enduring volume can ever be written on the flea, though many there be who have…”",
+  "v": "f745b6d8f0"
+ },
+ "/read/chapter-105": {
+  "file": "images/og/chapter-105.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 105: Does the Whale’s Magnitude Diminish?—Will He Perish?. “Inasmuch, then, as this Leviathan comes floundering down upon us from the head-waters of the Eternities, it may be fitly…”",
+  "v": "2602404778"
+ },
+ "/read/chapter-106": {
+  "file": "images/og/chapter-106.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 106: Ahab’s Leg. “The precipitating manner in which Captain Ahab had quitted the Samuel Enderby of London, had not been unattended with some small violence to his own…”",
+  "v": "7ad66403c6"
+ },
+ "/read/chapter-107": {
+  "file": "images/og/chapter-107.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 107: The Carpenter. “Seat thyself sultanically among the moons of Saturn, and take high abstracted man alone; and he seems a wonder, a grandeur, and a woe.”",
+  "v": "365cbd4791"
+ },
+ "/read/chapter-108": {
+  "file": "images/og/chapter-108.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 108: Ahab and the Carpenter. “The Deck—First Night Watch.”",
+  "v": "d8ecd0965c"
+ },
+ "/read/chapter-109": {
+  "file": "images/og/chapter-109.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 109: Ahab and Starbuck in the Cabin. “According to usage they were pumping the ship next morning; and lo!”",
+  "v": "eaf395635f"
+ },
+ "/read/chapter-110": {
+  "file": "images/og/chapter-110.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 110: Queequeg in His Coffin. “Top-heavy was the ship as a dinnerless student with all Aristotle in his head.”",
+  "v": "194450313d"
+ },
+ "/read/chapter-111": {
+  "file": "images/og/chapter-111.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 111: The Pacific. “There is, one knows not what sweet mystery about this sea, whose gently awful stirrings seem to speak of some hidden soul beneath”",
+  "v": "6f3850cc38"
+ },
+ "/read/chapter-112": {
+  "file": "images/og/chapter-112.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 112: The Blacksmith. “Availing himself of the mild, summer-cool weather that now reigned in these latitudes, and in preparation for the peculiarly active pursuits shortly…”",
+  "v": "ea9397083e"
+ },
+ "/read/chapter-113": {
+  "file": "images/og/chapter-113.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 113: The Forge. “With matted beard, and swathed in a bristling shark-skin apron, about mid-day, Perth was standing between his forge and anvil, the latter placed upon…”",
+  "v": "fda7a4398f"
+ },
+ "/read/chapter-114": {
+  "file": "images/og/chapter-114.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 114: The Gilder. “Let faith oust fact; let fancy oust memory; I look deep down and do believe.”",
+  "v": "b8c4934ae3"
+ },
+ "/read/chapter-115": {
+  "file": "images/og/chapter-115.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 115: The Pequod Meets The Bachelor. “And jolly enough were the sights and the sounds that came bearing down before the wind, some few weeks after Ahab’s harpoon had been welded.”",
+  "v": "69836e8667"
+ },
+ "/read/chapter-116": {
+  "file": "images/og/chapter-116.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 116: The Dying Whale. “Not seldom in this life, when, on the right side, fortune’s favourites sail close by us, we, though all adroop before, catch somewhat of the rushing…”",
+  "v": "1ede23ff1e"
+ },
+ "/read/chapter-117": {
+  "file": "images/og/chapter-117.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 117: The Whale Watch. “The four whales slain that evening had died wide apart; one, far to windward; one, less distant, to leeward; one ahead; one astern.”",
+  "v": "64ceb85550"
+ },
+ "/read/chapter-118": {
+  "file": "images/og/chapter-118.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 118: The Quadrant. “The season for the Line at length drew near; and every day when Ahab, coming from his cabin, cast his eyes aloft, the vigilant helmsman would…”",
+  "v": "7678041c7e"
+ },
+ "/read/chapter-119": {
+  "file": "images/og/chapter-119.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 119: The Candles. “Warmest climes but nurse the cruellest fangs: the tiger of Bengal crouches in spiced groves of ceaseless verdure.”",
+  "v": "5c20025154"
+ },
+ "/read/chapter-120": {
+  "file": "images/og/chapter-120.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 120: The Deck Towards the End of the First Night Watch. “(Ahab standing by the helm.”",
+  "v": "d56faf6f2d"
+ },
+ "/read/chapter-121": {
+  "file": "images/og/chapter-121.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 121: Midnight.—The Forecastle Bulwarks. “(Stubb and Flask mounted on them, and passing additional lashings over the anchors there hanging.)”",
+  "v": "2e8fd1ef1f"
+ },
+ "/read/chapter-122": {
+  "file": "images/og/chapter-122.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 122: Midnight Aloft.—Thunder and Lightning. “(The main-top-sail yard.—Tashtego passing new lashings around it.)”",
+  "v": "14fa3e019f"
+ },
+ "/read/chapter-123": {
+  "file": "images/og/chapter-123.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 123: The Musket. “During the most violent shocks of the Typhoon, the man at the Pequod’s jaw-bone tiller had several times been reelingly hurled to the deck by its…”",
+  "v": "9a625b8c0e"
+ },
+ "/read/chapter-124": {
+  "file": "images/og/chapter-124.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 124: The Needle. “In his fiery eyes of scorn and triumph, you then saw Ahab in all his fatal pride.”",
+  "v": "de1e64e675"
+ },
+ "/read/chapter-125": {
+  "file": "images/og/chapter-125.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 125: The Log and Line. “While now the fated Pequod had been so long afloat this voyage, the log and line had but very seldom been in use.”",
+  "v": "7c379bb898"
+ },
+ "/read/chapter-126": {
+  "file": "images/og/chapter-126.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 126: The Life-Buoy. “Steering now south-eastward by Ahab’s levelled steel, and her progress solely determined by Ahab’s level log and line; the Pequod held on her path…”",
+  "v": "90144dc907"
+ },
+ "/read/chapter-127": {
+  "file": "images/og/chapter-127.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 127: The Deck. “(The coffin laid upon two line-tubs, between the vice-bench and the open hatchway; the Carpenter caulking its seams; the string of twisted oakum…”",
+  "v": "63974399ba"
+ },
+ "/read/chapter-128": {
+  "file": "images/og/chapter-128.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 128: The Pequod Meets The Rachel. “Next day, a large ship, the Rachel, was descried, bearing directly down upon the Pequod, all her spars thickly clustering with men.”",
+  "v": "3a15bf38f9"
+ },
+ "/read/chapter-129": {
+  "file": "images/og/chapter-129.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 129: The Cabin. “I am indeed down-hearted when you walk over me.”",
+  "v": "018aa90535"
+ },
+ "/read/chapter-130": {
+  "file": "images/og/chapter-130.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 130: The Hat. “And now that at the proper time and place, after so long and wide a preliminary cruise, Ahab,—all other whaling waters swept—seemed to have chased…”",
+  "v": "76b0afc4bd"
+ },
+ "/read/chapter-131": {
+  "file": "images/og/chapter-131.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 131: The Pequod Meets The Delight. “The intense Pequod sailed on; the rolling waves and days went by; the life-buoy-coffin still lightly swung; and another ship, most miserably misnamed…”",
+  "v": "a81596df6a"
+ },
+ "/read/chapter-132": {
+  "file": "images/og/chapter-132.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 132: The Symphony. “we are turned round and round in this world, like yonder windlass, and Fate is the handspike.”",
+  "v": "f944ebc231"
+ },
+ "/read/chapter-133": {
+  "file": "images/og/chapter-133.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 133: The Chase—First Day. “That night, in the mid-watch, when the old man—as his wont at intervals—stepped forth from the scuttle in which he leaned, and went to his…”",
+  "v": "2cb606f605"
+ },
+ "/read/chapter-134": {
+  "file": "images/og/chapter-134.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 134: The Chase—Second Day. “Ahab is for ever Ahab, man. This whole act’s immutably decreed.”",
+  "v": "301e3efb02"
+ },
+ "/read/chapter-135": {
+  "file": "images/og/chapter-135.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. Chapter 135: The Chase.—Third Day. “then all collapsed, and the great shroud of the sea rolled on as it rolled five thousand years ago.”",
+  "v": "2d319a78ac"
+ },
+ "/read/chapter-136": {
+  "file": "images/og/chapter-136.png",
+  "alt": "Pixel-art night sea with the Pequod under a full moon. After Chapter 135: Epilogue. “Buoyed up by that coffin, for almost one whole day and night, I floated on a soft and dirgelike main.”",
+  "v": "fba51bb201"
+ }
+}

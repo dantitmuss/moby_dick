@@ -152,12 +152,22 @@ SITE_URL = os.getenv("SITE_URL", "https://mobydickbible.com").rstrip("/")
 INDEXABLE_PATHS = ['/', '/read', '/read/etymology-and-extracts', '/concordance', '/about', '/privacy']
 
 
+# Share cards (Open Graph images), one per indexable page, drawn by
+# tools/make_og_cards.py. Pages without their own card use the home card.
+with open("static/images/og/cards.json", encoding="utf-8") as _f:
+    OG_CARDS = json.load(_f)
+
+def og_card(path):
+    card = OG_CARDS.get(path.rstrip("/") or "/", OG_CARDS["/"])
+    return {"url": f"{SITE_URL}/static/{card['file']}?v={card['v']}", "alt": card["alt"]}
+
 @app.context_processor
 def inject_seo():
     return {
         "site_url": SITE_URL,
         "canonical_url": SITE_URL + request.path,
         "current_year": date.today().year,
+        "og": og_card(request.path),
     }
 
 
