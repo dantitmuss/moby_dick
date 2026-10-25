@@ -2,7 +2,8 @@
   "groups": [
     "Characters",
     "Themes",
-    "The whale"
+    "The whale",
+    "The voyage"
   ],
   "topics": [
     {
@@ -876,6 +877,775 @@
         [
           86,
           20
+        ]
+      ]
+    },
+    {
+      "slug": "stubb",
+      "group": "Characters",
+      "name": "Stubb",
+      "title": "Stubb Quotes from Moby-Dick",
+      "description": "Stubb, the Pequod's second mate: the pipe, the jokes and the whale-steak supper, in every passage where he speaks or acts, with chapter and verse.",
+      "intro": [
+        "The second mate, from Cape Cod, and never without his pipe. Stubb treats a whale hunt like a job and a typhoon like weather. His philosophy fits on a card: “Think not, is my eleventh commandment; and sleep when you can, is my twelfth.”",
+        "He is the book’s best company and not always its best man. He mocks the cook, abandons Pip to the sea and eats whale by whale-light. These are his passages, from the first lowering to his last joke: “I know not all that may be coming, but be it what it will, I’ll go to it laughing.”"
+      ],
+      "tags": [
+        "stubb",
+        "mr. stubb"
+      ],
+      "related": [
+        "starbuck",
+        "flask",
+        "humour",
+        "pip"
+      ],
+      "include": [
+        [
+          29,
+          11
+        ],
+        [
+          39,
+          2
+        ]
+      ]
+    },
+    {
+      "slug": "flask",
+      "group": "Characters",
+      "name": "Flask",
+      "title": "Flask Quotes from Moby-Dick",
+      "description": "Flask, the Pequod's third mate from Martha's Vineyard: the passages where the smallest officer on board does his work, with chapter and verse.",
+      "intro": [
+        "The third mate is “a short, stout, ruddy young fellow” from Martha’s Vineyard, so fond of a fight with a whale that he takes it as a personal insult. The crew call him King-Post, after a short, square timber in a ship’s frame.",
+        "Flask has little time for awe or omens. A whale, to him, is a sort of magnified mouse. To see over the waves he climbs onto the shoulders of Daggoo, the tallest harpooneer, and stands there quite at home. These are his passages."
+      ],
+      "tags": [
+        "flask",
+        "mr. flask"
+      ],
+      "related": [
+        "stubb",
+        "starbuck",
+        "the-harpooneers",
+        "the-hunt"
+      ],
+      "include": [
+        [
+          27,
+          6
+        ],
+        [
+          48,
+          21
+        ]
+      ]
+    },
+    {
+      "slug": "pip",
+      "group": "Characters",
+      "name": "Pip",
+      "title": "Pip Quotes from Moby-Dick",
+      "description": "Pip, the Pequod's youngest sailor: the passages about the boy left alone in the sea, his madness and his bond with Ahab, with chapter and verse.",
+      "intro": [
+        "The smallest and youngest on board, a boy who plays the tambourine. Pip is drafted into a whaleboat, jumps out in fright and is left behind in the open sea. When he is picked up, something in him has gone. “The sea had jeeringly kept his finite body up, but drowned the infinite of his soul.”",
+        "Afterwards he speaks in riddles, and the riddles are often the truest lines in the book. Ahab, who listens to no one, takes him into his cabin. These are Pip’s passages, from the tambourine to “Pip! Pip! Pip!”"
+      ],
+      "tags": [
+        "pip"
+      ],
+      "related": [
+        "ahab",
+        "madness",
+        "stubb",
+        "isolation"
+      ],
+      "include": [
+        [
+          93,
+          18
+        ],
+        [
+          99,
+          20
+        ],
+        [
+          129,
+          7
+        ]
+      ]
+    },
+    {
+      "slug": "the-harpooneers",
+      "group": "Characters",
+      "name": "The harpooneers",
+      "title": "Moby-Dick Quotes About the Harpooneers",
+      "description": "Tashtego, Daggoo and the Pequod's other harpooneers: the passages about the men who throw the irons, with chapter and verse.",
+      "intro": [
+        "Every whaleboat carries a harpooneer in the bow. On the <em>Pequod</em> that means Queequeg, who has a page of his own, Tashtego, from Gay Head on Martha’s Vineyard, and Daggoo. “Third among the harpooneers was Daggoo,” a giant with a lion-like tread.",
+        "These are the men who stand up first when the whale is close. Tashtego falls headfirst into a sinking whale’s head and has to be cut out of it. In the final chapter, he is still nailing the flag to the mast as the ship goes down."
+      ],
+      "tags": [
+        "tashtego",
+        "daggoo",
+        "harpooneer",
+        "harpooneers"
+      ],
+      "related": [
+        "queequeg",
+        "the-hunt",
+        "flask",
+        "the-pequod"
+      ],
+      "include": [
+        [
+          27,
+          13
+        ]
+      ]
+    },
+    {
+      "slug": "fedallah",
+      "group": "Characters",
+      "name": "Fedallah",
+      "title": "Fedallah Quotes from Moby-Dick",
+      "description": "Fedallah, Ahab's secret harpooneer: the passages about the silent Parsee and his prophecies, with chapter and verse.",
+      "intro": [
+        "At the first lowering, Ahab’s own boat crew climbs out of hiding. Nobody on the <em>Pequod</em> knew they were aboard. At their head is Fedallah, the Parsee: tall, silent, turbaned, and to the crew something closer to a shadow than a shipmate.",
+        "He speaks rarely, and when he does it is prophecy. Before Ahab can die, Fedallah says, he will see two hearses on the sea; and “Hemp only can kill thee.” These are the passages where he appears, or watches."
+      ],
+      "tags": [
+        "fedallah",
+        "parsee"
+      ],
+      "related": [
+        "ahab",
+        "fate",
+        "mystery",
+        "the-white-whale"
+      ],
+      "include": [
+        [
+          117,
+          5
+        ]
+      ]
+    },
+    {
+      "slug": "peleg-and-bildad",
+      "group": "Characters",
+      "name": "Peleg and Bildad",
+      "title": "Peleg and Bildad Quotes from Moby-Dick",
+      "description": "Captains Peleg and Bildad, the Quaker owners of the Pequod: the passages where they sign on Ishmael and send the ship to sea, with chapter and verse.",
+      "intro": [
+        "Two retired whaling captains, both Quakers and both part-owners of the <em>Pequod</em>. Peleg swears like a sailor; Bildad reads scripture and drives a hard bargain. While haggling over Ishmael’s pay, he murmurs, “Lay not up for yourselves treasures upon earth.”",
+        "They hire the crew, stock the hold and warn Ishmael about the captain he has not yet met. Then they pilot the ship out of harbour and go home. These are their passages, almost all in the chapters before the voyage begins."
+      ],
+      "tags": [
+        "peleg",
+        "captain peleg",
+        "bildad",
+        "captain bildad"
+      ],
+      "related": [
+        "the-pequod",
+        "nantucket",
+        "ahab",
+        "ishmael"
+      ],
+      "include": [
+        [
+          16,
+          18
+        ]
+      ]
+    },
+    {
+      "slug": "father-mapple-and-jonah",
+      "group": "Characters",
+      "name": "Father Mapple and Jonah",
+      "title": "Moby-Dick Quotes About Jonah and Father Mapple",
+      "description": "Father Mapple's sermon on Jonah and every other mention of Jonah in Moby-Dick: the passages, with chapter and verse.",
+      "intro": [
+        "Before the voyage, Ishmael goes to the Whaleman’s Chapel in New Bedford. Father Mapple, an old harpooneer turned preacher, climbs into a pulpit shaped like a ship’s bow by a rope ladder, pulls the ladder up behind him and preaches on Jonah. “And God had prepared a great fish to swallow up Jonah.”",
+        "Jonah keeps surfacing after that, in jokes, in arguments about whether a whale could swallow a man, and in the book’s long worry about running from God. These are his passages, and the sermon that ends “Delight is to him”."
+      ],
+      "tags": [
+        "father mapple",
+        "jonah"
+      ],
+      "related": [
+        "god-and-faith",
+        "death",
+        "whales",
+        "fate"
+      ],
+      "include": [
+        [
+          9,
+          18
+        ]
+      ]
+    },
+    {
+      "slug": "the-pequod",
+      "group": "The voyage",
+      "name": "The Pequod",
+      "title": "Moby-Dick Quotes About the Pequod",
+      "description": "The Pequod, Ahab's whaling ship: the passages describing her, her crew and her voyage, from Nantucket harbour to the last chapter.",
+      "intro": [
+        "Ishmael picks her himself, from three ships in Nantucket harbour. She is old, weather-stained and decorated all over with whale bone and teeth, “a cannibal of a craft, tricking herself forth in the chased bones of her enemies.”",
+        "Her name comes from a tribe of Native Americans, and Ishmael calls her a noble craft, “but somehow a most melancholy! All noble things are touched with that.” These are the passages about the ship herself, from her deck and her tiller to the place where she goes down."
+      ],
+      "tags": [
+        "pequod"
+      ],
+      "related": [
+        "ahab",
+        "nantucket",
+        "peleg-and-bildad",
+        "the-sea"
+      ],
+      "include": [
+        [
+          16,
+          7
+        ],
+        [
+          16,
+          9
+        ]
+      ]
+    },
+    {
+      "slug": "fear",
+      "group": "Themes",
+      "name": "Fear",
+      "title": "Moby-Dick Quotes About Fear",
+      "description": "Passages from Moby-Dick about fear, dread and terror: of the sea, of the whale and of the unknown, with chapter and verse.",
+      "intro": [
+        "Whaling is a frightening trade, and the book is honest about it: the lowering, the line whipping past your ear, the whale that turns on the boat. But the fear Ishmael lingers over is stranger. “It was the whiteness of the whale that above all things appalled me.”",
+        "These passages run from ordinary terror to the nameless kind: dread of a captain, of the dark, of what might be under the water. Courage in this book is not the absence of fear but the habit of going on with it."
+      ],
+      "tags": [
+        "fear",
+        "terror",
+        "dread",
+        "horror",
+        "panic",
+        "fear of the unknown"
+      ],
+      "related": [
+        "courage-and-defiance",
+        "mystery",
+        "the-white-whale",
+        "death"
+      ],
+      "include": [
+        [
+          42,
+          1
+        ]
+      ]
+    },
+    {
+      "slug": "identity",
+      "group": "Themes",
+      "name": "Identity",
+      "title": "Moby-Dick Quotes About Identity",
+      "description": "Passages from Moby-Dick about identity and the self: who we are at sea, in the dark and among strangers, with chapter and verse.",
+      "intro": [
+        "A narrator who will not say his real name, a harpooneer far from his island, a captain who becomes his own obsession. <em>Moby-Dick</em> keeps asking who people are once their homes are behind them.",
+        "Ishmael’s answer is partly that we only know ourselves with the lights out: “no man can ever feel his own identity aright except his eyes be closed.” These passages gather the book’s thinking on the self, from the first night in the Spouter-Inn onwards."
+      ],
+      "tags": [
+        "identity",
+        "self-reflection",
+        "cultural identity",
+        "mistaken identity",
+        "religious identity",
+        "national identity"
+      ],
+      "related": [
+        "ishmael",
+        "queequeg",
+        "perception-and-reality",
+        "isolation"
+      ],
+      "include": [
+        [
+          11,
+          5
+        ]
+      ]
+    },
+    {
+      "slug": "leadership-and-authority",
+      "group": "Themes",
+      "name": "Leadership and authority",
+      "title": "Moby-Dick Quotes About Leadership and Authority",
+      "description": "Passages from Moby-Dick about leadership, command and authority aboard a whaling ship, with chapter and verse.",
+      "intro": [
+        "A whaling ship is a small kingdom, and its captain answers to no one once land is out of sight. Ahab knows it. When Starbuck stands up to him, he puts it plainly: “There is one God that is Lord over the earth, and one Captain that is lord over the Pequod.”",
+        "These passages are about who gives orders and why anyone obeys: mates and harpooneers, owners and crew, and a captain who turns a commercial voyage into a private war. Watch how often the book asks whether anyone could have stopped him."
+      ],
+      "tags": [
+        "leadership",
+        "authority",
+        "command",
+        "commanding",
+        "power and authority",
+        "leadership and authority",
+        "authority and obedience"
+      ],
+      "related": [
+        "ahab",
+        "starbuck",
+        "rebellion-and-mutiny",
+        "pride"
+      ],
+      "include": [
+        [
+          109,
+          8
+        ]
+      ]
+    },
+    {
+      "slug": "rebellion-and-mutiny",
+      "group": "Themes",
+      "name": "Rebellion and mutiny",
+      "title": "Moby-Dick Quotes About Rebellion and Mutiny",
+      "description": "Passages from Moby-Dick about rebellion and mutiny, from the Town-Ho's story to Starbuck's doubts, with chapter and verse.",
+      "intro": [
+        "Mutiny hangs over the <em>Pequod</em> without ever quite breaking out. Its fullest version happens on another ship. In “The Town-Ho’s Story”, told over drinks in Lima, a sailor called Steelkilt is pushed too far by a bullying mate.",
+        "Closer to home, Starbuck stands at Ahab’s door one night with a loaded musket and asks himself whether to use it. These passages are about the limits of obedience at sea: when a crew follows, when it balks, and what it costs either way."
+      ],
+      "tags": [
+        "rebellion",
+        "mutiny",
+        "rebellious",
+        "authority and rebellion",
+        "steelkilt"
+      ],
+      "related": [
+        "leadership-and-authority",
+        "starbuck",
+        "courage-and-defiance",
+        "ahab"
+      ]
+    },
+    {
+      "slug": "pride",
+      "group": "Themes",
+      "name": "Pride",
+      "title": "Moby-Dick Quotes About Pride",
+      "description": "Passages from Moby-Dick about pride and hubris, above all Ahab's, with chapter and verse.",
+      "intro": [
+        "Ahab smashes his quadrant because it cannot tell him where the whale is. When lightning reverses his compasses, he makes new needles himself and shows them to the crew. “In his fiery eyes of scorn and triumph, you then saw Ahab in all his fatal pride.”",
+        "Pride in <em>Moby-Dick</em> is mostly a captain’s, but not only his. These passages gather the moments when someone refuses to bend, to the sea, to sense or to God, and what the book thinks of them for it."
+      ],
+      "tags": [
+        "pride",
+        "hubris",
+        "vanity"
+      ],
+      "related": [
+        "ahab",
+        "obsession",
+        "fate",
+        "leadership-and-authority"
+      ],
+      "include": [
+        [
+          124,
+          13
+        ]
+      ]
+    },
+    {
+      "slug": "perception-and-reality",
+      "group": "Themes",
+      "name": "Perception and reality",
+      "title": "Moby-Dick Quotes About Perception and Reality",
+      "description": "Passages from Moby-Dick about perception, illusion and reality: how the same whale, coin or sea looks different to each viewer, with chapter and verse.",
+      "intro": [
+        "Ahab nails a gold doubloon to the mast, and one by one the crew stop to read it. Each sees himself. Pip, watching them, sums it up in a conjugation: “I look, you look, he looks; we look, ye look, they look.”",
+        "The whole book works this way. A whale is a fish, a god, a profit or a devil depending on who is looking, and the sea is never only what it appears. These passages are about the gap between what is seen and what is there."
+      ],
+      "tags": [
+        "perception",
+        "perception vs. reality",
+        "perception vs reality",
+        "appearance vs. reality",
+        "illusion",
+        "illusion vs. reality",
+        "perception and reality",
+        "myth vs. reality",
+        "imagination vs. reality"
+      ],
+      "related": [
+        "the-doubloon",
+        "identity",
+        "mystery",
+        "madness"
+      ],
+      "include": [
+        [
+          99,
+          20
+        ],
+        [
+          42,
+          29
+        ]
+      ]
+    },
+    {
+      "slug": "despair",
+      "group": "Themes",
+      "name": "Despair",
+      "title": "Moby-Dick Quotes About Despair",
+      "description": "Passages from Moby-Dick about despair, desperation and grief, with chapter and verse.",
+      "intro": [
+        "For a book that starts with a joke about knocking people’s hats off, <em>Moby-Dick</em> goes to some dark places. Ishmael goes to sea to escape a gloom he cannot shake, and he meets plenty of it on the way.",
+        "Watching the try-works burn at night, he warns against staring too long into the fire, and draws a line: “There is a wisdom that is woe; but there is a woe that is madness.” These passages sit on both sides of it, from desperate moments in the boats to Ahab’s private grief."
+      ],
+      "tags": [
+        "despair",
+        "desperation",
+        "hopelessness",
+        "hopeless",
+        "anguish",
+        "grief"
+      ],
+      "related": [
+        "melancholy",
+        "madness",
+        "isolation",
+        "death"
+      ],
+      "include": [
+        [
+          96,
+          23
+        ]
+      ]
+    },
+    {
+      "slug": "courage-and-defiance",
+      "group": "Themes",
+      "name": "Courage and defiance",
+      "title": "Moby-Dick Quotes About Courage and Defiance",
+      "description": "Passages from Moby-Dick about courage, bravery and defiance, at sea and on deck, with chapter and verse.",
+      "intro": [
+        "Everyone on a whaleboat needs courage, but the book is wary of the wrong kind. Starbuck will not have a man in his boat who is not afraid of a whale, because “an utterly fearless man is a far more dangerous comrade than a coward.”",
+        "Defiance is Ahab’s mode, aimed at the whale, the weather and the gods. These passages set the two side by side: the steady courage of the men in the boats and the louder defiance of the man on the quarter-deck."
+      ],
+      "tags": [
+        "courage",
+        "bravery",
+        "defiance",
+        "defiant",
+        "fearlessness",
+        "courage vs. cowardice",
+        "courage and cowardice"
+      ],
+      "related": [
+        "fear",
+        "starbuck",
+        "ahab",
+        "rebellion-and-mutiny"
+      ],
+      "include": [
+        [
+          26,
+          6
+        ]
+      ]
+    },
+    {
+      "slug": "mystery",
+      "group": "Themes",
+      "name": "Mystery and the unknown",
+      "title": "Moby-Dick Quotes About Mystery and the Unknown",
+      "description": "Passages from Moby-Dick about mystery and the unknown: the sea, the whale and whatever lies beneath, with chapter and verse.",
+      "intro": [
+        "Ishmael goes to sea for the same reason Narcissus looked into the water: to chase an image that cannot be caught. He calls it “the ungraspable phantom of life”.",
+        "From then on, the unknown is everywhere: in the depths under the boats, behind the whale’s blank forehead, in the silent Parsee and in Ahab’s plans. These passages are about what the book cannot, or will not, explain."
+      ],
+      "tags": [
+        "mystery",
+        "the unknown",
+        "enigmatic",
+        "mystery of nature",
+        "nature's mystery",
+        "mystery of the unknown"
+      ],
+      "related": [
+        "fear",
+        "the-sea",
+        "awe",
+        "fedallah"
+      ],
+      "include": [
+        [
+          1,
+          13
+        ]
+      ]
+    },
+    {
+      "slug": "awe",
+      "group": "Themes",
+      "name": "Awe and the sublime",
+      "title": "Moby-Dick Quotes About Awe and the Sublime",
+      "description": "Passages from Moby-Dick about awe, wonder and the sublime: whales, oceans and storms too big to take in, with chapter and verse.",
+      "intro": [
+        "Much of <em>Moby-Dick</em> is a man trying to describe something too big to describe. Whales a hundred feet long, a Pacific that rolls “a thousand leagues of blue”, a sea that seems to breathe.",
+        "In the Grand Armada, Ishmael’s boat drifts into the calm centre of a vast school of whales, where mothers nurse their young. In that stillness he finds a calm in himself too. These passages are where the book stops to stare."
+      ],
+      "tags": [
+        "awe",
+        "wonder",
+        "the sublime",
+        "sublimity",
+        "nature's grandeur"
+      ],
+      "related": [
+        "whales",
+        "the-sea",
+        "mystery",
+        "man-vs-nature"
+      ],
+      "include": [
+        [
+          87,
+          36
+        ],
+        [
+          111,
+          1
+        ]
+      ]
+    },
+    {
+      "slug": "humour",
+      "group": "Themes",
+      "name": "Humour",
+      "title": "Moby-Dick Quotes About Humour",
+      "description": "The funny side of Moby-Dick: jokes, comic scenes and the book's dry wit, with chapter and verse.",
+      "intro": [
+        "People expect <em>Moby-Dick</em> to be heavy. It is also very funny: two strangers forced to share a bed, a sermon to sharks, an argument about whether a whale is a fish.",
+        "Ishmael even has a theory of it. At certain moments a man “takes this whole universe for a vast practical joke” and decides the joke is mostly on him. These are the passages where the book is laughing, sometimes in the face of death."
+      ],
+      "tags": [
+        "humor",
+        "humorous",
+        "comical",
+        "absurdity",
+        "darkly humorous",
+        "merriment"
+      ],
+      "related": [
+        "stubb",
+        "queequeg",
+        "friendship",
+        "ishmael"
+      ],
+      "include": [
+        [
+          49,
+          1
+        ],
+        [
+          49,
+          2
+        ]
+      ]
+    },
+    {
+      "slug": "melancholy",
+      "group": "Themes",
+      "name": "Melancholy",
+      "title": "Moby-Dick Quotes About Melancholy",
+      "description": "Passages from Moby-Dick about melancholy, gloom and sorrow, with chapter and verse.",
+      "intro": [
+        "The novel begins with “a damp, drizzly November in my soul” and treats the sea as a cure for it. It works, more or less, but the mood never quite lifts.",
+        "Ishmael finds sadness even in the ship that will carry him: a noble craft, “but somehow a most melancholy! All noble things are touched with that.” These passages are the book’s quieter, greyer moments, from the opening page to the long watches at sea."
+      ],
+      "tags": [
+        "melancholy",
+        "melancholic",
+        "gloom",
+        "gloomy",
+        "sorrow"
+      ],
+      "related": [
+        "despair",
+        "isolation",
+        "the-sea",
+        "death"
+      ],
+      "include": [
+        [
+          1,
+          2
+        ],
+        [
+          16,
+          9
+        ]
+      ]
+    },
+    {
+      "slug": "the-hunt",
+      "group": "The voyage",
+      "name": "The hunt",
+      "title": "Moby-Dick Quotes About the Hunt",
+      "description": "Passages from Moby-Dick about hunting whales: the lookouts, the lowerings, the chases and the kills, with chapter and verse.",
+      "intro": [
+        "“There she blows!” For long stretches the <em>Pequod</em> is a ship full of men waiting for those words. When they come, the boats drop, the oars bend and the chase begins.",
+        "These passages follow the work of whaling: the mast-head watch, the race to the whale, the harpoon and the line, and the long fight that follows. They end with the hunt the whole voyage was for, three days long, against one whale."
+      ],
+      "tags": [
+        "the hunt",
+        "hunt",
+        "hunting",
+        "chase",
+        "pursuit",
+        "whale hunters"
+      ],
+      "related": [
+        "whales",
+        "the-white-whale",
+        "the-harpooneers",
+        "man-vs-nature"
+      ],
+      "include": [
+        [
+          135,
+          49
+        ]
+      ]
+    },
+    {
+      "slug": "storms-and-weather",
+      "group": "The voyage",
+      "name": "Storms and weather",
+      "title": "Moby-Dick Quotes About Storms and Weather",
+      "description": "Passages from Moby-Dick about storms, typhoons, lightning and calm: the weather on the Pequod's voyage, with chapter and verse.",
+      "intro": [
+        "In the Japan grounds the <em>Pequod</em> runs into a typhoon. Lightning strikes, the masts burn with pale fire at their tips, and Ahab holds the lightning chain and speaks to the flames. To him it is a sign: “the white flame but lights the way to the White Whale.”",
+        "These passages track the book’s weather, from squalls and gales to the glassy calms where nothing moves. At sea the sky is never just scenery; it is the boss."
+      ],
+      "tags": [
+        "storm",
+        "typhoon",
+        "weather",
+        "gale",
+        "squall",
+        "lightning",
+        "thunder",
+        "corpusants",
+        "calm before the storm"
+      ],
+      "related": [
+        "the-sea",
+        "man-vs-nature",
+        "the-pequod",
+        "fate"
+      ],
+      "include": [
+        [
+          119,
+          19
+        ]
+      ]
+    },
+    {
+      "slug": "nantucket",
+      "group": "The voyage",
+      "name": "Nantucket",
+      "title": "Moby-Dick Quotes About Nantucket",
+      "description": "Nantucket in Moby-Dick: the island, its whalemen and the harbour where the Pequod sets sail, with chapter and verse.",
+      "intro": [
+        "“Nantucket! Take out your map and look at it.” A mere hillock of sand far out at sea, Ishmael says, so bare that a piece of wood is treated like a holy relic. No wonder its people took to the water instead.",
+        "It is where the <em>Pequod</em> sails from, and home to Ahab, Starbuck and the ship’s owners. These passages cover the island and its people, from the try-pots of the inn to the whalemen who own the sea “as Emperors own empires.”"
+      ],
+      "tags": [
+        "nantucket",
+        "nantucketer",
+        "nantucketers"
+      ],
+      "related": [
+        "the-pequod",
+        "peleg-and-bildad",
+        "starbuck",
+        "the-sea"
+      ],
+      "include": [
+        [
+          14,
+          1
+        ]
+      ]
+    },
+    {
+      "slug": "the-doubloon",
+      "group": "The voyage",
+      "name": "The doubloon",
+      "title": "Moby-Dick Quotes About the Doubloon",
+      "description": "The gold doubloon Ahab nails to the Pequod's mast as a reward, and what each man sees in it, with chapter and verse.",
+      "intro": [
+        "On the quarter-deck, Ahab nails a gold coin from Ecuador to the mainmast and promises it to the first man who sights the white whale. From then on it hangs there, catching the light, a prize and a mirror at once.",
+        "Later Ahab, Starbuck, Stubb, Flask and others stop in turn to read its signs, and each finds something different. Pip has the last word: “I look, you look, he looks; we look, ye look, they look.”"
+      ],
+      "tags": [
+        "doubloon",
+        "gold coin"
+      ],
+      "related": [
+        "perception-and-reality",
+        "ahab",
+        "the-white-whale",
+        "pip"
+      ],
+      "include": [
+        [
+          99,
+          11
+        ],
+        [
+          99,
+          20
+        ]
+      ]
+    },
+    {
+      "slug": "survival",
+      "group": "The voyage",
+      "name": "Survival",
+      "title": "Moby-Dick Quotes About Survival",
+      "description": "Passages from Moby-Dick about survival at sea: close calls, rescues and the one man left to tell the story, with chapter and verse.",
+      "intro": [
+        "Whaling ships came home short of men as a matter of course. On the <em>Pequod</em>, staying alive means trusting a monkey-rope, a shipmate and a lot of luck.",
+        "Only one man survives the voyage, and only because a coffin built for someone else bobs up beside him. “Buoyed up by that coffin, for almost one whole day and night, I floated on a soft and dirgelike main.” These passages are about getting through, from the first lowering to the epilogue."
+      ],
+      "tags": [
+        "survival"
+      ],
+      "related": [
+        "death",
+        "fate",
+        "the-sea",
+        "ishmael"
+      ],
+      "include": [
+        [
+          136,
+          3
         ]
       ]
     }
