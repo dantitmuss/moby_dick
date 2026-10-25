@@ -10,6 +10,7 @@
   </div>
   {% endif %}
   {% if match.iconic %}<p class="mdb-cite cc-iconic">&#9733; Often quoted</p>{% endif %}
+  {% if match.rank %}<p class="mdb-cite cc-iconic">No. {{ match.rank }}</p>{% endif %}
   {% if match.quote %}<div class="mdb-passage has-quote">{{ match.text | passage(match.quote) }}</div>
   {% else %}<div class="mdb-passage">{{ match.text | passage }}</div>{% endif %}
   <div class="mdb-cite-row">

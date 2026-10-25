@@ -20,7 +20,7 @@
 </div>
 
 <p class="mdb-quiet" style="margin:0;">
-  {% if total > verses|length %}{{ total }} passages in the novel carry this mark. Here are {{ verses|length }} of them{% else %}{{ total }} passage{{ '' if total == 1 else 's' }} in the novel carry this mark{% endif %}{% if iconic_count %}: the most quoted first, then the rest {{ 'spread from first to last' if total > verses|length else 'in the order they appear' }}.{% else %}{{ ', spread from first to last' if total > verses|length else ', in the order they appear' }}.{% endif %}
+  {% if ranked %}{{ total }} lines, most famous first.{% else %}{% if total > verses|length %}{{ total }} passages in the novel carry this mark. Here are {{ verses|length }} of them{% else %}{{ total }} passage{{ '' if total == 1 else 's' }} in the novel carry this mark{% endif %}{% if iconic_count %}: the most quoted first, then the rest {{ 'spread from first to last' if total > verses|length else 'in the order they appear' }}.{% else %}{{ ', spread from first to last' if total > verses|length else ', in the order they appear' }}.{% endif %}{% endif %}
 </p>
 
 <div class="mdb-canon-list" id="cc-list" data-fold="{{ fold }}">
