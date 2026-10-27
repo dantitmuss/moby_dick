@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% from "_passage.html" import gam %}
+
+{% block title %}{% if q %}&ldquo;{{ q | truncate(60, true, '…') }}&rdquo; | {% endif %}Find the line | The Moby-Dick Bible{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block content %}
+
+<a href="/" class="mdb-back">&lt; Back to the mast-head</a>
+
+<div class="mdb-intro">
+  <p class="mdb-cite">Find the line</p>
+  <h1 class="mdb-h1">{% if q %}&ldquo;{{ q | truncate(80, true, '…') }}&rdquo;{% else %}Find the line{% endif %}</h1>
+  <p class="mdb-quiet" style="margin:0;" id="mdb-line-count">
+    {% if too_short %}Give the clerk a few more letters to go on.
+    {% elif q and total == 1 %}One passage contains these words. They are marked below.
+    {% elif q and total > found | length %}{{ total }} passages contain these words. Here are the first {{ found | length }}, in the order they appear; add a few more words to narrow it down.
+    {% elif q and total %}{{ total }} passages contain these words, in the order they appear. The words are marked in each.
+    {% elif not q %}Type a line you half remember, word for word. Case and punctuation don&rsquo;t matter.{% endif %}
+  </p>
+</div>
+
+<section class="mdb-frame mdb-frame--brass" aria-label="Search for a line">
+  <form class="mdb-ask" action="{{ url_for('line_search') }}" method="get">
+    <label for="line-q" class="mdb-label">Find the line</label>
+    <input id="line-q" name="q" type="search" maxlength="500" required class="mdb-field"
+           value="{{ q }}" placeholder="a damp, drizzly November&hellip;" autocomplete="off">
+    <div class="mdb-ask-row">
+      <span></span>
+      <button type="submit" class="mdb-btn">Search the book</button>
+    </div>
+  </form>
+</section>
+
+{% if q and not too_short %}
+<div class="mdb-canon-list" id="mdb-line-list">
+  {% for verse in found %}
+    {{ gam(verse) }}
+  {% else %}
+    <div class="mdb-frame mdb-prose">
+      <p><strong>Those words aren&rsquo;t in the book in that order.</strong> Try fewer words, or the part you&rsquo;re surest of. Quote sites often misremember Melville.</p>
+      <p class="mdb-crew"><b>The clerk</b> has checked every page and would like it noted.</p>
+    </div>
+  {% endfor %}
+</div>
+
+{% if found %}
+<div class="mdb-actions">
+  <button type="button" class="mdb-btn mdb-btn--quiet" data-share-link data-share-title="Find the line: {{ q | truncate(60, true, '…') }}">Share</button>
+  <a href="/" class="mdb-btn">Ask the book</a>
+</div>
+{% endif %}
+{% endif %}
+
+{% endblock %}
