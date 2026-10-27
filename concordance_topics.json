@@ -421,8 +421,8 @@
       "related": [
         "obsession",
         "revenge",
-        "madness",
-        "the-white-whale"
+        "pride",
+        "famous-quotes"
       ],
       "include": [
         [
@@ -462,10 +462,10 @@
         "whiteness"
       ],
       "related": [
-        "ahab",
         "whales",
-        "revenge",
-        "fate"
+        "the-hunt",
+        "fear",
+        "famous-quotes"
       ],
       "include": [
         [
@@ -491,8 +491,8 @@
       "related": [
         "queequeg",
         "friendship",
-        "the-sea",
-        "isolation"
+        "identity",
+        "survival"
       ],
       "include": [
         [
@@ -534,8 +534,8 @@
       "related": [
         "friendship",
         "ishmael",
-        "god-and-faith",
-        "death"
+        "the-harpooneers",
+        "humour"
       ],
       "include": [
         [
@@ -564,10 +564,10 @@
         "mr. starbuck"
       ],
       "related": [
-        "ahab",
-        "madness",
-        "fate",
-        "god-and-faith"
+        "leadership-and-authority",
+        "rebellion-and-mutiny",
+        "god-and-faith",
+        "nantucket"
       ],
       "card_line": "Vengeance on a dumb brute!"
     },
@@ -590,7 +590,7 @@
         "ahab",
         "madness",
         "revenge",
-        "the-white-whale"
+        "despair"
       ],
       "include": [
         [
@@ -617,8 +617,8 @@
       "related": [
         "ahab",
         "obsession",
-        "the-white-whale",
-        "madness"
+        "pride",
+        "the-white-whale"
       ],
       "card_line": "from hell’s heart I stab at thee; for hate’s sake I spit my last breath at thee."
     },
@@ -640,10 +640,10 @@
         "fatalism"
       ],
       "related": [
-        "death",
+        "fedallah",
         "god-and-faith",
-        "ahab",
-        "the-white-whale"
+        "death",
+        "survival"
       ],
       "include": [
         [
@@ -671,9 +671,9 @@
       ],
       "related": [
         "fate",
-        "the-sea",
-        "queequeg",
-        "god-and-faith"
+        "father-mapple-and-jonah",
+        "melancholy",
+        "survival"
       ],
       "card_line": "Methinks we have hugely mistaken this matter of Life and Death."
     },
@@ -694,9 +694,9 @@
       ],
       "related": [
         "ishmael",
-        "madness",
-        "the-sea",
-        "ahab"
+        "pip",
+        "melancholy",
+        "despair"
       ],
       "card_line": "in the soul of man there lies one insular Tahiti, full of peace and joy"
     },
@@ -716,10 +716,10 @@
         "ocean"
       ],
       "related": [
+        "storms-and-weather",
+        "awe",
         "man-vs-nature",
-        "whales",
-        "isolation",
-        "death"
+        "famous-quotes"
       ],
       "include": [
         [
@@ -755,10 +755,10 @@
         "nature's power"
       ],
       "related": [
+        "storms-and-weather",
+        "the-hunt",
         "the-sea",
-        "whales",
-        "the-white-whale",
-        "fate"
+        "whales"
       ],
       "card_line": "the great shroud of the sea rolled on as it rolled five thousand years ago."
     },
@@ -777,10 +777,10 @@
         "insanity"
       ],
       "related": [
-        "ahab",
+        "pip",
         "obsession",
-        "isolation",
-        "starbuck"
+        "perception-and-reality",
+        "despair"
       ],
       "include": [
         [
@@ -808,10 +808,10 @@
         "spirituality"
       ],
       "related": [
+        "father-mapple-and-jonah",
         "fate",
-        "death",
         "queequeg",
-        "ishmael"
+        "awe"
       ],
       "include": [
         [
@@ -848,8 +848,8 @@
       "related": [
         "queequeg",
         "ishmael",
-        "isolation",
-        "starbuck"
+        "humour",
+        "stubb"
       ],
       "card_line": "see how elastic our stiff prejudices grow when love once comes to bend them."
     },
@@ -872,10 +872,10 @@
         "greenland whale"
       ],
       "related": [
+        "the-hunt",
         "the-white-whale",
-        "the-sea",
-        "man-vs-nature",
-        "ahab"
+        "awe",
+        "father-mapple-and-jonah"
       ],
       "include": [
         [
@@ -912,9 +912,9 @@
         "mr. stubb"
       ],
       "related": [
-        "starbuck",
-        "flask",
         "humour",
+        "flask",
+        "starbuck",
         "pip"
       ],
       "include": [
@@ -975,10 +975,10 @@
         "pip"
       ],
       "related": [
-        "ahab",
         "madness",
+        "isolation",
         "stubb",
-        "isolation"
+        "the-doubloon"
       ],
       "include": [
         [
@@ -1073,8 +1073,8 @@
       "related": [
         "the-pequod",
         "nantucket",
-        "ahab",
-        "ishmael"
+        "ishmael",
+        "humour"
       ],
       "include": [
         [
@@ -1100,9 +1100,9 @@
       ],
       "related": [
         "god-and-faith",
-        "death",
         "whales",
-        "fate"
+        "death",
+        "storms-and-weather"
       ],
       "include": [
         [
@@ -1129,7 +1129,7 @@
         "ahab",
         "nantucket",
         "peleg-and-bildad",
-        "the-sea"
+        "storms-and-weather"
       ],
       "include": [
         [
@@ -1164,8 +1164,8 @@
       "related": [
         "courage-and-defiance",
         "mystery",
-        "the-white-whale",
-        "death"
+        "fedallah",
+        "survival"
       ],
       "include": [
         [
@@ -1261,7 +1261,7 @@
         "leadership-and-authority",
         "starbuck",
         "courage-and-defiance",
-        "ahab"
+        "the-pequod"
       ],
       "card_line": "I’ll hold the musket boldly while I think."
     },
@@ -1282,9 +1282,9 @@
       ],
       "related": [
         "ahab",
-        "obsession",
-        "fate",
-        "leadership-and-authority"
+        "leadership-and-authority",
+        "revenge",
+        "the-doubloon"
       ],
       "include": [
         [
@@ -1355,7 +1355,7 @@
         "melancholy",
         "madness",
         "isolation",
-        "death"
+        "pip"
       ],
       "include": [
         [
@@ -1387,8 +1387,8 @@
       "related": [
         "fear",
         "starbuck",
-        "ahab",
-        "rebellion-and-mutiny"
+        "rebellion-and-mutiny",
+        "survival"
       ],
       "include": [
         [
@@ -1418,8 +1418,8 @@
       ],
       "related": [
         "fear",
-        "the-sea",
         "awe",
+        "the-doubloon",
         "fedallah"
       ],
       "include": [
@@ -1487,7 +1487,7 @@
         "stubb",
         "queequeg",
         "friendship",
-        "ishmael"
+        "peleg-and-bildad"
       ],
       "include": [
         [
@@ -1522,7 +1522,7 @@
         "despair",
         "isolation",
         "the-sea",
-        "death"
+        "identity"
       ],
       "include": [
         [
@@ -1556,9 +1556,9 @@
       ],
       "related": [
         "whales",
-        "the-white-whale",
         "the-harpooneers",
-        "man-vs-nature"
+        "man-vs-nature",
+        "flask"
       ],
       "include": [
         [
@@ -1593,7 +1593,7 @@
         "the-sea",
         "man-vs-nature",
         "the-pequod",
-        "fate"
+        "fear"
       ],
       "include": [
         [
@@ -1621,7 +1621,7 @@
       "related": [
         "the-pequod",
         "peleg-and-bildad",
-        "starbuck",
+        "ishmael",
         "the-sea"
       ],
       "include": [
@@ -1649,8 +1649,8 @@
       "related": [
         "perception-and-reality",
         "ahab",
-        "the-white-whale",
-        "pip"
+        "pip",
+        "mystery"
       ],
       "include": [
         [
@@ -1681,7 +1681,7 @@
         "death",
         "fate",
         "the-sea",
-        "ishmael"
+        "courage-and-defiance"
       ],
       "include": [
         [
