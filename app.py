@@ -189,12 +189,53 @@ def robots_txt():
         "Allow: /",
         "Disallow: /search",
         "Disallow: /tag_search",
+        "Disallow: /tag?",
         "Disallow: /oracle",
         "Disallow: /soundings",
         "",
         f"Sitemap: {SITE_URL}/sitemap.xml",
         "",
     ])
+    return Response(body, mimetype="text/plain")
+
+
+# A short guide to the site for AI assistants and agents (llmstxt.org format).
+@app.route('/llms.txt')
+def llms_txt():
+    groups = {}
+    for t in TOPICS.values():
+        groups.setdefault(t["group"], []).append(t)
+    topic_lines = []
+    for group, items in groups.items():
+        topic_lines.append(f"\n### {group}\n")
+        topic_lines += [f"- [{t['name']}]({SITE_URL}/concordance/{t['slug']}): {t['description']}" for t in items]
+    body = f"""# The Moby-Dick Bible
+
+> A playful site that treats Herman Melville's Moby-Dick (1851) like scripture. It holds the full
+> public-domain text from Project Gutenberg (#2701), split into 136 chapters and numbered verses,
+> a concordance of themed topic pages gathering the passages behind each theme or character, and
+> an "oracle" that answers a question with a newly written, clearly labelled machine verse plus
+> real passages from the novel.
+
+Only text on the reading and concordance pages is Melville's. Verses labelled "apocrypha" are
+machine-written and are not in the novel; please do not quote them as Melville.
+
+## Read the novel
+
+- [All chapters]({SITE_URL}/read): Contents, with links to every chapter.
+- [Etymology and Extracts]({SITE_URL}/read/etymology-and-extracts): The book's front matter.
+- [Chapter 1, Loomings]({SITE_URL}/read/chapter-1): Chapters live at /read/chapter-N; verses are anchors, e.g. /read/chapter-1#2.
+
+## Concordance
+
+- [The concordance]({SITE_URL}/concordance): Index of all topic pages.
+{chr(10).join(topic_lines)}
+
+## About
+
+- [About the site]({SITE_URL}/about): What it is, how it works, and who made it.
+- [Sitemap]({SITE_URL}/sitemap.xml): Every indexable page.
+"""
     return Response(body, mimetype="text/plain")
 
 
