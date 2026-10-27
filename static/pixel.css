@@ -1040,3 +1040,33 @@ html.rd-plain .rd-verse:has(.rd-mark:target) .rd-p { animation: rd-found 3.5s ea
   #search:focus-within { padding-bottom: 60vh; }
 }
 #search { scroll-margin-top: 16px; }
+
+/* ---- Ask box: three ways to search (Hail the mast-head / Take soundings / Find the line) ---- */
+.mdb-modes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin: 10px 0 0;
+  padding: 0;
+  border: 0;
+}
+.mdb-modes label { position: relative; cursor: pointer; display: flex; }
+.mdb-modes input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.mdb-modes input + span {
+  flex: 1;
+  display: block;
+  text-align: center;
+  font-family: var(--pixel);
+  font-size: var(--p-xs);
+  line-height: 1.6;
+  color: var(--fog);
+  background: var(--deep);
+  border: var(--px) solid var(--timber);
+  padding: 9px 4px 8px;
+}
+.mdb-modes .nw { white-space: nowrap; font-style: normal; }
+.mdb-modes label:hover input + span { color: var(--lantern); }
+.mdb-modes input:checked + span { color: var(--deep); background: var(--brass); border-color: var(--brass); }
+.mdb-modes input:focus-visible + span { outline: 2px solid var(--lantern); outline-offset: 2px; }
+@media (forced-colors: active) { .mdb-modes input:checked + span { border-color: Highlight; } }
+#mode-hint { margin-top: 10px; }
