@@ -190,6 +190,7 @@ def robots_txt():
         "Disallow: /search",
         "Disallow: /tag_search",
         "Disallow: /oracle",
+        "Disallow: /soundings",
         "",
         f"Sitemap: {SITE_URL}/sitemap.xml",
         "",
@@ -222,7 +223,9 @@ def sitemap_xml():
 # Flask Homepage
 @app.route('/')
 def home():
-    return render_template('home.html', popular_topics=list(TOPICS.values()))
+    mode = request.args.get('mode')
+    return render_template('home.html', popular_topics=list(TOPICS.values()),
+                           mode=mode if mode in ('soundings', 'line') else 'oracle')
 
 # The ship's log: kept verses, read from this browser's storage by site.js
 @app.route('/log')
@@ -256,6 +259,8 @@ import hashlib
 _LINK_SECRET = os.getenv("SECRET_KEY") or hashlib.sha256(
     ("mdb-result-links:" + (openai_api_key or "dev")).encode()).hexdigest()
 ORACLE_LINKS = URLSafeSerializer(_LINK_SECRET, salt="oracle-v1")
+SOUNDING_LINKS = URLSafeSerializer(_LINK_SECRET, salt="soundings-v1")
+SOUNDINGS_SHOWN = 10
 
 VERSES_BY_ID = {}
 for _chapter in moby_dick_data:
@@ -278,13 +283,25 @@ def bad_link_page():
     return render_template('home.html', error="That result has been lost at sea. The link may be incomplete; try asking again."), 404
 
 
-# Flask main logic: ask the oracle
+# Flask main logic. One ask box, three ways to search (the `mode` field):
+#   oracle    - Hail the mast-head: a new verse, then the 3 nearest passages to it
+#   soundings - Take soundings: the 10 passages nearest your own words, no verse
+#   line      - Find the line: exact words, no AI (not rate limited)
 @app.route('/search', methods=['POST'])
-@limiter.limit("10 per minute")
+@limiter.limit("10 per minute", exempt_when=lambda: request.form.get('mode') == 'line')
 def search():
     query = request.form.get('query', '').strip()[:500]
+    mode = request.form.get('mode', 'oracle')
     if not query:
-        return redirect(url_for('home'), code=303)
+        return redirect(url_for('home', mode=mode if mode in ('soundings', 'line') else None), code=303)
+    if mode == 'line':
+        return redirect(url_for('line_search', q=query), code=303)
+    if mode == 'soundings':
+        try:
+            ids = nearest_ids(get_embedding_safe(query), SOUNDINGS_SHOWN)
+        except EmbeddingError:
+            return render_template('home.html', mode=mode, error="The search service is temporarily unavailable. Please try again later."), 503
+        return redirect(url_for('soundings_result', token=SOUNDING_LINKS.dumps({"q": query, "p": ids})), code=303)
 
     # Step 1: Generate fake Melville-style verse
     generated_verse = prompt_verse_generator(query)
@@ -313,6 +330,16 @@ def oracle_result(token):
     return render_template('results.html',
                            query=data.get("q", ""),
                            generated_verse=data.get("v", ""),
+                           matched_verses=verses_for(data.get("p", [])))
+
+
+@app.route('/soundings/<token>')
+def soundings_result(token):
+    try:
+        data = SOUNDING_LINKS.loads(token)
+    except BadSignature:
+        return bad_link_page()
+    return render_template('soundings-results.html', query=data.get("q", ""),
                            matched_verses=verses_for(data.get("p", [])))
 
 

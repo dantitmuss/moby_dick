@@ -111,19 +111,55 @@
     var form = $('search-form'), field = $('query'), count = $('query-count');
     if (!form || !field) return;
 
-    var PLACEHOLDERS = [
-      'the weight of Sunday nights\u2026',
-      'why ambition never feels finished\u2026',
-      'whether the cat is judging me\u2026',
-      'a promise I didn\u2019t keep\u2026',
-      'the loneliness of long meetings\u2026',
-      'what to do with an ordinary Tuesday\u2026'
-    ];
+    var PLACEHOLDERS = {
+      oracle: [
+        'the weight of Sunday nights\u2026',
+        'why ambition never feels finished\u2026',
+        'whether the cat is judging me\u2026',
+        'a promise I didn\u2019t keep\u2026',
+        'the loneliness of long meetings\u2026',
+        'what to do with an ordinary Tuesday\u2026'
+      ],
+      soundings: [
+        'the sermon about Jonah\u2026',
+        'Ahab\u2019s ivory leg\u2026',
+        'sharing a bed at the inn\u2026',
+        'a storm that sets the masts alight\u2026',
+        'what makes white so frightening\u2026'
+      ],
+      line: [
+        'call me Ishmael\u2026',
+        'a damp, drizzly November\u2026',
+        'from hell\u2019s heart I stab at thee\u2026',
+        'not down in any map\u2026'
+      ]
+    };
+    var BUTTONS = { oracle: 'Ask the book', soundings: 'Take soundings', line: 'Find the line' };
+    var btn = $('ask-btn'), hint = $('mode-hint');
+    function mode() {
+      var r = form.querySelector('input[name="mode"]:checked');
+      return r ? r.value : 'oracle';
+    }
     var ph = 0;
+    function setPlaceholder() {
+      var list = PLACEHOLDERS[mode()] || PLACEHOLDERS.oracle;
+      field.placeholder = list[ph % list.length];
+    }
+    function paintMode() {
+      var m = mode();
+      if (btn) btn.textContent = BUTTONS[m] || BUTTONS.oracle;
+      if (hint) Array.prototype.forEach.call(hint.querySelectorAll('[data-for]'), function (el) {
+        el.hidden = el.getAttribute('data-for') !== m;
+      });
+      ph = 0;
+      setPlaceholder();
+    }
+    form.addEventListener('change', function (e) { if (e.target.name === 'mode') paintMode(); });
+    paintMode();
     if (!calm) setInterval(function () {
       if (document.activeElement === field || field.value) return;
-      ph = (ph + 1) % PLACEHOLDERS.length;
-      field.placeholder = PLACEHOLDERS[ph];
+      ph++;
+      setPlaceholder();
     }, 2800);
 
     function updateCount() {
@@ -219,6 +255,8 @@
     var f = $(id);
     if (!f || !Loading) return;
     f.addEventListener('submit', function () {
+      var m = f.querySelector('input[name="mode"]:checked');
+      if (m && m.value === 'line') return;   // exact search is instant: no line thrown, no overlay
       if (window.MDBScene) window.MDBScene.throwLine();
       setTimeout(Loading.show, calm ? 0 : 450);
     });
@@ -490,19 +528,14 @@
     });
     paint();
 
-    /* copy a link to one verse */
+    /* share a link to one verse (share sheet on phones, copied elsewhere) */
     book.addEventListener('click', function (e) {
       var btn = e.target.closest('.rd-copy');
       if (!btn) return;
       var url = location.origin + location.pathname + '#' + btn.getAttribute('data-verse');
-      var done = function (ok) {
-        btn.textContent = ok ? 'Link copied' : 'Copy blocked';
-        btn.setAttribute('data-done', '');
-        clearTimeout(btn._t);
-        btn._t = setTimeout(function () { btn.textContent = 'Copy link'; btn.removeAttribute('data-done'); }, 1800);
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(function () { done(true); }, function () { done(false); });
-      else done(false);
+      var head = document.querySelector('h1');
+      var title = 'Moby-Dick' + (head ? ', ' + head.textContent.replace(/\s+/g, ' ').trim() : '') + ', verse ' + btn.getAttribute('data-verse');
+      shareLink(url, title, btn, 'Share');
     });
 
     /* replay the highlight when the same verse link is followed twice */

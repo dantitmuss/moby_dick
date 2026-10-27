@@ -37,7 +37,7 @@
   <section class="rd-verse" aria-label="Verse {{ v.n }}">
     <div class="rd-verse-head">
       <a class="rd-label" href="#{{ v.n }}">{{ number }}:{{ v.n }}</a>
-      <button type="button" class="rd-copy" data-verse="{{ v.n }}">Copy link</button>
+      <button type="button" class="rd-copy" data-verse="{{ v.n }}">Share</button>
     </div>
     {% for piece in v.pieces %}
     <p class="rd-p{% if piece.new %} rd-new{% endif %}{% if piece.foot %} rd-fnote{% endif %}">{% if loop.first %}<a class="rd-mark" id="{{ v.n }}" href="#{{ v.n }}" aria-label="Verse {{ v.n }}">{{ v.n }}</a>{% endif %}{{ piece.html }}</p>

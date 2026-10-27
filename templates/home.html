@@ -30,16 +30,27 @@
 
   <!-- The mast-head: asking is the main event -->
   <section class="mdb-frame mdb-frame--brass" aria-labelledby="ask-label">
+    {% set mode = mode | default('oracle') %}
     <form id="search-form" class="mdb-ask" action="/search" method="post">
       <div>
         <label for="query" class="mdb-label" id="ask-label">Send it up the mast-head</label>
-        <p class="mdb-hint">A question, a feeling or a phrase. Up to 500 characters.</p>
+        <fieldset class="mdb-modes">
+          <legend class="sr-only">How shall we search?</legend>
+          <label><input type="radio" name="mode" value="oracle"{% if mode == 'oracle' %} checked{% endif %}><span>Hail the <i class="nw">mast-head</i></span></label>
+          <label><input type="radio" name="mode" value="soundings"{% if mode == 'soundings' %} checked{% endif %}><span>Take soundings</span></label>
+          <label><input type="radio" name="mode" value="line"{% if mode == 'line' %} checked{% endif %}><span>Find the line</span></label>
+        </fieldset>
+        <p class="mdb-hint" id="mode-hint" aria-live="polite">
+          <span data-for="oracle"{% if mode != 'oracle' %} hidden{% endif %}>Ask a question or confess a feeling. The book writes you a new verse, then hauls up three real passages that answer it.</span>
+          <span data-for="soundings"{% if mode != 'soundings' %} hidden{% endif %}>Describe a scene, a person or an idea. We drop the lead line and bring up the ten real passages nearest your words. No new verse.</span>
+          <span data-for="line"{% if mode != 'line' %} hidden{% endif %}>Type a line you half remember, word for word. We find every passage that has it, case and commas aside.</span>
+        </p>
       </div>
       <textarea id="query" name="query" rows="3" maxlength="500" required
                 class="mdb-field" placeholder="the weight of Sunday nights&hellip;"></textarea>
       <div class="mdb-ask-row">
         <span class="mdb-count" id="query-count" aria-live="off">0 / 500</span>
-        <button type="submit" class="mdb-btn">Ask the book</button>
+        <button type="submit" class="mdb-btn" id="ask-btn">{{ {'oracle': 'Ask the book', 'soundings': 'Take soundings', 'line': 'Find the line'}[mode] }}</button>
       </div>
     </form>
   </section>

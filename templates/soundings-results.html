@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% from "_passage.html" import gam %}
+
+{% block title %}Soundings | The Moby-Dick Bible{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block content %}
+
+<a href="/?mode=soundings" class="mdb-back">&lt; Take another sounding</a>
+
+<div class="mdb-intro">
+  <p class="mdb-cite">Soundings</p>
+  <h1 class="mdb-h1">{{ query | truncate(80, true, '…') }}</h1>
+  <p class="mdb-quiet" style="margin:0;">
+    The lead line went down and came up with these: the {{ matched_verses | length }} passages in
+    <em>Moby-Dick</em> nearest in meaning to your words, closest first. Nothing here was written
+    for you. This is the book alone.
+  </p>
+</div>
+
+<div class="mdb-canon-list" id="mdb-soundings-list">
+  {% for match in matched_verses %}
+    {% if match.text %}{{ gam(match) }}{% endif %}
+  {% endfor %}
+</div>
+
+<div class="mdb-actions">
+  <button type="button" class="mdb-btn mdb-btn--quiet" data-share-link data-share-title="Soundings in Moby-Dick: {{ query | truncate(60, true, '…') }}">Share</button>
+  <a href="/?mode=soundings" class="mdb-btn mdb-btn--quiet">Take another sounding</a>
+  <a href="/" class="mdb-btn">Hail the mast-head</a>
+</div>
+
+<p class="mdb-crew mdb-small" style="margin:0;"><b>Starbuck</b> prefers soundings to prophecy. Less poetry, more bottom.</p>
+
+{% endblock %}
