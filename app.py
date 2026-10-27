@@ -189,6 +189,7 @@ def robots_txt():
         "Allow: /",
         "Disallow: /search",
         "Disallow: /tag_search",
+        "Disallow: /oracle",
         "",
         f"Sitemap: {SITE_URL}/sitemap.xml",
         "",
@@ -243,11 +244,47 @@ def privacy():
 def get_tags_json():
     return send_from_directory('static', 'tags.json')
 
-# Flask main logic
+# ---- Linkable results ------------------------------------------------------
+# A search is run once (a POST), then the browser is sent on to an ordinary link
+# that shows the result (Post/Redirect/Get). Reloading a sleeping tab or sharing
+# the link just shows the result again: nothing is re-run and no AI is called.
+# Oracle links carry the finished verse inside them, signed so nobody can put
+# words in the book's mouth on this domain.
+from itsdangerous import URLSafeSerializer, BadSignature
+import hashlib
+
+_LINK_SECRET = os.getenv("SECRET_KEY") or hashlib.sha256(
+    ("mdb-result-links:" + (openai_api_key or "dev")).encode()).hexdigest()
+ORACLE_LINKS = URLSafeSerializer(_LINK_SECRET, salt="oracle-v1")
+
+VERSES_BY_ID = {}
+for _chapter in moby_dick_data:
+    for _verse in _chapter["verses"]:
+        VERSES_BY_ID[_verse["id"]] = {
+            "chapter_number": _chapter["chapter_number"],
+            "chapter_title": _chapter["title"],
+            "verse_number": _verse["verse_number"],
+            "text": _verse["text"],
+        }
+
+def nearest_ids(embedding, k):
+    _, idx = index.search(embedding, k=k)
+    return [id_data[i] for i in idx[0] if 0 <= i < len(id_data)]
+
+def verses_for(ids):
+    return [VERSES_BY_ID[i] for i in ids if i in VERSES_BY_ID]
+
+def bad_link_page():
+    return render_template('home.html', error="That result has been lost at sea. The link may be incomplete; try asking again."), 404
+
+
+# Flask main logic: ask the oracle
 @app.route('/search', methods=['POST'])
 @limiter.limit("10 per minute")
 def search():
-    query = request.form['query']
+    query = request.form.get('query', '').strip()[:500]
+    if not query:
+        return redirect(url_for('home'), code=303)
 
     # Step 1: Generate fake Melville-style verse
     generated_verse = prompt_verse_generator(query)
@@ -258,20 +295,74 @@ def search():
     except EmbeddingError:
         return render_template('home.html', error="The search service is temporarily unavailable. Please try again later."), 503
 
-    # Step 3: Search FAISS for the closest match
-    D, I = index.search(query_embedding, k=3)
+    # Step 3: The three closest real passages, then on to a link that shows them
+    token = ORACLE_LINKS.dumps({"q": query, "v": generated_verse, "p": nearest_ids(query_embedding, 3)})
+    return redirect(url_for('oracle_result', token=token), code=303)
 
-    matches = []
-    for idx in I[0]:
-        match_id = id_data[idx]  # Get the corresponding ID from the FAISS index
-        verse = find_verse_by_id(match_id, moby_dick_data)  # Get the verse text
-        matches.append(verse)  # Store it
+# An old tab or bookmark asking for /search the plain way goes home, not to an error.
+@app.route('/search', methods=['GET'])
+def search_get():
+    return redirect(url_for('home'))
 
-    # Step 4: Return results
+@app.route('/oracle/<token>')
+def oracle_result(token):
+    try:
+        data = ORACLE_LINKS.loads(token)
+    except BadSignature:
+        return bad_link_page()
     return render_template('results.html',
-                           query=query,
-                           generated_verse=generated_verse,
-                           matched_verses=matches)
+                           query=data.get("q", ""),
+                           generated_verse=data.get("v", ""),
+                           matched_verses=verses_for(data.get("p", [])))
+
+
+# ---- Find the line: exact words, no AI ------------------------------------
+# Matching ignores case, punctuation, italics marks and curly vs straight
+# quotes, so a line pasted from a quotes site still finds Gutenberg's wording.
+LINE_MIN, LINE_SHOWN = 3, 50
+
+def _fold(text):
+    """Lowercased letters and digits with every other run collapsed to one space,
+    plus, for each folded character, its position in the original text."""
+    out, where, gap = [], [], True
+    for i, ch in enumerate(text):
+        if ch.isalnum():
+            out.append(ch.lower()); where.append(i); gap = False
+        elif not gap:
+            out.append(" "); where.append(i); gap = True
+    return "".join(out), where
+
+LINE_INDEX = []
+for _chapter in moby_dick_data:
+    for _verse in _chapter["verses"]:
+        _folded, _where = _fold(_verse["text"])
+        LINE_INDEX.append((" " + _folded + " ", [_where[0] if _where else 0] + _where, _verse["id"]))
+
+def find_line(q):
+    want = _fold(q)[0].strip()
+    if len(want) < LINE_MIN:
+        return want, [], 0
+    needle, found, total = " " + want + " ", [], 0
+    for folded, where, vid in LINE_INDEX:
+        at = folded.find(needle)
+        if at < 0:
+            continue
+        total += 1
+        if len(found) >= LINE_SHOWN:
+            continue
+        verse = dict(VERSES_BY_ID[vid])
+        text = verse["text"]
+        start, end = where[at + 1], where[at + len(want)] + 1
+        verse["quote"] = text[start:end]
+        found.append(verse)
+    return want, found, total
+
+@app.route('/search/line')
+def line_search():
+    q = request.args.get('q', '').strip()[:500]
+    want, found, total = find_line(q) if q else ("", [], 0)
+    return render_template('line-results.html', q=q, too_short=bool(q) and len(want) < LINE_MIN,
+                           found=found, total=total)
 
 def tag_matches(category, tag):
     """Verses carrying `tag` in `category`, or in any category when category is 'all'."""

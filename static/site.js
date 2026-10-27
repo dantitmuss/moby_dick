@@ -389,7 +389,7 @@
         var t = g.querySelector('.mdb-passage'), c = g.querySelector('.mdb-cite');
         if (t && c) parts.push((i === 0 ? 'And from Moby-Dick itself:\n' : '') + t.innerText.trim() + '\n(' + c.innerText.trim() + ')');
       });
-      parts.push('mobydickbible.com');
+      parts.push(location.href);
       return parts.join('\n\n');
     }
     window.MDBShareText = shareText;
@@ -422,7 +422,7 @@
     if (shareBtn) shareBtn.addEventListener('click', function () {
       var text = shareText();
       if (navigator.share) {
-        navigator.share({ title: 'The Moby-Dick Bible', text: text })
+        navigator.share({ title: 'The Moby-Dick Bible', text: text.slice(0, text.lastIndexOf('\n\n')), url: location.href })
           .then(function () { flash(shareBtn, 'Shared'); })
           .catch(function (err) { if (!err || err.name !== 'AbortError') copy(text, shareBtn, 'Copied instead'); });
       } else copy(text, shareBtn, 'Copied instead');
@@ -513,6 +513,32 @@
       sec.style.animation = 'none'; void sec.offsetWidth; sec.style.animation = '';
     });
   })();
+
+  /* ---- Share a link: native share sheet, else copy ---------------------- */
+  function shareLink(url, title, btn, idle) {
+    var done = function (label) {
+      btn.textContent = label;
+      btn.setAttribute('data-done', '');
+      clearTimeout(btn._t);
+      btn._t = setTimeout(function () { btn.textContent = idle; btn.removeAttribute('data-done'); }, 1800);
+    };
+    var copyIt = function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(function () { done('Link copied'); }, function () { done('Copy blocked'); });
+      else done('Copy blocked');
+    };
+    if (navigator.share) {
+      navigator.share({ title: title, url: url })
+        .catch(function (err) { if (!err || err.name !== 'AbortError') copyIt(); });
+    } else copyIt();
+  }
+  window.MDBShareLink = shareLink;
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-share-link]');
+    if (!btn) return;
+    var idle = btn.getAttribute('data-label') || btn.textContent;
+    btn.setAttribute('data-label', idle);
+    shareLink(location.href, btn.getAttribute('data-share-title') || document.title, btn, idle);
+  });
 
   /* ---- Header popovers (More, settings): one open at a time ------------ */
   (function () {
