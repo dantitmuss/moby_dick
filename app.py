@@ -456,6 +456,7 @@ def find_line(q):
     return want, found, total
 
 @app.route('/search/line')
+@limiter.limit("30 per minute")
 def line_search():
     q = request.args.get('q', '').strip()[:500]
     want, found, total = find_line(q) if q else ("", [], 0)
@@ -493,7 +494,10 @@ def find_tag():
     return render_tag_results(request.form.get('category', ''), request.form.get('tag', ''))
 
 # The same results as a plain link, so tags on the reading page can point here.
+# Scrapers that ignore robots.txt can walk all ~8,400 tag pages; a reader never
+# comes close to this limit.
 @app.route('/tag')
+@limiter.limit("30 per minute")
 def tag_link():
     category, tag = request.args.get('category', ''), request.args.get('tag', '')
     if category not in TAG_ORDER or not tag:

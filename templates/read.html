@@ -44,11 +44,11 @@
     {% endfor %}
     {% if v.tags %}
     <div class="rd-tags">
-      {% for cat, t in v.tags %}<a class="rd-tag" href="{{ url_for('tag_link', category=cat, tag=t) }}">{{ t }}</a>{% endfor %}
+      {% for cat, t in v.tags %}<a class="rd-tag" rel="nofollow" href="{{ url_for('tag_link', category=cat, tag=t) }}">{{ t }}</a>{% endfor %}
       {% if v.more_tags %}
       <details class="rd-more">
         <summary>{{ v.more_tags|length }} more</summary>
-        {% for cat, t in v.more_tags %}<a class="rd-tag" href="{{ url_for('tag_link', category=cat, tag=t) }}">{{ t }}</a>{% endfor %}
+        {% for cat, t in v.more_tags %}<a class="rd-tag" rel="nofollow" href="{{ url_for('tag_link', category=cat, tag=t) }}">{{ t }}</a>{% endfor %}
       </details>
       {% endif %}
     </div>

@@ -33,7 +33,7 @@
   <h2 class="mdb-h3" id="cc-marks-title">Every passage, mark by mark</h2>
   <p class="mdb-quiet" style="margin:0;">This page gathers several marks from the concordance. Follow one to read every passage that carries it.</p>
   <nav class="rd-tags" aria-label="Marks behind this page">
-    {% for m in marks %}<a class="rd-tag" href="{{ url_for('tag_link', category=m.category, tag=m.tag) }}">{{ m.tag }} <span class="cc-n">{{ m.category_name }}, {{ m.count }}</span></a>{% endfor %}
+    {% for m in marks %}<a class="rd-tag" rel="nofollow" href="{{ url_for('tag_link', category=m.category, tag=m.tag) }}">{{ m.tag }} <span class="cc-n">{{ m.category_name }}, {{ m.count }}</span></a>{% endfor %}
   </nav>
 </section>
 {% endif %}
