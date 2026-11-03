@@ -5,7 +5,8 @@
   <title>{% block title %}The Moby-Dick Bible{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#0a1324">
-  <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}" type="image/png">
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}?v=2" type="image/png">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}?v=2">
 
   <!-- Cookie consent (opt-in, gates GTM). Styled in pixel.css, not the library's stylesheet. -->
   <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js"></script>

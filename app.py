@@ -10,12 +10,27 @@ import faiss
 from openai import OpenAI
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from flask_compress import Compress
 
 # Load environment variables (OpenAI API key)
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
 app = Flask(__name__, static_folder="static")
+
+# Gzip/Brotli text responses (HTML, CSS, JS, JSON) to cut bandwidth.
+app.config["COMPRESS_MIMETYPES"] = [
+    "text/html", "text/css", "text/plain", "text/xml",
+    "application/javascript", "text/javascript",
+    "application/json", "application/xml", "image/svg+xml",
+]
+Compress(app)
+
+# Static files: a week by default. Files requested with ?v= are versioned,
+# so they can be cached for a year (bump the number when the file changes).
+STATIC_MAX_AGE = 60 * 60 * 24 * 7
+VERSIONED_MAX_AGE = 60 * 60 * 24 * 365
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = STATIC_MAX_AGE
 
 limiter = Limiter(
     get_remote_address,
@@ -179,7 +194,22 @@ def security_headers(response):
     response.headers.setdefault("X-Content-Type-Options", "nosniff")
     response.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
     response.headers.setdefault("X-Frame-Options", "SAMEORIGIN")
+    if request.path.startswith("/static/") and request.args.get("v") and response.status_code == 200:
+        response.headers["Cache-Control"] = f"public, max-age={VERSIONED_MAX_AGE}, immutable"
     return response
+
+
+# Browsers and bots ask for /favicon.ico even when the page names a PNG.
+# Serve the small icon instead of a full 404 page.
+@app.route('/favicon.ico')
+def favicon_ico():
+    return send_from_directory('static/images', 'favicon.png', mimetype='image/png')
+
+
+@app.route('/apple-touch-icon.png')
+@app.route('/apple-touch-icon-precomposed.png')
+def apple_touch_icon():
+    return send_from_directory('static/images', 'apple-touch-icon.png', mimetype='image/png')
 
 
 @app.route('/robots.txt')
@@ -286,7 +316,7 @@ def privacy():
 # Get the tag information
 @app.route('/tags.json')
 def get_tags_json():
-    return send_from_directory('static', 'tags.json')
+    return send_from_directory('static', 'tags.json', max_age=60 * 60 * 24)
 
 # ---- Linkable results ------------------------------------------------------
 # A search is run once (a POST), then the browser is sent on to an ordinary link
